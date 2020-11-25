@@ -1,0 +1,2119 @@
+
+02B0:
+02B0 CopyImmediate8ToA 0000
+02B2 CopyAToImmediate16Address 1439
+
+02B5:
+02B5 ClearPageFlag
+02B6 CopyImmediate8ToX 002F
+02B8 CopyXToSP
+02B9 CopyImmediate8ToA 0000
+02BB CopyAToX
+
+02BC:
+02BC CopyAToXAddressAndIncrementX
+02BD CompareXToImmediate8 00F0
+02BF BranchToRelative8IfNotEqual 02BC
+02C1 CopyAToX
+
+02C2:
+02C2 CopyAToImmediate16PlusXAddress 0100
+02C5 CompareXToImmediate8 00B0
+02C7 BranchToRelative8IfCarry 02CC
+02C9 CopyAToImmediate16PlusXAddress 0200
+
+02CC:
+02CC IncrementX
+02CD BranchToRelative8IfNotEqual 02C2
+02CF CopyAToY
+02D0 CopyYAToImmediate8Address 00F4
+02D2 CopyYAToImmediate8Address 00F6
+02D4 IncrementA
+02D5 CallImmediate16 0FE7
+02D8 SetImmediate8AddressBit5 0031
+02DA CopyImmediate8ToA 0015
+02DC CopyImmediate8ToY 005D
+02DE CopyYToImmediate8Address 00F2
+02E0 CopyAToImmediate8Address 00F3
+02E2 CopyImmediate8ToImmediate8Address F0, F1
+02E5 CopyImmediate8ToA 0010
+02E7 CopyAToImmediate8Address 00FA
+02E9 CopyAToImmediate8Address 00FB
+02EB CopyAToImmediate8Address 003B
+02ED CopyImmediate8ToImmediate8Address 03, F1
+02F0 CopyImmediate8ToImmediate8Address 02, F4
+02F3 CopyImmediate8ToImmediate8Address 00, F5
+02F6 CopyImmediate16AddressToA 06DF
+02F9 CopyImmediate16AddressToY 06E0
+02FC CopyYAToImmediate8Address 0006
+02FE CopyImmediate8ToImmediate8Address 02, 2F
+
+0301:
+0301 CopyImmediate8ToY 000A
+
+0303:
+0303 CompareYToImmediate8 0005
+0305 BranchToRelative8IfEqual 030E
+0307 BranchToRelative8IfCarry 0311
+0309 CompareImmediate8AddressToImmediate8Address 36, 35
+030C BranchToRelative8IfNotEqual 031D
+
+030E:
+030E BranchToRelative8IfImmediate8AddressBit7Set 35, 0C
+
+0311:
+0311 CopyImmediate16PlusYAddressToA 038E
+0314 CopyAToImmediate8Address 00F2
+0316 CopyImmediate16PlusYAddressToA 0398
+0319 CopyAToX
+031A CopyXAddressToA
+031B CopyAToImmediate8Address 00F3
+
+031D:
+031D DecrementYAndBranchToRelative8IfNotZero 0303
+031F CopyYToImmediate8Address 0029
+0321 CopyYToImmediate8Address 002A
+
+0323:
+0323 CopyImmediate8AddressToY 00FE
+0325 BranchToRelative8IfEqual 0323
+0327 CopyImmediate8ToA 0030
+0329 MultiplyAByY
+032A ClearCarryFlag
+032B AddImmediate8AddressPlusCarryToA 0058
+032D CopyAToImmediate8Address 0058
+032F BranchToRelative8IfNotCarry 0334
+0331 CallImmediate16 03A3
+
+0334:
+0334 CopyImmediate8AddressToY 00FD
+0336 BranchToRelative8IfEqual 0334
+0338 PushYToStack
+0339 CopyImmediate8ToA 0040
+033B MultiplyAByY
+033C ClearCarryFlag
+033D AddImmediate8AddressPlusCarryToA 0014
+033F CopyAToImmediate8Address 0014
+0341 BranchToRelative8IfNotCarry 035B
+
+0343:
+0343 CopyImmediate8AddressToYA 00F4
+0345 CompareYAToImmediate8Address 00F4
+0347 BranchToRelative8IfNotEqual 0343
+0349 CompareYAToImmediate8Address 0000
+034B BranchToRelative8IfEqual 0354
+034D CopyYAToImmediate8Address 0000
+034F CopyYAToImmediate8Address 00F4
+0351 CallImmediate16 0469
+
+0354:
+0354 CompareImmediate8AddressToImmediate8Address 36, 35
+0357 BranchToRelative8IfEqual 035B
+0359 IncrementImmediate8Address 0035
+
+035B:
+035B PullYFromStack
+035C CopyImmediate8AddressToA 003B
+035E MultiplyAByY
+035F ClearCarryFlag
+0360 AddImmediate8AddressPlusCarryToA 0039
+0362 CopyAToImmediate8Address 0039
+0364 BranchToRelative8IfNotCarry 036B
+0366 CallImmediate16 09CF
+0369 JumpToRelative8 0301
+
+036B:
+036B CopyImmediate8AddressToA 0005
+036D BranchToRelative8IfEqual 0301
+036F CopyImmediate8ToX 0000
+0371 CopyImmediate8ToImmediate8Address 01, 2B
+
+0374:
+0374 CopyImmediate8PlusXAddressToA 0019
+0376 BranchToRelative8IfEqual 037B
+0378 CallImmediate16 135D
+
+037B:
+037B IncrementX
+037C IncrementX
+037D ShiftImmediate8AddressLeft 002B
+037F CopyImmediate8PlusXAddressToA 0019
+0381 BranchToRelative8IfEqual 0386
+0383 CallImmediate16 135D
+
+0386:
+0386 IncrementX
+0387 IncrementX
+0388 ShiftImmediate8AddressLeft 002B
+038A BranchToRelative8IfNotEqual 0374
+038C JumpToAbsolute16 0301
+
+03A3:
+03A3 CopyImmediate8AddressToA 0013
+03A5 BranchToRelative8IfEqual 03AA
+03A7 CallImmediate16 0718
+
+03AA:
+03AA CopyImmediate8AddressToY 0071
+03AC BranchToRelative8IfEqual 0423
+
+03AE:
+03AE DecrementY
+03AF PushYToStack
+03B0 CopyImmediate8PlusYAddressToX 0072
+03B2 CopyXToImmediate8Address 002B
+03B4 CopyXToA
+03B5 CopyImmediate8PlusYAddressToX 0059
+03B7 AndAWithImmediate8Address 0028
+03B9 BranchToRelative8IfNotEqual 040A
+03BB CopyImmediate8PlusXAddressToY 0062
+03BD BranchToRelative8IfEqual 0416
+03BF CopyXToImmediate8Address 002C
+03C1 DecrementImmediate8PlusXAddress 007F
+03C3 BranchToRelative8IfNotEqual 040A
+
+03C5:
+03C5 CopyImmediate8PlusXPointerToA 0061
+03C7 IncrementImmediate8PlusXAddress 0061
+03C9 BranchToRelative8IfNotEqual 03CD
+03CB IncrementImmediate8PlusXAddress 0062
+
+03CD:
+03CD CopyAToY
+03CE BranchToRelative8IfNotEqual 03E7
+03D0 CopyImmediate8PlusXAddressToA 008F
+03D2 BranchToRelative8IfEqual 0424
+03D4 CallImmediate16 0E78
+03D7 DecrementImmediate8PlusXAddress 008F
+03D9 BranchToRelative8IfNotEqual 03C5
+03DB CopyImmediate16PlusXAddressToA 0160
+03DE CopyAToImmediate8PlusXAddress 0061
+03E0 CopyImmediate16PlusXAddressToA 0161
+03E3 CopyAToImmediate8PlusXAddress 0062
+03E5 JumpToRelative8 03C5
+
+03E7:
+03E7 BranchToRelative8IfNegative 03F5
+03E9 CopyAToImmediate16PlusXAddress 0130
+03EC CopyImmediate8PlusXPointerToA 0061
+03EE IncrementImmediate8PlusXAddress 0061
+03F0 BranchToRelative8IfNotEqual 03F4
+03F2 IncrementImmediate8PlusXAddress 0062
+
+03F4:
+03F4 CopyAToY
+
+03F5:
+03F5 CompareAToImmediate8 00CE
+03F7 BranchToRelative8IfNotCarry 03FE
+03F9 CallImmediate16 044D
+03FC JumpToRelative8 03C5
+
+03FE:
+03FE CallImmediate16 0748
+0401 CopyImmediate16PlusXAddressToA 0130
+0404 CopyAToImmediate8PlusXAddress 007F
+0406 CopyAToImmediate8PlusXAddress 0080
+0408 JumpToRelative8 040D
+
+040A:
+040A CallImmediate16 123E
+
+040D:
+040D CallImmediate16 102B
+0410 CallImmediate16 10EA
+0413 CallImmediate16 13DC
+
+0416:
+0416 CopyImmediate8AddressToA 00DF
+0418 CompareAToImmediate8 0002
+041A BranchToRelative8IfNotEqual 041F
+041C CallImmediate16 0615
+
+041F:
+041F PullAFromStack
+0420 CopyAToY
+0421 BranchToRelative8IfNotEqual 03AE
+
+0423:
+0423 ReturnFromSubroutine
+
+0424:
+0424 CopyImmediate8ToA 00FF
+0426 CopyAToImmediate16PlusXAddress 0271
+0429 IncrementA
+042A CopyAToImmediate8PlusXAddress 0062
+042C CopyImmediate8AddressToA 00DF
+042E BranchToRelative8IfEqual 0416
+0430 CallImmediate16 05FB
+0433 JumpToRelative8 0416
+
+044D:
+044D ShiftALeft
+044E CopyAToY
+044F CopyImmediate16PlusYAddressToA 0A77
+0452 PushAToStack
+0453 CopyImmediate16PlusYAddressToA 0A76
+0456 PushAToStack
+0457 CopyYToA
+0458 ShiftARight
+0459 CopyAToY
+045A CopyImmediate16PlusYAddressToA 0B0A
+045D BranchToRelative8IfEqual 0468
+045F CopyImmediate8PlusXPointerToA 0061
+0461 IncrementImmediate8PlusXAddress 0061
+0463 BranchToRelative8IfNotEqual 0467
+0465 IncrementImmediate8PlusXAddress 0062
+
+0467:
+0467 CopyAToY
+
+0468:
+0468 ReturnFromSubroutine
+
+0469:
+0469 CopyYToA
+046A AndAWithImmediate8 000E
+046C CopyAToX
+046D CopyYToA
+046E AndAWithImmediate8 00E0
+0470 ExchangeANibbles
+0471 CopyAToImmediate8Address 002C
+0473 JumpToImmediate16PlusXPointer 0477
+
+05FB:
+05FB CopyImmediate8ToImmediate8Address 02, DF
+05FE ClearCarryFlag
+05FF CopyImmediate8AddressToA 004A
+0601 BranchToRelative8IfNotNegative 0604
+0603 SetCarryFlag
+
+0604:
+0604 RollARight
+0605 CopyAToImmediate8Address 004A
+0607 ClearCarryFlag
+0608 CopyImmediate8AddressToA 004C
+060A BranchToRelative8IfNotNegative 060D
+060C SetCarryFlag
+
+060D:
+060D RollARight
+060E CopyAToImmediate8Address 004C
+0610 CopyImmediate8ToA 0070
+0612 CopyAToImmediate8Address 0030
+0614 ReturnFromSubroutine
+
+0615:
+0615 DecrementImmediate8Address 0030
+0617 CopyImmediate8AddressToA 0030
+0619 CopyImmediate8ToY 000C
+061B CopyYToImmediate8Address 00F2
+061D CopyAToImmediate8Address 00F3
+061F CopyImmediate8ToY 001C
+0621 CopyYToImmediate8Address 00F2
+0623 CopyAToImmediate8Address 00F3
+0625 CompareAToImmediate8Address 00E7
+0627 BranchToRelative8IfNotEqual 062C
+0629 CopyImmediate8ToImmediate8Address 00, DF
+
+062C:
+062C ReturnFromSubroutine
+
+0675:
+0675 CopyImmediate8ToImmediate8Address 6C, F2
+0678 CopyImmediate8ToImmediate8Address 20, F3
+067B CopyImmediate8ToImmediate8Address AA, F4
+067E CopyImmediate8ToImmediate8Address BB, F5
+
+0681:
+0681 CopyImmediate8AddressToA 00F4
+0683 CompareAToImmediate8Address 00F4
+0685 BranchToRelative8IfNotEqual 0681
+0687 CompareAToImmediate8 00CC
+0689 BranchToRelative8IfNotEqual 0681
+068B JumpToRelative8 06A8
+
+068D:
+068D CopyImmediate8AddressToY 00F4
+068F BranchToRelative8IfNotEqual 068D
+
+0691:
+0691 CompareYToImmediate8Address 00F4
+0693 BranchToRelative8IfNotEqual 06A2
+0695 CopyImmediate8AddressToA 00F5
+0697 CopyYToImmediate8Address 00F4
+0699 CopyAToImmediate8PointerPlusY 007A
+069B IncrementY
+069C BranchToRelative8IfNotEqual 0691
+069E IncrementImmediate8Address 007B
+06A0 JumpToRelative8 0691
+
+06A2:
+06A2 BranchToRelative8IfNotNegative 0691
+06A4 CompareYToImmediate8Address 00F4
+06A6 BranchToRelative8IfNotNegative 0691
+
+06A8:
+06A8 CopyImmediate8AddressToYA 00F6
+06AA CopyYAToImmediate8Address 007A
+06AC CopyImmediate8AddressToYA 00F4
+06AE CopyAToImmediate8Address 00F4
+06B0 CopyYToA
+06B1 CopyAToX
+06B2 BranchToRelative8IfNotEqual 068D
+
+06B4:
+06B4 CopyImmediate8AddressToYA 00F4
+06B6 BranchToRelative8IfNotEqual 06B4
+06B8 CopyYAToImmediate8Address 0000
+06BA CopyYAToImmediate8Address 00F4
+
+06BC:
+06BC CopyImmediate8AddressToYA 00F6
+06BE BranchToRelative8IfNotEqual 06BC
+06C0 CopyYAToImmediate8Address 0002
+06C2 CopyYAToImmediate8Address 00F6
+06C4 CopyImmediate8ToA 005C
+06C6 CopyImmediate8ToY 00FF
+06C8 CopyYAToImmediate8Address 00F2
+06CA CopyImmediate8ToY 0000
+06CC CopyImmediate8ToA 002C
+06CE CopyYAToImmediate8Address 00F2
+06D0 CopyImmediate8ToA 003C
+06D2 CopyYAToImmediate8Address 00F2
+06D4 CopyImmediate8AddressToYA 007A
+06D6 CopyAToImmediate16Address 06DF
+06D9 CopyYToImmediate16Address 06E0
+06DC JumpToAbsolute16 02B5
+
+06A8:
+06A8 CopyImmediate8AddressToYA 00F6
+06AA CopyYAToImmediate8Address 007A
+06AC CopyImmediate8AddressToYA 00F4
+06AE CopyAToImmediate8Address 00F4
+06B0 CopyYToA
+06B1 CopyAToX
+06B2 BranchToRelative8IfNotEqual 068D
+
+06B4:
+06B4 CopyImmediate8AddressToYA 00F4
+06B6 BranchToRelative8IfNotEqual 06B4
+06B8 CopyYAToImmediate8Address 0000
+06BA CopyYAToImmediate8Address 00F4
+
+06BC:
+06BC CopyImmediate8AddressToYA 00F6
+06BE BranchToRelative8IfNotEqual 06BC
+06C0 CopyYAToImmediate8Address 0002
+06C2 CopyYAToImmediate8Address 00F6
+06C4 CopyImmediate8ToA 005C
+06C6 CopyImmediate8ToY 00FF
+06C8 CopyYAToImmediate8Address 00F2
+06CA CopyImmediate8ToY 0000
+06CC CopyImmediate8ToA 002C
+06CE CopyYAToImmediate8Address 00F2
+06D0 CopyImmediate8ToA 003C
+06D2 CopyYAToImmediate8Address 00F2
+06D4 CopyImmediate8AddressToYA 007A
+06D6 CopyAToImmediate16Address 06DF
+06D9 CopyYToImmediate16Address 06E0
+06DC JumpToAbsolute16 02B5
+
+0718:
+0718 CopyImmediate8ToImmediate8Address 18, F2
+071B CopyImmediate8AddressToA 00F3
+071D BranchToRelative8IfNotEqual 0747
+071F CopyImmediate8ToX 0002
+0721 CopyImmediate16PlusXAddressToA 0281
+0724 CompareAToImmediate8 00C5
+0726 BranchToRelative8IfEqual 0741
+0728 CompareAToImmediate8 00C0
+072A BranchToRelative8IfEqual 0730
+072C CopyImmediate8ToA 00C0
+072E JumpToRelative8 0732
+
+0730:
+0730 CopyImmediate8ToA 00C5
+
+0732:
+0732 CopyAToY
+0733 CallImmediate16 0748
+0736 CopyImmediate16PlusXAddressToA 08BC
+0739 CopyImmediate8ToY 004C
+073B CopyYToImmediate8Address 00F2
+073D CopyAToImmediate8Address 00F3
+073F JumpToRelative8 0747
+
+0741:
+0741 CopyImmediate8AddressToImmediate8Address 13, 46
+0744 CopyImmediate8ToImmediate8Address 00, 13
+
+0747:
+0747 ReturnFromSubroutine
+
+0748:
+0748 CompareYToImmediate8 00C8
+074A BranchToRelative8IfCarry 0747
+074C CopyYToA
+074D CopyAToImmediate16PlusXAddress 0281
+0750 AndAWithImmediate8 007F
+0752 JumpToRelative8 0767
+
+0754:
+0754 CompareYToImmediate8 00C8
+0756 BranchToRelative8IfCarry 0747
+0758 OrImmediate8AddressWithImmediate8Address E92B
+075B CopyImmediate8AddressToA 0013
+075D AndAWithImmediate8Address 002B
+075F BranchToRelative8IfNotEqual 0747
+0761 CopyYToA
+0762 AndAWithImmediate8 007F
+0764 ClearCarryFlag
+0765 AddImmediate8AddressPlusCarryToA 0038
+
+0767:
+0767 ClearCarryFlag
+0768 AddImmediate16PlusXAddressPlusCarryToA 0280
+076B CopyAToImmediate16PlusXAddress 0201
+076E CopyImmediate8PlusXAddressToA 00D0
+0770 CopyAToImmediate16PlusXAddress 0200
+0773 CopyImmediate16PlusXAddressToA 0260
+0776 ShiftARight
+0777 CopyImmediate8ToA 0000
+0779 RollARight
+077A CopyAToImmediate16PlusXAddress 0241
+077D CopyImmediate8ToA 0000
+077F CopyAToImmediate8PlusXAddress 00BF
+0781 CopyAToImmediate16PlusXAddress 0090
+0784 CopyImmediate8AddressToA 002B
+0786 AndAWithImmediate8Address 0057
+0788 BranchToRelative8IfNotEqual 078D
+078A OrImmediate8AddressWithImmediate8Address 292B
+
+078D:
+078D OrImmediate8AddressWithImmediate8Address 462B
+0790 CopyImmediate16PlusXAddressToA 0221
+0793 CopyAToImmediate8PlusXAddress 00AF
+0795 BranchToRelative8IfEqual 07FE
+0797 CopyImmediate16PlusXAddressToA 0230
+079A CopyAToImmediate8PlusXAddress 00B0
+079C CopyImmediate16PlusXAddressToA 0231
+079F CompareAToImmediate8 0001
+07A1 BranchToRelative8IfEqual 07B8
+07A3 BranchToRelative8IfCarry 07C1
+07A5 CopyImmediate16PlusXAddressToA 0201
+07A8 SetCarryFlag
+07A9 SubtractImmediate16PlusXAddressPlusBorrowFromA 0240
+07AC CopyAToImmediate16PlusXAddress 0201
+07AF CopyImmediate16PlusXAddressToA 0240
+07B2 ClearCarryFlag
+07B3 AddImmediate16PlusXAddressPlusCarryToA 0201
+07B6 JumpToRelative8 07CF
+
+0767:
+0767 ClearCarryFlag
+0768 AddImmediate16PlusXAddressPlusCarryToA 0280
+076B CopyAToImmediate16PlusXAddress 0201
+076E CopyImmediate8PlusXAddressToA 00D0
+0770 CopyAToImmediate16PlusXAddress 0200
+0773 CopyImmediate16PlusXAddressToA 0260
+0776 ShiftARight
+0777 CopyImmediate8ToA 0000
+0779 RollARight
+077A CopyAToImmediate16PlusXAddress 0241
+077D CopyImmediate8ToA 0000
+077F CopyAToImmediate8PlusXAddress 00BF
+0781 CopyAToImmediate16PlusXAddress 0090
+0784 CopyImmediate8AddressToA 002B
+0786 AndAWithImmediate8Address 0057
+0788 BranchToRelative8IfNotEqual 078D
+078A OrImmediate8AddressWithImmediate8Address 292B
+
+078D:
+078D OrImmediate8AddressWithImmediate8Address 462B
+0790 CopyImmediate16PlusXAddressToA 0221
+0793 CopyAToImmediate8PlusXAddress 00AF
+0795 BranchToRelative8IfEqual 07FE
+0797 CopyImmediate16PlusXAddressToA 0230
+079A CopyAToImmediate8PlusXAddress 00B0
+079C CopyImmediate16PlusXAddressToA 0231
+079F CompareAToImmediate8 0001
+07A1 BranchToRelative8IfEqual 07B8
+07A3 BranchToRelative8IfCarry 07C1
+07A5 CopyImmediate16PlusXAddressToA 0201
+07A8 SetCarryFlag
+07A9 SubtractImmediate16PlusXAddressPlusBorrowFromA 0240
+07AC CopyAToImmediate16PlusXAddress 0201
+07AF CopyImmediate16PlusXAddressToA 0240
+07B2 ClearCarryFlag
+07B3 AddImmediate16PlusXAddressPlusCarryToA 0201
+07B6 JumpToRelative8 07CF
+
+07B8:
+07B8 CopyImmediate16PlusXAddressToA 0201
+07BB SetCarryFlag
+07BC SubtractImmediate16PlusXAddressPlusBorrowFromA 0240
+07BF JumpToRelative8 07CF
+
+07C1:
+07C1 CopyImmediate16PlusXAddressToA 0201
+07C4 CopyAToY
+07C5 CopyImmediate16PlusXAddressToA 0240
+07C8 CopyAToImmediate16PlusXAddress 0201
+07CB CopyYToA
+07CC CopyAToImmediate16PlusXAddress 0240
+
+07CF:
+07CF AndAWithImmediate8 007F
+07D1 CopyAToImmediate16PlusXAddress 0220
+07D4 SetCarryFlag
+07D5 SubtractImmediate16PlusXAddressPlusBorrowFromA 0201
+07D8 CopyImmediate8PlusXAddressToY 00AF
+07DA PushYToStack
+07DB PullXFromStack
+07DC ToggleCarryFlag
+07DD RollImmediate8AddressRight 000D
+07DF BranchToRelative8IfNotNegative 07E4
+07E1 ExclusiveOrAWithImmediate8 00FF
+07E3 IncrementA
+
+07E4:
+07E4 CopyImmediate8ToY 0000
+07E6 DivideYAByX
+07E7 PushAToStack
+07E8 CopyImmediate8ToA 0000
+07EA DivideYAByX
+07EB PullYFromStack
+07EC CopyImmediate8AddressToX 002C
+07EE BranchToRelative8IfImmediate8AddressBit7Clear 0D, 06
+07F1 CopyYAToImmediate8Address 000F
+07F3 CopyImmediate8AddressToYA 0009
+07F5 SubtractImmediate8AddressFromYA 000F
+
+07F7:
+07F7 CopyAToImmediate16PlusXAddress 0210
+07FA CopyYToA
+07FB CopyAToImmediate16PlusXAddress 0211
+
+07FE:
+07FE CopyImmediate16PlusXAddressToA 0201
+0801 CopyAToImmediate8Address 000C
+0803 CopyImmediate16PlusXAddressToA 0200
+0806 CopyAToImmediate8Address 000B
+
+0808:
+0808 CopyImmediate8ToY 0000
+080A CopyImmediate8AddressToA 000C
+080C SetCarryFlag
+080D SubtractImmediate8PlusBorrowFromA 0034
+080F BranchToRelative8IfCarry 081A
+0811 CopyImmediate8AddressToA 000C
+0813 SetCarryFlag
+0814 SubtractImmediate8PlusBorrowFromA 0013
+0816 BranchToRelative8IfCarry 081E
+0818 DecrementY
+0819 ShiftALeft
+
+081A:
+081A AddImmediate8AddressToYA 000B
+081C CopyYAToImmediate8Address 000B
+
+081E:
+081E PushXToStack
+081F CopyImmediate8AddressToA 000C
+0821 ShiftALeft
+0822 CopyImmediate8ToY 0000
+0824 CopyImmediate8ToX 0018
+0826 DivideYAByX
+0827 CopyAToX
+0828 CopyImmediate16PlusYAddressToA 0893
+082B CopyAToImmediate8Address 0010
+082D CopyImmediate16PlusYAddressToA 0892
+0830 CopyAToImmediate8Address 000F
+0832 CopyImmediate16PlusYAddressToA 0895
+0835 PushAToStack
+0836 CopyImmediate16PlusYAddressToA 0894
+0839 PullYFromStack
+083A SubtractImmediate8AddressFromYA 000F
+083C CopyImmediate8AddressToY 000B
+083E MultiplyAByY
+083F CopyYToA
+0840 CopyImmediate8ToY 0000
+0842 AddImmediate8AddressToYA 000F
+0844 CopyYToImmediate8Address 0010
+0846 ShiftALeft
+0847 RollImmediate8AddressLeft 0010
+0849 CopyAToImmediate8Address 000F
+084B JumpToRelative8 0851
+
+0808:
+0808 CopyImmediate8ToY 0000
+080A CopyImmediate8AddressToA 000C
+080C SetCarryFlag
+080D SubtractImmediate8PlusBorrowFromA 0034
+080F BranchToRelative8IfCarry 081A
+0811 CopyImmediate8AddressToA 000C
+0813 SetCarryFlag
+0814 SubtractImmediate8PlusBorrowFromA 0013
+0816 BranchToRelative8IfCarry 081E
+0818 DecrementY
+0819 ShiftALeft
+
+081A:
+081A AddImmediate8AddressToYA 000B
+081C CopyYAToImmediate8Address 000B
+
+081E:
+081E PushXToStack
+081F CopyImmediate8AddressToA 000C
+0821 ShiftALeft
+0822 CopyImmediate8ToY 0000
+0824 CopyImmediate8ToX 0018
+0826 DivideYAByX
+0827 CopyAToX
+0828 CopyImmediate16PlusYAddressToA 0893
+082B CopyAToImmediate8Address 0010
+082D CopyImmediate16PlusYAddressToA 0892
+0830 CopyAToImmediate8Address 000F
+0832 CopyImmediate16PlusYAddressToA 0895
+0835 PushAToStack
+0836 CopyImmediate16PlusYAddressToA 0894
+0839 PullYFromStack
+083A SubtractImmediate8AddressFromYA 000F
+083C CopyImmediate8AddressToY 000B
+083E MultiplyAByY
+083F CopyYToA
+0840 CopyImmediate8ToY 0000
+0842 AddImmediate8AddressToYA 000F
+0844 CopyYToImmediate8Address 0010
+0846 ShiftALeft
+0847 RollImmediate8AddressLeft 0010
+0849 CopyAToImmediate8Address 000F
+084B JumpToRelative8 0851
+
+084D:
+084D ShiftImmediate8AddressRight 0010
+084F RollARight
+0850 IncrementX
+
+0851:
+0851 CompareXToImmediate8 0006
+0853 BranchToRelative8IfNotEqual 084D
+0855 CopyAToImmediate8Address 000F
+0857 PullXFromStack
+0858 CopyImmediate16PlusXAddressToA 0150
+085B CopyImmediate8AddressToY 0010
+085D MultiplyAByY
+085E CopyYAToImmediate8Address 0011
+0860 CopyImmediate16PlusXAddressToA 0150
+0863 CopyImmediate8AddressToY 000F
+0865 MultiplyAByY
+0866 PushYToStack
+0867 CopyImmediate16PlusXAddressToA 0151
+086A CopyImmediate8AddressToY 000F
+086C MultiplyAByY
+086D AddImmediate8AddressToYA 0011
+086F CopyYAToImmediate8Address 0011
+0871 CopyImmediate16PlusXAddressToA 0151
+0874 CopyImmediate8AddressToY 0010
+0876 MultiplyAByY
+0877 CopyAToY
+0878 PullAFromStack
+0879 AddImmediate8AddressToYA 0011
+087B CopyYAToImmediate8Address 0011
+087D CopyImmediate8AddressToA 002B
+087F AndAWithImmediate8Address 0013
+0881 BranchToRelative8IfNotEqual 0891
+0883 CopyImmediate16PlusXAddressToA 08AC
+0886 OrAWithImmediate8 0002
+0888 CopyImmediate8AddressToY 0011
+088A CopyYAToImmediate8Address 00F2
+088C IncrementA
+088D CopyImmediate8AddressToY 0012
+088F CopyYAToImmediate8Address 00F2
+
+0891:
+0891 ReturnFromSubroutine
+
+0851:
+0851 CompareXToImmediate8 0006
+0853 BranchToRelative8IfNotEqual 084D
+0855 CopyAToImmediate8Address 000F
+0857 PullXFromStack
+0858 CopyImmediate16PlusXAddressToA 0150
+085B CopyImmediate8AddressToY 0010
+085D MultiplyAByY
+085E CopyYAToImmediate8Address 0011
+0860 CopyImmediate16PlusXAddressToA 0150
+0863 CopyImmediate8AddressToY 000F
+0865 MultiplyAByY
+0866 PushYToStack
+0867 CopyImmediate16PlusXAddressToA 0151
+086A CopyImmediate8AddressToY 000F
+086C MultiplyAByY
+086D AddImmediate8AddressToYA 0011
+086F CopyYAToImmediate8Address 0011
+0871 CopyImmediate16PlusXAddressToA 0151
+0874 CopyImmediate8AddressToY 0010
+0876 MultiplyAByY
+0877 CopyAToY
+0878 PullAFromStack
+0879 AddImmediate8AddressToYA 0011
+087B CopyYAToImmediate8Address 0011
+087D CopyImmediate8AddressToA 002B
+087F AndAWithImmediate8Address 0013
+0881 BranchToRelative8IfNotEqual 0891
+0883 CopyImmediate16PlusXAddressToA 08AC
+0886 OrAWithImmediate8 0002
+0888 CopyImmediate8AddressToY 0011
+088A CopyYAToImmediate8Address 00F2
+088C IncrementA
+088D CopyImmediate8AddressToY 0012
+088F CopyYAToImmediate8Address 00F2
+
+0891:
+0891 ReturnFromSubroutine
+
+08CC:
+08CC CopyImmediate8ToY 0000
+08CE CopyYToImmediate8Address 0029
+08D0 CopyYToImmediate8Address 00E0
+08D2 CopyImmediate8PointerPlusYToA 0015
+08D4 IncrementImmediate8Address16 0015
+08D6 PushAToStack
+08D7 CopyImmediate8PointerPlusYToA 0015
+08D9 IncrementImmediate8Address16 0015
+08DB CopyAToY
+08DC PullAFromStack
+08DD ReturnFromSubroutine
+
+08DE:
+08DE CopyImmediate8ToImmediate8Address FF, 04
+08E1 DecrementImmediate8Address 002E
+08E3 BranchToRelative8IfNotNegative 092E
+08E5 CopyImmediate8AddressToA 0030
+08E7 BranchToRelative8IfEqual 0931
+08E9 CopyImmediate8AddressToImmediate8Address E6, 2E
+08EC DecrementA
+08ED BranchToRelative8IfEqual 08F0
+08EF DecrementA
+
+08F0:
+08F0 CopyAToImmediate8Address 0030
+08F2 CopyImmediate8ToY 000C
+08F4 CopyYToImmediate8Address 00F2
+08F6 CopyAToImmediate8Address 00F3
+08F8 CopyImmediate8ToY 001C
+08FA CopyYToImmediate8Address 00F2
+08FC CopyAToImmediate8Address 00F3
+08FE CopyImmediate8AddressToY 004A
+0900 BranchToRelative8IfEqual 0916
+0902 BranchToRelative8IfNotNegative 090A
+0904 IncrementY
+0905 BranchToRelative8IfEqual 090E
+0907 IncrementY
+0908 JumpToRelative8 090E
+
+090A:
+090A DecrementY
+090B BranchToRelative8IfEqual 090E
+090D DecrementY
+
+090E:
+090E CopyYToImmediate8Address 004A
+0910 CopyYToImmediate8Address 0051
+0912 CopyImmediate8ToA 002C
+0914 CopyYAToImmediate8Address 00F2
+
+0916:
+0916 CopyImmediate8AddressToY 004C
+0918 BranchToRelative8IfEqual 092E
+091A BranchToRelative8IfNotNegative 0922
+091C IncrementY
+091D BranchToRelative8IfEqual 0926
+091F IncrementY
+0920 JumpToRelative8 0926
+
+0922:
+0922 DecrementY
+0923 BranchToRelative8IfEqual 0926
+0925 DecrementY
+
+0926:
+0926 CopyYToImmediate8Address 004C
+0928 CopyYToImmediate8Address 0052
+092A CopyImmediate8ToA 003C
+092C CopyYAToImmediate8Address 00F2
+
+092E:
+092E JumpToAbsolute16 09D5
+
+092E:
+092E JumpToAbsolute16 09D5
+
+0931:
+0931 CopyImmediate8AddressToImmediate8Address E6, 2E
+0934 DecrementImmediate8Address 002F
+0936 BranchToRelative8IfNotEqual 092E
+
+0938:
+0938 CopyImmediate8AddressToA 007D
+093A BranchToRelative8IfEqual 093F
+093C JumpToAbsolute16 0675
+
+093F:
+093F CopyImmediate8AddressToA 0005
+0941 CopyAToImmediate8Address 0004
+0943 ShiftALeft
+0944 BranchToRelative8IfEqual 095A
+0946 DecrementA
+0947 CopyAToY
+0948 CopyImmediate8ToA 0000
+094A CopyAToImmediate8Address 00E4
+094C CopyAToImmediate8Address 002D
+094E CopyImmediate8PointerPlusYToA 0006
+0950 PushAToStack
+0951 DecrementY
+0952 CopyImmediate8PointerPlusYToA 0006
+0954 PullYFromStack
+0955 CopyYAToImmediate8Address 0015
+0957 CopyImmediate8ToImmediate8Address 02, 08
+
+095A:
+095A CopyImmediate8AddressToA 0013
+095C ExclusiveOrAWithImmediate8 00FF
+095E OrImmediate16AddressWithA 002A
+0961 CopyImmediate8ToA 0000
+0963 CopyImmediate8ToY 0000
+0965 CallImmediate16 0F62
+0968 ReturnFromSubroutine
+
+0969:
+0969 CopyImmediate8AddressToA 0005
+096B BranchToRelative8IfNegative 0938
+096D JumpToAbsolute16 08DE
+
+09CE:
+09CE ReturnFromSubroutine
+
+09CF:
+09CF CopyImmediate8AddressToY 0004
+09D1 CompareYToImmediate8Address 0005
+09D3 BranchToRelative8IfNotEqual 0969
+
+09D5:
+09D5 CopyImmediate8AddressToA 00E0
+09D7 BranchToRelative8IfNotEqual 09E8
+09D9 CopyImmediate8AddressToA 0004
+09DB BranchToRelative8IfEqual 09CE
+09DD CopyImmediate8AddressToA 0008
+09DF BranchToRelative8IfEqual 0A40
+09E1 DecrementImmdiate8AddressAndBranchToRelative8IfNotZero 08, 8C
+09E4 CopyImmediate8ToA 0000
+09E6 CopyAToImmediate8Address 002D
+
+09E8:
+09E8 CallImmediate16 08CC
+09EB BranchToRelative8IfNotEqual 0A04
+09ED CopyAToY
+09EE BranchToRelative8IfNotEqual 09F3
+09F0 JumpToAbsolute16 08DE
+
+09F3:
+09F3 DecrementImmediate8Address 0017
+09F5 BranchToRelative8IfNotNegative 09F9
+09F7 CopyAToImmediate8Address 0017
+
+09F9:
+09F9 CallImmediate16 08CC
+09FC CopyImmediate8AddressToX 0017
+09FE BranchToRelative8IfEqual 09E8
+0A00 CopyYAToImmediate8Address 0015
+0A02 JumpToRelative8 09E8
+
+0A04:
+0A04 CopyYAToImmediate8Address 0011
+0A06 CopyImmediate8ToY 000F
+
+0A08:
+0A08 CopyImmediate8PointerPlusYToA 0011
+0A0A CopyAToImmediate16PlusYAddress 0018
+0A0D DecrementY
+0A0E BranchToRelative8IfNotNegative 0A08
+0A10 CopyImmediate8ToX 0000
+0A12 CopyImmediate8ToImmediate8Address 01, 2B
+
+0A15:
+0A15 CopyImmediate8PlusXAddressToA 0062
+0A17 BranchToRelative8IfNotEqual 0A38
+0A19 CopyImmediate8PlusXAddressToA 0019
+0A1B BranchToRelative8IfEqual 0A38
+0A1D CopyImmediate8ToA 0000
+0A1F CopyAToImmediate8PlusXAddress 008F
+0A21 CopyAToImmediate8PlusXAddress 009F
+0A23 CopyAToImmediate8PlusXAddress 00A0
+0A25 CopyAToImmediate8PlusXAddress 00CF
+0A27 CopyAToImmediate16PlusXAddress 0230
+0A2A CopyAToImmediate16PlusXAddress 0221
+0A2D IncrementA
+0A2E CopyAToImmediate8PlusXAddress 007F
+0A30 CopyImmediate8AddressToA 002B
+0A32 AndImmediate16AddressWithNotA 0056
+0A35 AndImmediate16AddressWithNotA 0057
+
+0A38:
+0A38 IncrementX
+0A39 IncrementX
+0A3A ShiftImmediate8AddressLeft 002B
+0A3C BranchToRelative8IfNotEqual 0A15
+0A3E CopyImmediate8ToA 0000
+
+0A40:
+0A40 CopyImmediate8ToX 0000
+0A42 CopyImmediate8ToImmediate8Address 01, 2B
+
+0A45:
+0A45 CopyXToImmediate8Address 002C
+0A47 CopyImmediate8PlusXAddressToA 0019
+0A49 BranchToRelative8IfEqual 0ABC
+0A4B DecrementImmediate8PlusXAddress 007F
+0A4D BranchToRelative8IfNotEqual 0AB6
+
+0A4F:
+0A4F CopyImmediate8PlusXPointerToA 0018
+0A51 IncrementImmediate8PlusXAddress 0018
+0A53 BranchToRelative8IfNotEqual 0A57
+0A55 IncrementImmediate8PlusXAddress 0019
+
+0A57:
+0A57 CopyAToY
+0A58 BranchToRelative8IfNotEqual 0A71
+0A5A CopyImmediate8PlusXAddressToA 008F
+0A5C BranchToRelative8IfEqual 09E8
+0A5E CallImmediate16 0E8E
+0A61 DecrementImmediate8PlusXAddress 008F
+0A63 BranchToRelative8IfNotEqual 0A4F
+0A65 CopyImmediate16PlusXAddressToA 0160
+0A68 CopyAToImmediate8PlusXAddress 0018
+0A6A CopyImmediate16PlusXAddressToA 0161
+0A6D CopyAToImmediate8PlusXAddress 0019
+0A6F JumpToRelative8 0A4F
+
+0A71:
+0A71 BranchToRelative8IfNegative 0A98
+0A73 CopyAToImmediate16PlusXAddress 0130
+0A76 CopyImmediate8PlusXPointerToA 0018
+0A78 IncrementImmediate8PlusXAddress 0018
+0A7A BranchToRelative8IfNotEqual 0A7E
+0A7C IncrementImmediate8PlusXAddress 0019
+
+0A7E:
+0A7E CopyAToY
+0A7F BranchToRelative8IfNegative 0A98
+0A81 PushAToStack
+0A82 ExchangeANibbles
+0A83 AndAWithImmediate8 0007
+0A85 CopyAToY
+0A86 CopyImmediate16PlusYAddressToA 0435
+0A89 CopyAToImmediate16PlusXAddress 0131
+0A8C PullAFromStack
+0A8D AndAWithImmediate8 000F
+0A8F CopyAToY
+0A90 CopyImmediate16PlusYAddressToA 043D
+0A93 CopyAToImmediate16PlusXAddress 0140
+0A96 JumpToRelative8 0A4F
+
+0A98:
+0A98 CompareAToImmediate8 00CE
+0A9A BranchToRelative8IfNotCarry 0AA1
+0A9C CallImmediate16 0B7B
+0A9F JumpToRelative8 0A4F
+
+0AA1:
+0AA1 CallImmediate16 0754
+0AA4 CopyImmediate16PlusXAddressToA 0130
+0AA7 CopyAToImmediate8PlusXAddress 007F
+0AA9 CopyAToY
+0AAA CopyImmediate16PlusXAddressToA 0131
+0AAD MultiplyAByY
+0AAE CopyYToA
+0AAF BranchToRelative8IfNotEqual 0AB2
+0AB1 IncrementA
+
+0AB2:
+0AB2 CopyAToImmediate8PlusXAddress 0080
+0AB4 JumpToRelative8 0AB9
+
+0AB6:
+0AB6 CallImmediate16 123E
+
+0AB9:
+0AB9 CallImmediate16 1057
+
+0ABC:
+0ABC IncrementX
+0ABD IncrementX
+0ABE ShiftImmediate8AddressLeft 002B
+0AC0 BranchToRelative8IfNotEqual 0A45
+0AC2 CopyImmediate8AddressToImmediate8Address 56, 57
+0AC5 CopyImmediate8AddressToA 003C
+0AC7 BranchToRelative8IfEqual 0AD4
+0AC9 CopyImmediate8AddressToYA 003E
+0ACB AddImmediate8AddressToYA 003A
+0ACD DecrementImmdiate8AddressAndBranchToRelative8IfNotZero 3C, 02
+0AD0 CopyImmediate8AddressToYA 003C
+0AD2 CopyYAToImmediate8Address 003A
+
+0AD4:
+0AD4 CopyImmediate8AddressToA 0053
+0AD6 BranchToRelative8IfEqual 0AED
+0AD8 CopyImmediate8AddressToYA 004D
+0ADA AddImmediate8AddressToYA 0049
+0ADC CopyYAToImmediate8Address 0049
+0ADE CopyImmediate8AddressToYA 004F
+0AE0 AddImmediate8AddressToYA 004B
+0AE2 DecrementImmdiate8AddressAndBranchToRelative8IfNotZero 53, 06
+0AE5 CopyImmediate8AddressToYA 0053
+0AE7 CopyYAToImmediate8Address 0049
+0AE9 CopyImmediate8AddressToY 0055
+0AEB CopyYAToImmediate8Address 004B
+
+0AED:
+0AED CopyImmediate8AddressToA 0042
+0AEF BranchToRelative8IfEqual 0AFF
+0AF1 CopyImmediate8AddressToYA 0044
+0AF3 AddImmediate8AddressToYA 0040
+0AF5 DecrementImmdiate8AddressAndBranchToRelative8IfNotZero 42, 02
+0AF8 CopyImmediate8AddressToYA 0042
+0AFA CopyYAToImmediate8Address 0040
+0AFC CopyImmediate8ToImmediate8Address FF, 46
+
+0AFF:
+0AFF CopyImmediate8ToX 0000
+0B01 CopyImmediate8ToImmediate8Address 01, 2B
+
+0B04:
+0B04 CopyImmediate8PlusXAddressToA 0019
+0B06 BranchToRelative8IfEqual 0B0B
+0B08 CallImmediate16 114C
+
+0B0B:
+0B0B IncrementX
+0B0C IncrementX
+0B0D ShiftImmediate8AddressLeft 002B
+0B0F BranchToRelative8IfNotEqual 0B04
+0B11 ReturnFromSubroutine
+
+0B7B:
+0B7B ShiftALeft
+0B7C CopyAToY
+0B7D CopyImmediate16PlusYAddressToA 0A77
+0B80 PushAToStack
+0B81 CopyImmediate16PlusYAddressToA 0A76
+0B84 PushAToStack
+0B85 CopyYToA
+0B86 ShiftARight
+0B87 CopyAToY
+0B88 CopyImmediate16PlusYAddressToA 0B0A
+0B8B BranchToRelative8IfEqual 0B96
+0B8D CopyImmediate8PlusXPointerToA 0018
+0B8F IncrementImmediate8PlusXAddress 0018
+0B91 BranchToRelative8IfNotEqual 0B95
+0B93 IncrementImmediate8PlusXAddress 0019
+
+0B95:
+0B95 CopyAToY
+
+0B96:
+0B96 ReturnFromSubroutine
+
+0CAF:
+0CAF CopyAToImmediate8PlusXAddress 00C0
+0CB1 CopyAToImmediate16PlusXAddress 0270
+0CB4 CopyImmediate8ToA 0000
+0CB6 CopyAToImmediate16PlusXAddress 0260
+0CB9 ReturnFromSubroutine
+
+0D0C:
+0D0C JumpToRelative8 0D17
+
+0D17:
+0D17 CopyAToImmediate8Address 003D
+0D19 SetCarryFlag
+0D1A SubtractImmediate8AddressPlusBorrowFromA 003B
+0D1C CopyImmediate8AddressToX 003C
+0D1E CallImmediate16 0F46
+0D21 CopyYAToImmediate8Address 003E
+0D23 ReturnFromSubroutine
+
+0D3A:
+0D3A CopyYAToImmediate8Address 00F2
+0D3C ReturnFromSubroutine
+
+0DB8:
+0DB8 CopyAToImmediate16PlusXAddress 0230
+0DBB CopyAToImmediate16PlusXAddress 0221
+0DBE ReturnFromSubroutine
+
+0E78:
+0E78 CopyImmediate16PlusXAddressToA 0170
+0E7B CopyAToImmediate8PlusXAddress 0061
+0E7D CopyImmediate16PlusXAddressToA 0171
+0E80 CopyAToImmediate8PlusXAddress 0062
+0E82 JumpToRelative8 0E98
+
+0E8E:
+0E8E CopyImmediate16PlusXAddressToA 0170
+0E91 CopyAToImmediate8PlusXAddress 0018
+0E93 CopyImmediate16PlusXAddressToA 0171
+0E96 CopyAToImmediate8PlusXAddress 0019
+
+0E98:
+0E98 ReturnFromSubroutine
+
+0E98:
+0E98 ReturnFromSubroutine
+
+0F46:
+0F46 ToggleCarryFlag
+0F47 RollImmediate8AddressRight 000D
+0F49 BranchToRelative8IfNotNegative 0F4E
+0F4B ExclusiveOrAWithImmediate8 00FF
+0F4D IncrementA
+
+0F4E:
+0F4E CopyImmediate8ToY 0000
+0F50 DivideYAByX
+0F51 PushAToStack
+0F52 CopyImmediate8ToA 0000
+0F54 DivideYAByX
+0F55 PullYFromStack
+0F56 CopyImmediate8AddressToX 002C
+0F58 BranchToRelative8IfImmediate8AddressBit7Clear 0D, 06
+0F5B CopyYAToImmediate8Address 000F
+0F5D CopyImmediate8AddressToYA 0009
+0F5F SubtractImmediate8AddressFromYA 000F
+
+0F61:
+0F61 ReturnFromSubroutine
+
+0F62:
+0F62 CopyYAToImmediate8Address 0049
+0F64 CopyYAToImmediate8Address 004B
+0F66 SetImmediate8AddressBit5 0031
+0F68 ReturnFromSubroutine
+
+0FE7:
+0FE7 CopyAToImmediate8Address 0036
+0FE9 CopyImmediate8ToY 007D
+0FEB AndAWithImmediate8 000F
+0FED ExclusiveOrAWithImmediate8 00FF
+0FEF BranchToRelative8IfImmediate8AddressBit7Clear 35, 03
+0FF2 ClearCarryFlag
+0FF3 AddImmediate8AddressPlusCarryToA 0035
+
+0FF5:
+0FF5 CopyAToImmediate8Address 0035
+0FF7 CopyImmediate8ToY 0004
+
+0FF9:
+0FF9 CopyImmediate16PlusYAddressToA 038E
+0FFC CopyAToImmediate8Address 00F2
+0FFE CopyImmediate8ToA 0000
+1000 CopyAToImmediate8Address 00F3
+1002 DecrementYAndBranchToRelative8IfNotZero 0FF9
+1004 OrAWithImmediate8 0020
+1006 CopyImmediate8ToY 006C
+1008 CopyYToImmediate8Address 00F2
+100A CopyAToImmediate8Address 00F3
+100C CopyImmediate8AddressToA 0036
+100E CopyImmediate8ToY 007D
+1010 CopyYToImmediate8Address 00F2
+1012 CopyAToImmediate8Address 00F3
+1014 ShiftALeft
+1015 ShiftALeft
+1016 ShiftALeft
+1017 ExclusiveOrAWithImmediate8 00FF
+1019 IncrementA
+101A CopyImmediate8ToY 006D
+101C CopyYToImmediate8Address 00F2
+101E CopyAToImmediate8Address 00F3
+1020 ReturnFromSubroutine
+
+102B:
+102B CopyImmediate8PlusXAddressToA 00AF
+102D BranchToRelative8IfNotEqual 1056
+102F CopyImmediate8PlusXPointerToA 0061
+1031 CompareAToImmediate8 00E7
+1033 BranchToRelative8IfNotEqual 1056
+1035 IncrementImmediate8PlusXAddress 0061
+1037 BranchToRelative8IfNotEqual 103B
+1039 IncrementImmediate8PlusXAddress 0062
+
+103B:
+103B CopyAToY
+103C CopyImmediate8PlusXAddressToA 0019
+103E BranchToRelative8IfNotEqual 104B
+1040 CopyImmediate8PlusXPointerToA 0061
+1042 IncrementImmediate8PlusXAddress 0061
+1044 BranchToRelative8IfNotEqual 1048
+1046 IncrementImmediate8PlusXAddress 0062
+
+1048:
+1048 CopyAToY
+1049 JumpToRelative8 1054
+
+104B:
+104B CopyImmediate8PlusXPointerToA 0018
+104D IncrementImmediate8PlusXAddress 0018
+104F BranchToRelative8IfNotEqual 1053
+1051 IncrementImmediate8PlusXAddress 0019
+
+1053:
+1053 CopyAToY
+
+1054:
+1054 JumpToRelative8 1080
+
+1056:
+1056 ReturnFromSubroutine
+
+1057:
+1057 CopyImmediate8PlusXAddressToA 00AF
+1059 BranchToRelative8IfNotEqual 1056
+105B CopyImmediate8PlusXPointerToA 0018
+105D CompareAToImmediate8 00E7
+105F BranchToRelative8IfNotEqual 1056
+1061 IncrementImmediate8PlusXAddress 0018
+1063 BranchToRelative8IfNotEqual 1067
+1065 IncrementImmediate8PlusXAddress 0019
+
+1067:
+1067 CopyAToY
+1068 CopyImmediate8PlusXAddressToA 0019
+106A BranchToRelative8IfNotEqual 1077
+106C CopyImmediate8PlusXPointerToA 0061
+106E IncrementImmediate8PlusXAddress 0061
+1070 BranchToRelative8IfNotEqual 1074
+1072 IncrementImmediate8PlusXAddress 0062
+
+1074:
+1074 CopyAToY
+1075 JumpToRelative8 1080
+
+1077:
+1077 CopyImmediate8PlusXPointerToA 0018
+1079 IncrementImmediate8PlusXAddress 0018
+107B BranchToRelative8IfNotEqual 107F
+107D IncrementImmediate8PlusXAddress 0019
+
+107F:
+107F CopyAToY
+
+1080:
+1080 CopyAToImmediate8PlusXAddress 00B0
+1082 CopyImmediate8PlusXAddressToA 0019
+1084 BranchToRelative8IfNotEqual 1091
+1086 CopyImmediate8PlusXPointerToA 0061
+1088 IncrementImmediate8PlusXAddress 0061
+108A BranchToRelative8IfNotEqual 108E
+108C IncrementImmediate8PlusXAddress 0062
+
+108E:
+108E CopyAToY
+108F JumpToRelative8 109A
+
+1080:
+1080 CopyAToImmediate8PlusXAddress 00B0
+1082 CopyImmediate8PlusXAddressToA 0019
+1084 BranchToRelative8IfNotEqual 1091
+1086 CopyImmediate8PlusXPointerToA 0061
+1088 IncrementImmediate8PlusXAddress 0061
+108A BranchToRelative8IfNotEqual 108E
+108C IncrementImmediate8PlusXAddress 0062
+
+108E:
+108E CopyAToY
+108F JumpToRelative8 109A
+
+1091:
+1091 CopyImmediate8PlusXPointerToA 0018
+1093 IncrementImmediate8PlusXAddress 0018
+1095 BranchToRelative8IfNotEqual 1099
+1097 IncrementImmediate8PlusXAddress 0019
+
+1099:
+1099 CopyAToY
+
+109A:
+109A CopyAToImmediate8PlusXAddress 00AF
+109C CopyImmediate8PlusXAddressToA 0019
+109E BranchToRelative8IfNotEqual 10AB
+10A0 CopyImmediate8PlusXPointerToA 0061
+10A2 IncrementImmediate8PlusXAddress 0061
+10A4 BranchToRelative8IfNotEqual 10A8
+10A6 IncrementImmediate8PlusXAddress 0062
+
+10A8:
+10A8 CopyAToY
+10A9 JumpToRelative8 10B4
+
+10AB:
+10AB CopyImmediate8PlusXPointerToA 0018
+10AD IncrementImmediate8PlusXAddress 0018
+10AF BranchToRelative8IfNotEqual 10B3
+10B1 IncrementImmediate8PlusXAddress 0019
+
+10B3:
+10B3 CopyAToY
+
+10B4:
+10B4 ClearCarryFlag
+10B5 AddImmediate8AddressPlusCarryToA 0038
+10B7 AddImmediate16PlusXAddressPlusCarryToA 0280
+10BA AndAWithImmediate8 007F
+10BC CopyAToImmediate16PlusXAddress 0220
+10BF SetCarryFlag
+10C0 SubtractImmediate16PlusXAddressPlusBorrowFromA 0201
+10C3 CopyImmediate8PlusXAddressToY 00AF
+10C5 PushYToStack
+10C6 PullXFromStack
+10C7 ToggleCarryFlag
+10C8 RollImmediate8AddressRight 000D
+10CA BranchToRelative8IfNotNegative 10CF
+10CC ExclusiveOrAWithImmediate8 00FF
+10CE IncrementA
+
+10CF:
+10CF CopyImmediate8ToY 0000
+10D1 DivideYAByX
+10D2 PushAToStack
+10D3 CopyImmediate8ToA 0000
+10D5 DivideYAByX
+10D6 PullYFromStack
+10D7 CopyImmediate8AddressToX 002C
+10D9 BranchToRelative8IfImmediate8AddressBit7Clear 0D, 06
+10DC CopyYAToImmediate8Address 000F
+10DE CopyImmediate8AddressToYA 0009
+10E0 SubtractImmediate8AddressFromYA 000F
+
+10E2:
+10E2 CopyAToImmediate16PlusXAddress 0210
+10E5 CopyYToA
+10E6 CopyAToImmediate16PlusXAddress 0211
+10E9 ReturnFromSubroutine
+
+10EA:
+10EA CopyImmediate8PlusXAddressToA 009F
+10EC BranchToRelative8IfEqual 1116
+10EE CopyImmediate8ToA 00A0
+10F0 CopyImmediate8ToY 0001
+10F2 OrImmediate8AddressWithImmediate8Address 462B
+10F5 DecrementImmediate8PlusXAddress 009F
+10F7 BranchToRelative8IfNotEqual 1103
+10F9 CopyImmediate8ToA 0000
+10FB CopyAToImmediate16PlusXAddress 01A0
+10FE CopyImmediate16PlusXAddressToA 01C0
+1101 JumpToRelative8 1113
+
+1103:
+1103 ClearCarryFlag
+1104 CopyImmediate16PlusXAddressToA 01A0
+1107 AddImmediate16PlusXAddressPlusCarryToA 01B0
+110A CopyAToImmediate16PlusXAddress 01A0
+110D CopyImmediate16PlusXAddressToA 01A1
+1110 AddImmediate16PlusXAddressPlusCarryToA 01B1
+
+1113:
+1113 CopyAToImmediate16PlusXAddress 01A1
+
+1116:
+1116 CopyImmediate16PlusXAddressToA 01A1
+1119 CopyAToY
+111A CopyImmediate16PlusXAddressToA 0291
+111D MultiplyAByY
+111E CopyYToA
+111F CopyAToImmediate16PlusXAddress 01C1
+1122 CopyImmediate8PlusXAddressToA 00A0
+1124 BranchToRelative8IfEqual 114A
+1126 OrImmediate8AddressWithImmediate8Address 462B
+1129 DecrementImmediate8PlusXAddress 00A0
+112B BranchToRelative8IfNotEqual 1137
+112D CopyImmediate8ToA 0000
+112F CopyAToImmediate16PlusXAddress 01D0
+1132 CopyImmediate16PlusXAddressToA 01F0
+1135 JumpToRelative8 1147
+
+1137:
+1137 ClearCarryFlag
+
+1138:
+1138 CopyImmediate16PlusXAddressToA 01D0
+113B AddImmediate16PlusXAddressPlusCarryToA 01E0
+113E CopyAToImmediate16PlusXAddress 01D0
+1141 CopyImmediate16PlusXAddressToA 01D1
+1144 AddImmediate16PlusXAddressPlusCarryToA 01E1
+
+1147:
+1147 CopyAToImmediate16PlusXAddress 01D1
+
+114A:
+114A JumpToRelative8 11C3
+
+1138:
+1138 CopyImmediate16PlusXAddressToA 01D0
+113B AddImmediate16PlusXAddressPlusCarryToA 01E0
+113E CopyAToImmediate16PlusXAddress 01D0
+1141 CopyImmediate16PlusXAddressToA 01D1
+1144 AddImmediate16PlusXAddressPlusCarryToA 01E1
+
+1147:
+1147 CopyAToImmediate16PlusXAddress 01D1
+
+114A:
+114A JumpToRelative8 11C3
+
+114C:
+114C CopyImmediate8PlusXAddressToA 00CF
+114E BranchToRelative8IfEqual 1154
+1150 DecrementImmediate8PlusXAddress 00CF
+1152 JumpToRelative8 1181
+
+1154:
+1154 CopyImmediate8PlusXAddressToA 009F
+1156 BranchToRelative8IfEqual 1181
+1158 CopyImmediate16PlusXAddressToA 0190
+115B CopyAToImmediate8PlusXAddress 00CF
+115D OrImmediate8AddressWithImmediate8Address 462B
+1160 DecrementImmediate8PlusXAddress 009F
+1162 BranchToRelative8IfNotEqual 116E
+1164 CopyImmediate8ToA 0000
+1166 CopyAToImmediate16PlusXAddress 01A0
+1169 CopyImmediate16PlusXAddressToA 01C0
+116C JumpToRelative8 117E
+
+116E:
+116E ClearCarryFlag
+116F CopyImmediate16PlusXAddressToA 01A0
+1172 AddImmediate16PlusXAddressPlusCarryToA 01B0
+1175 CopyAToImmediate16PlusXAddress 01A0
+1178 CopyImmediate16PlusXAddressToA 01A1
+117B AddImmediate16PlusXAddressPlusCarryToA 01B1
+
+117E:
+117E CopyAToImmediate16PlusXAddress 01A1
+
+1181:
+1181 CopyImmediate8AddressToY 0041
+1183 CopyImmediate16PlusXAddressToA 0140
+1186 MultiplyAByY
+1187 CopyImmediate16PlusXAddressToA 01A1
+118A MultiplyAByY
+118B CopyYToA
+118C MultiplyAByY
+118D CopyYToA
+118E CopyAToImmediate16PlusXAddress 01C1
+1191 CopyImmediate8PlusXAddressToA 00A0
+1193 BranchToRelative8IfEqual 11C3
+1195 CopyImmediate8ToA 00D0
+1197 CopyImmediate8ToY 0001
+1199 DecrementImmediate8PlusXAddress 00A0
+119B PushFlagsToStack
+119C OrImmediate8AddressWithImmediate8Address 462B
+119F PullFlagsFromStack
+11A0 CopyYAToImmediate8Address 000F
+11A2 CopyYAToImmediate8Address 0011
+11A4 PushXToStack
+11A5 PullYFromStack
+11A6 ClearCarryFlag
+11A7 BranchToRelative8IfNotEqual 11B3
+11A9 AddImmediate8PlusCarryToImmediate8Address 1F, 11
+11AC CopyImmediate8ToA 0000
+11AE CopyAToImmediate8PointerPlusY 000F
+11B0 IncrementY
+11B1 JumpToRelative8 11BF
+
+1181:
+1181 CopyImmediate8AddressToY 0041
+1183 CopyImmediate16PlusXAddressToA 0140
+1186 MultiplyAByY
+1187 CopyImmediate16PlusXAddressToA 01A1
+118A MultiplyAByY
+118B CopyYToA
+118C MultiplyAByY
+118D CopyYToA
+118E CopyAToImmediate16PlusXAddress 01C1
+1191 CopyImmediate8PlusXAddressToA 00A0
+1193 BranchToRelative8IfEqual 11C3
+1195 CopyImmediate8ToA 00D0
+1197 CopyImmediate8ToY 0001
+1199 DecrementImmediate8PlusXAddress 00A0
+119B PushFlagsToStack
+119C OrImmediate8AddressWithImmediate8Address 462B
+119F PullFlagsFromStack
+11A0 CopyYAToImmediate8Address 000F
+11A2 CopyYAToImmediate8Address 0011
+11A4 PushXToStack
+11A5 PullYFromStack
+11A6 ClearCarryFlag
+11A7 BranchToRelative8IfNotEqual 11B3
+11A9 AddImmediate8PlusCarryToImmediate8Address 1F, 11
+11AC CopyImmediate8ToA 0000
+11AE CopyAToImmediate8PointerPlusY 000F
+11B0 IncrementY
+11B1 JumpToRelative8 11BF
+
+11B3:
+11B3 AddImmediate8PlusCarryToImmediate8Address 10, 11
+11B6 CopyImmediate8PointerPlusYToA 000F
+11B8 AddImmediate8PointerPlusYPlusCarryToA 0011
+11BA CopyAToImmediate8PointerPlusY 000F
+11BC IncrementY
+11BD CopyImmediate8PointerPlusYToA 000F
+
+11BF:
+11BF AddImmediate8PointerPlusYPlusCarryToA 0011
+11C1 CopyAToImmediate8PointerPlusY 000F
+
+11C3:
+11C3 CopyImmediate8AddressToA 002B
+11C5 AndAWithImmediate8Address 0046
+11C7 BranchToRelative8IfEqual 1228
+11C9 CopyImmediate16PlusXAddressToA 01D1
+11CC CopyAToY
+11CD CopyImmediate16PlusXAddressToA 01D0
+11D0 CopyYAToImmediate8Address 000B
+
+11D2:
+11D2 CopyImmediate16PlusXAddressToA 08AC
+11D5 CopyAToImmediate8Address 000D
+
+11D7:
+11D7 CopyImmediate8ToY 0051
+11D9 CopyImmediate16AddressToA 1439
+11DC BranchToRelative8IfNotEqual 11F2
+11DE CopyImmediate8AddressToY 000C
+11E0 CopyImmediate16PlusYAddressToA 122A
+11E3 SetCarryFlag
+11E4 SubtractImmediate16PlusYAddressPlusBorrowFromA 1229
+11E7 CopyImmediate8AddressToY 000B
+11E9 MultiplyAByY
+11EA CopyYToA
+11EB CopyImmediate8AddressToY 000C
+11ED ClearCarryFlag
+11EE AddImmediate16PlusYAddressPlusCarryToA 1229
+11F1 CopyAToY
+
+11F2:
+11F2 CopyImmediate16PlusXAddressToA 01C1
+11F5 MultiplyAByY
+11F6 ClearCarryFlag
+11F7 CopyImmediate16AddressToA 1439
+11FA BranchToRelative8IfNotEqual 1204
+11FC CopyImmediate16PlusXAddressToA 01F1
+11FF ShiftALeft
+1200 BranchToRelative8IfImmediate8AddressBit0Clear 0D, 01
+1203 ShiftALeft
+
+1204:
+1204 CopyYToA
+1205 BranchToRelative8IfNotCarry 120A
+1207 ExclusiveOrAWithImmediate8 00FF
+1209 IncrementA
+
+120A:
+120A CopyImmediate8AddressToY 000D
+120C PushAToStack
+120D CopyImmediate8AddressToA 002B
+120F AndAWithImmediate8Address 0013
+1211 PullAFromStack
+1212 BranchToRelative8IfNotEqual 1218
+1214 CopyYToImmediate8Address 00F2
+1216 CopyAToImmediate8Address 00F3
+
+1218:
+1218 CopyImmediate8ToY 0014
+121A CopyImmediate8ToA 0000
+121C SubtractImmediate8AddressFromYA 000B
+121E CopyYAToImmediate8Address 000B
+1220 IncrementImmediate8Address 000D
+1222 BranchToRelative8IfImmediate8AddressBit1Clear 0D, B2
+1225 ExclusiveOrImmediate8AddressWithImmediate8Address 2B, 46
+
+1228:
+1228 ReturnFromSubroutine
+
+11C3:
+11C3 CopyImmediate8AddressToA 002B
+11C5 AndAWithImmediate8Address 0046
+11C7 BranchToRelative8IfEqual 1228
+11C9 CopyImmediate16PlusXAddressToA 01D1
+11CC CopyAToY
+11CD CopyImmediate16PlusXAddressToA 01D0
+11D0 CopyYAToImmediate8Address 000B
+
+11D2:
+11D2 CopyImmediate16PlusXAddressToA 08AC
+11D5 CopyAToImmediate8Address 000D
+
+11D7:
+11D7 CopyImmediate8ToY 0051
+11D9 CopyImmediate16AddressToA 1439
+11DC BranchToRelative8IfNotEqual 11F2
+11DE CopyImmediate8AddressToY 000C
+11E0 CopyImmediate16PlusYAddressToA 122A
+11E3 SetCarryFlag
+11E4 SubtractImmediate16PlusYAddressPlusBorrowFromA 1229
+11E7 CopyImmediate8AddressToY 000B
+11E9 MultiplyAByY
+11EA CopyYToA
+11EB CopyImmediate8AddressToY 000C
+11ED ClearCarryFlag
+11EE AddImmediate16PlusYAddressPlusCarryToA 1229
+11F1 CopyAToY
+
+11F2:
+11F2 CopyImmediate16PlusXAddressToA 01C1
+11F5 MultiplyAByY
+11F6 ClearCarryFlag
+11F7 CopyImmediate16AddressToA 1439
+11FA BranchToRelative8IfNotEqual 1204
+11FC CopyImmediate16PlusXAddressToA 01F1
+11FF ShiftALeft
+1200 BranchToRelative8IfImmediate8AddressBit0Clear 0D, 01
+1203 ShiftALeft
+
+1204:
+1204 CopyYToA
+1205 BranchToRelative8IfNotCarry 120A
+1207 ExclusiveOrAWithImmediate8 00FF
+1209 IncrementA
+
+120A:
+120A CopyImmediate8AddressToY 000D
+120C PushAToStack
+120D CopyImmediate8AddressToA 002B
+120F AndAWithImmediate8Address 0013
+1211 PullAFromStack
+1212 BranchToRelative8IfNotEqual 1218
+1214 CopyYToImmediate8Address 00F2
+1216 CopyAToImmediate8Address 00F3
+
+1218:
+1218 CopyImmediate8ToY 0014
+121A CopyImmediate8ToA 0000
+121C SubtractImmediate8AddressFromYA 000B
+121E CopyYAToImmediate8Address 000B
+1220 IncrementImmediate8Address 000D
+1222 BranchToRelative8IfImmediate8AddressBit1Clear 0D, B2
+1225 ExclusiveOrImmediate8AddressWithImmediate8Address 2B, 46
+
+1228:
+1228 ReturnFromSubroutine
+
+11D2:
+11D2 CopyImmediate16PlusXAddressToA 08AC
+11D5 CopyAToImmediate8Address 000D
+
+11D7:
+11D7 CopyImmediate8ToY 0051
+11D9 CopyImmediate16AddressToA 1439
+11DC BranchToRelative8IfNotEqual 11F2
+11DE CopyImmediate8AddressToY 000C
+11E0 CopyImmediate16PlusYAddressToA 122A
+11E3 SetCarryFlag
+11E4 SubtractImmediate16PlusYAddressPlusBorrowFromA 1229
+11E7 CopyImmediate8AddressToY 000B
+11E9 MultiplyAByY
+11EA CopyYToA
+11EB CopyImmediate8AddressToY 000C
+11ED ClearCarryFlag
+11EE AddImmediate16PlusYAddressPlusCarryToA 1229
+11F1 CopyAToY
+
+11F2:
+11F2 CopyImmediate16PlusXAddressToA 01C1
+11F5 MultiplyAByY
+11F6 ClearCarryFlag
+11F7 CopyImmediate16AddressToA 1439
+11FA BranchToRelative8IfNotEqual 1204
+11FC CopyImmediate16PlusXAddressToA 01F1
+11FF ShiftALeft
+1200 BranchToRelative8IfImmediate8AddressBit0Clear 0D, 01
+1203 ShiftALeft
+
+1204:
+1204 CopyYToA
+1205 BranchToRelative8IfNotCarry 120A
+1207 ExclusiveOrAWithImmediate8 00FF
+1209 IncrementA
+
+120A:
+120A CopyImmediate8AddressToY 000D
+120C PushAToStack
+120D CopyImmediate8AddressToA 002B
+120F AndAWithImmediate8Address 0013
+1211 PullAFromStack
+1212 BranchToRelative8IfNotEqual 1218
+1214 CopyYToImmediate8Address 00F2
+1216 CopyAToImmediate8Address 00F3
+
+1218:
+1218 CopyImmediate8ToY 0014
+121A CopyImmediate8ToA 0000
+121C SubtractImmediate8AddressFromYA 000B
+121E CopyYAToImmediate8Address 000B
+1220 IncrementImmediate8Address 000D
+1222 BranchToRelative8IfImmediate8AddressBit1Clear 0D, B2
+1225 ExclusiveOrImmediate8AddressWithImmediate8Address 2B, 46
+
+1228:
+1228 ReturnFromSubroutine
+
+123E:
+123E BranchToRelative8IfEqual 12BE
+1240 CopyImmediate8PlusXAddressToA 0080
+1242 BranchToRelative8IfEqual 12BE
+1244 DecrementImmediate8PlusXAddress 0080
+1246 BranchToRelative8IfEqual 124D
+1248 CopyImmediate8ToA 0002
+124A BranchToRelative8IfANotEqualToImmediate8PlusXAddress 7F, 71
+
+124D:
+124D CopyImmediate8PlusXAddressToA 008F
+124F CopyAToImmediate8Address 0012
+1251 CopyImmediate8PlusXAddressToY 0062
+1253 BranchToRelative8IfEqual 1259
+1255 CopyImmediate8PlusXAddressToA 0061
+1257 JumpToRelative8 125D
+
+1259:
+1259 CopyImmediate8PlusXAddressToA 0018
+125B CopyImmediate8PlusXAddressToY 0019
+
+125D:
+125D CopyYAToImmediate8Address 000F
+125F CopyImmediate8ToY 0000
+
+1261:
+1261 CopyImmediate8PointerPlusYToA 000F
+1263 BranchToRelative8IfEqual 1281
+1265 BranchToRelative8IfNegative 126C
+
+1267:
+1267 IncrementY
+1268 CopyImmediate8PointerPlusYToA 000F
+126A BranchToRelative8IfNotNegative 1267
+
+126C:
+126C CompareAToImmediate8 00C8
+126E BranchToRelative8IfEqual 12BE
+1270 CompareAToImmediate8 00DD
+1272 BranchToRelative8IfEqual 129D
+1274 CompareAToImmediate8 00CE
+1276 BranchToRelative8IfNotCarry 12A8
+1278 PushYToStack
+1279 CopyAToY
+127A PullAFromStack
+127B AddImmediate16PlusYAddressPlusCarryToA 0A8A
+127E CopyAToY
+127F JumpToRelative8 1261
+
+1281:
+1281 CopyImmediate8AddressToA 0012
+1283 BranchToRelative8IfEqual 12A8
+1285 DecrementImmediate8Address 0012
+1287 BranchToRelative8IfNotEqual 1293
+1289 CopyImmediate16PlusXAddressToA 0161
+128C PushAToStack
+128D CopyImmediate16PlusXAddressToA 0160
+1290 PullYFromStack
+1291 JumpToRelative8 125D
+
+1293:
+1293 CopyImmediate16PlusXAddressToA 0171
+1296 PushAToStack
+1297 CopyImmediate16PlusXAddressToA 0170
+129A PullYFromStack
+129B JumpToRelative8 125D
+
+129D:
+129D IncrementY
+129E CopyImmediate8PointerPlusYToA 000F
+12A0 PushAToStack
+12A1 IncrementY
+12A2 CopyImmediate8PointerPlusYToA 000F
+12A4 CopyAToY
+12A5 PullAFromStack
+12A6 JumpToRelative8 125D
+
+12A8:
+12A8 CopyImmediate8AddressToA 0057
+12AA AndAWithImmediate8Address 002B
+12AC BranchToRelative8IfNotEqual 12BE
+12AE CopyImmediate8AddressToA 002B
+12B0 CopyImmediate8ToY 005C
+12B2 PushAToStack
+12B3 CopyImmediate8AddressToA 002B
+12B5 AndAWithImmediate8Address 0013
+12B7 PullAFromStack
+12B8 BranchToRelative8IfNotEqual 12BE
+12BA CopyYToImmediate8Address 00F2
+12BC CopyAToImmediate8Address 00F3
+
+12BE:
+12BE ClearImmediate8AddressBit7 000E
+12C0 CopyImmediate8PlusXAddressToA 00AF
+12C2 BranchToRelative8IfEqual 12F7
+12C4 CopyImmediate8PlusXAddressToA 00B0
+12C6 BranchToRelative8IfEqual 12CC
+12C8 DecrementImmediate8PlusXAddress 00B0
+12CA JumpToRelative8 12F7
+
+12BE:
+12BE ClearImmediate8AddressBit7 000E
+12C0 CopyImmediate8PlusXAddressToA 00AF
+12C2 BranchToRelative8IfEqual 12F7
+12C4 CopyImmediate8PlusXAddressToA 00B0
+12C6 BranchToRelative8IfEqual 12CC
+12C8 DecrementImmediate8PlusXAddress 00B0
+12CA JumpToRelative8 12F7
+
+12CC:
+12CC SetImmediate8AddressBit7 000E
+12CE CopyImmediate8ToA 0000
+12D0 CopyImmediate8ToY 0002
+12D2 DecrementImmediate8PlusXAddress 00AF
+12D4 CopyYAToImmediate8Address 000F
+12D6 CopyYAToImmediate8Address 0011
+12D8 PushXToStack
+12D9 PullYFromStack
+12DA ClearCarryFlag
+12DB BranchToRelative8IfNotEqual 12E7
+12DD AddImmediate8PlusCarryToImmediate8Address 1F, 11
+12E0 CopyImmediate8ToA 0000
+12E2 CopyAToImmediate8PointerPlusY 000F
+12E4 IncrementY
+12E5 JumpToRelative8 12F3
+
+12E7:
+12E7 AddImmediate8PlusCarryToImmediate8Address 10, 11
+12EA CopyImmediate8PointerPlusYToA 000F
+12EC AddImmediate8PointerPlusYPlusCarryToA 0011
+12EE CopyAToImmediate8PointerPlusY 000F
+12F0 IncrementY
+12F1 CopyImmediate8PointerPlusYToA 000F
+
+12F3:
+12F3 AddImmediate8PointerPlusYPlusCarryToA 0011
+12F5 CopyAToImmediate8PointerPlusY 000F
+
+12F7:
+12F7 CopyImmediate16PlusXAddressToA 0201
+12FA CopyAToImmediate8Address 000C
+12FC CopyImmediate16PlusXAddressToA 0200
+12FF CopyAToImmediate8Address 000B
+1301 CopyImmediate8PlusXAddressToA 00C0
+1303 BranchToRelative8IfEqual 1359
+1305 CopyImmediate16PlusXAddressToA 0251
+1308 BranchToRelative8IfANotEqualToImmediate8PlusXAddress BF, 4C
+130B CopyImmediate16PlusXAddressToA 0090
+130E CompareAToImmediate16PlusXAddress 0260
+1311 BranchToRelative8IfNotEqual 1318
+1313 CopyImmediate16PlusXAddressToA 0270
+1316 JumpToRelative8 1323
+
+12F7:
+12F7 CopyImmediate16PlusXAddressToA 0201
+12FA CopyAToImmediate8Address 000C
+12FC CopyImmediate16PlusXAddressToA 0200
+12FF CopyAToImmediate8Address 000B
+1301 CopyImmediate8PlusXAddressToA 00C0
+1303 BranchToRelative8IfEqual 1359
+1305 CopyImmediate16PlusXAddressToA 0251
+1308 BranchToRelative8IfANotEqualToImmediate8PlusXAddress BF, 4C
+130B CopyImmediate16PlusXAddressToA 0090
+130E CompareAToImmediate16PlusXAddress 0260
+1311 BranchToRelative8IfNotEqual 1318
+1313 CopyImmediate16PlusXAddressToA 0270
+1316 JumpToRelative8 1323
+
+1318:
+1318 IncrementImmediate8PlusXAddress 0090
+131A CopyAToY
+131B BranchToRelative8IfEqual 131F
+131D CopyImmediate8PlusXAddressToA 00C0
+
+131F:
+131F ClearCarryFlag
+1320 AddImmediate16PlusXAddressPlusCarryToA 0261
+
+1323:
+1323 CopyAToImmediate8PlusXAddress 00C0
+1325 CopyImmediate16PlusXAddressToA 0241
+1328 ClearCarryFlag
+1329 AddImmediate16PlusXAddressPlusCarryToA 0250
+132C CopyAToImmediate16PlusXAddress 0241
+
+132F:
+132F CopyAToImmediate8Address 000D
+1331 ShiftALeft
+1332 ShiftALeft
+1333 BranchToRelative8IfNotCarry 1337
+1335 ExclusiveOrAWithImmediate8 00FF
+
+1337:
+1337 CopyAToY
+1338 CopyImmediate8PlusXAddressToA 00C0
+133A CompareAToImmediate8 00F1
+133C BranchToRelative8IfNotCarry 1343
+133E AndAWithImmediate8 000F
+1340 MultiplyAByY
+1341 JumpToRelative8 1347
+
+132F:
+132F CopyAToImmediate8Address 000D
+1331 ShiftALeft
+1332 ShiftALeft
+1333 BranchToRelative8IfNotCarry 1337
+1335 ExclusiveOrAWithImmediate8 00FF
+
+1337:
+1337 CopyAToY
+1338 CopyImmediate8PlusXAddressToA 00C0
+133A CompareAToImmediate8 00F1
+133C BranchToRelative8IfNotCarry 1343
+133E AndAWithImmediate8 000F
+1340 MultiplyAByY
+1341 JumpToRelative8 1347
+
+1343:
+1343 MultiplyAByY
+1344 CopyYToA
+1345 CopyImmediate8ToY 0000
+
+1347:
+1347 BranchToRelative8IfImmediate8AddressBit7Clear 0D, 06
+134A CopyYAToImmediate8Address 000F
+134C CopyImmediate8AddressToYA 0009
+134E SubtractImmediate8AddressFromYA 000F
+
+1350:
+1350 AddImmediate8AddressToYA 000B
+1352 CopyYAToImmediate8Address 000B
+
+1354:
+1354 JumpToAbsolute16 0808
+
+1359:
+1359 BranchToRelative8IfImmediate8AddressBit7Set 0E, F8
+135C ReturnFromSubroutine
+
+135D:
+135D ClearImmediate8AddressBit7 000E
+135F CopyImmediate16PlusXAddressToA 01D1
+1362 CopyAToY
+1363 CopyImmediate16PlusXAddressToA 01D0
+1366 CopyYAToImmediate8Address 000B
+1368 CopyImmediate8PlusXAddressToA 00A0
+136A BranchToRelative8IfEqual 1376
+136C CopyImmediate16PlusXAddressToA 01E1
+136F CopyAToY
+1370 CopyImmediate16PlusXAddressToA 01E0
+1373 CallImmediate16 13B2
+
+1376:
+1376 BranchToRelative8IfImmediate8AddressBit7Clear 0E, 03
+1379 CallImmediate16 11D2
+
+137C:
+137C ClearImmediate8AddressBit7 000E
+137E CopyImmediate16PlusXAddressToA 0201
+1381 CopyAToImmediate8Address 000C
+1383 CopyImmediate16PlusXAddressToA 0200
+1386 CopyAToImmediate8Address 000B
+1388 CopyImmediate8PlusXAddressToA 00AF
+138A BranchToRelative8IfEqual 139A
+138C CopyImmediate8PlusXAddressToA 00B0
+138E BranchToRelative8IfNotEqual 139A
+1390 CopyImmediate16PlusXAddressToA 0211
+1393 CopyAToY
+1394 CopyImmediate16PlusXAddressToA 0210
+1397 CallImmediate16 13B2
+
+139A:
+139A CopyImmediate8PlusXAddressToA 00C0
+139C BranchToRelative8IfEqual 1359
+139E CopyImmediate16PlusXAddressToA 0251
+13A1 BranchToRelative8IfANotEqualToImmediate8PlusXAddress BF, B5
+13A4 CopyImmediate8AddressToY 0039
+13A6 CopyImmediate16PlusXAddressToA 0250
+13A9 MultiplyAByY
+13AA CopyYToA
+13AB ClearCarryFlag
+13AC AddImmediate16PlusXAddressPlusCarryToA 0241
+13AF JumpToAbsolute16 132F
+
+13B2:
+13B2 SetImmediate8AddressBit7 000E
+13B4 CopyYToImmediate8Address 000D
+13B6 BranchToRelative8IfImmediate8AddressBit7Clear 0D, 06
+13B9 CopyYAToImmediate8Address 000F
+13BB CopyImmediate8AddressToYA 0009
+13BD SubtractImmediate8AddressFromYA 000F
+
+13BF:
+13BF PushYToStack
+13C0 CopyImmediate8AddressToY 0039
+13C2 MultiplyAByY
+13C3 CopyYToImmediate8Address 000F
+13C5 CopyImmediate8ToImmediate8Address 00, 10
+13C8 CopyImmediate8AddressToY 0039
+13CA PullAFromStack
+13CB MultiplyAByY
+13CC AddImmediate8AddressToYA 000F
+13CE BranchToRelative8IfImmediate8AddressBit7Clear 0D, 06
+13D1 CopyYAToImmediate8Address 000F
+13D3 CopyImmediate8AddressToYA 0009
+13D5 SubtractImmediate8AddressFromYA 000F
+
+13D7:
+13D7 AddImmediate8AddressToYA 000B
+13D9 CopyYAToImmediate8Address 000B
+13DB ReturnFromSubroutine
+
+13DC:
+13DC CopyImmediate8AddressToA 002B
+13DE AndAWithImmediate8Address 0028
+13E0 BranchToRelative8IfEqual 1428
+13E2 CopyImmediate16PlusXAddressToA 08AC
+13E5 OrAWithImmediate8 0008
+13E7 CopyAToImmediate8Address 00F2
+13E9 CopyImmediate8AddressToA 00F3
+13EB BranchToRelative8IfNotEqual 1428
+13ED CopyImmediate8AddressToA 002B
+13EF AndImmediate16AddressWithNotA 0056
+13F2 AndImmediate16AddressWithNotA 0057
+13F5 AndImmediate16AddressWithNotA 00E8
+13F8 CopyImmediate8ToA 0000
+13FA CopyAToImmediate16PlusXAddress 0281
+13FD CopyAToImmediate8PlusXAddress 0080
+13FF CopyAToImmediate8PlusXAddress 00A0
+1401 CopyAToImmediate8PlusXAddress 009F
+1403 CopyAToImmediate8PlusXAddress 008F
+1405 CopyAToImmediate16PlusXAddress 0280
+1408 CopyAToImmediate8PlusXAddress 00D0
+140A CopyAToImmediate16PlusXAddress 01D0
+140D CallImmediate16 0DB8
+1410 CopyAToImmediate16PlusXAddress 0231
+1413 CopyAToImmediate16PlusXAddress 00B0
+1416 CallImmediate16 0CAF
+1419 CopyImmediate8ToA 0002
+141B CopyAToImmediate8PlusXAddress 007F
+141D CopyImmediate8ToA 000A
+141F CopyAToImmediate16PlusXAddress 01F1
+1422 CopyAToImmediate16PlusXAddress 01D1
+1425 ExclusiveOrImmediate8AddressWithImmediate8Address 2B, 28
+
+1428:
+1428 ReturnFromSubroutine
