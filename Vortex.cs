@@ -23,7 +23,6 @@ public class SnesRom
 
 		if (Z == 0)
 			return this.L00DDF5();
-
 	}
 
 	public void L00DDF4()
@@ -578,7 +577,6 @@ public class SnesRom
 
 		if (Z == 0)
 			return this.L00E09A();
-
 	}
 
 	public void L00E090()
@@ -609,7 +607,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L00E0BA()
+	public void L00E0BA_Done()
 	{
 		return;
 	}
@@ -666,7 +664,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L00E918();
 
-		return this.L00E995();
+		return this.L00E995_Done();
 	}
 
 	public void L00E918()
@@ -682,7 +680,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = [0x701000];
 		[0x1255] = A;
@@ -701,7 +699,7 @@ public class SnesRom
 		X = 0x0000;
 	}
 
-	public void L00E977()
+	public void L00E977_Loop()
 	{
 		A = [0x701010 + X];
 		[0x7E463E + X] = A;
@@ -709,13 +707,13 @@ public class SnesRom
 		Y--;
 
 		if (Z == 0)
-			return this.L00E977();
+			return this.L00E977_Loop();
 
 		Y = 0x1000;
 		X = 0x0000;
 	}
 
-	public void L00E989()
+	public void L00E989_Loop()
 	{
 		A = [0x701010 + X];
 		[0x7E563E + X] = A;
@@ -723,11 +721,10 @@ public class SnesRom
 		Y--;
 
 		if (Z == 0)
-			return this.L00E989();
-
+			return this.L00E989_Loop();
 	}
 
-	public void L00E995()
+	public void L00E995_Done()
 	{
 		return;
 	}
@@ -798,14 +795,14 @@ public class SnesRom
 		A = 0x0000;
 	}
 
-	public void L00EA1A()
+	public void L00EA1A_Loop()
 	{
 		C = 0;
 		A += [0x1255] + C;
 		X--;
 
 		if (Z == 0)
-			return this.L00EA1A();
+			return this.L00EA1A_Loop();
 
 		C = 0;
 		A += [0x125F] + C;
@@ -813,20 +810,20 @@ public class SnesRom
 		C = 1; temp = A - 0x1000;
 
 		if (C == 1)
-			return this.L00EA53();
+			return this.L00EA53_Done();
 
 		X = A;
 		A = [0x1254];
 		A &= 0x00FF;
 
 		if (Z == 1)
-			return this.L00EA53();
+			return this.L00EA53_Done();
 
 		P |= 0x20;
 		A = [0x7E563E + X];
 
 		if (Z == 1)
-			return this.L00EA53();
+			return this.L00EA53_Done();
 
 		A--;
 		P &= ~0x20;
@@ -842,7 +839,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L00EA53()
+	public void L00EA53_Done()
 	{
 		P |= 0x20;
 		A = 0x00;
@@ -857,14 +854,14 @@ public class SnesRom
 		X = 0x0FFE;
 	}
 
-	public void L00EA63()
+	public void L00EA63_Loop()
 	{
 		[0x7E363E + X] = A;
 		X--;
 		X--;
 
 		if (Z == 0)
-			return this.L00EA63();
+			return this.L00EA63_Loop();
 
 		P |= 0x20;
 		P &= ~0x10;
@@ -877,7 +874,7 @@ public class SnesRom
 		X = [0x1228];
 
 		if (Z == 1)
-			return this.L00EAD4();
+			return this.L00EAD4_Done();
 
 		A = [0x02F4F5 + X];
 		[0x700064] = A;
@@ -888,7 +885,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = [0x701004];
 		[0x126B] = A;
@@ -904,36 +901,35 @@ public class SnesRom
 		X = 0x0000;
 	}
 
-	public void L00EABB()
+	public void L00EABB_Loop()
 	{
 		A = [0x701010 + X];
 		C = 1; temp = A - 0x5C;
 
 		if (Z == 0)
-			return this.L00EACC();
+			return this.L00EACC_Skip();
 
 		A = [0x3A];
 
 		if (Z == 1)
-			return this.L00EACC();
+			return this.L00EACC_Skip();
 
 		A--;
 		[0x3A] = A;
 		A = 0x5C;
 	}
 
-	public void L00EACC()
+	public void L00EACC_Skip()
 	{
 		[0x7E363E + X] = A;
 		X++;
 		Y--;
 
 		if (Z == 0)
-			return this.L00EABB();
-
+			return this.L00EABB_Loop();
 	}
 
-	public void L00EAD4()
+	public void L00EAD4_Done()
 	{
 		return;
 	}
@@ -946,22 +942,22 @@ public class SnesRom
 		C = 1; temp = A - 0x0007;
 
 		if (C == 1)
-			return this.L00EAE5();
+			return this.L00EAE5_Skip();
 
 		A = 0x0007;
 	}
 
-	public void L00EAE5()
+	public void L00EAE5_Skip()
 	{
 		C = 1; temp = A - 0x0039;
 
 		if (C == 0)
-			return this.L00EAED();
+			return this.L00EAED_Skip();
 
 		A = 0x0039;
 	}
 
-	public void L00EAED()
+	public void L00EAED_Skip()
 	{
 		[0x3A] = A;
 		C = 1;
@@ -980,22 +976,22 @@ public class SnesRom
 		C = 1; temp = A - 0x0007;
 
 		if (C == 1)
-			return this.L00EB09();
+			return this.L00EB09_Skip();
 
 		A = 0x0007;
 	}
 
-	public void L00EB09()
+	public void L00EB09_Skip()
 	{
 		C = 1; temp = A - 0x0039;
 
 		if (C == 0)
-			return this.L00EB11();
+			return this.L00EB11_Skip();
 
 		A = 0x0039;
 	}
 
-	public void L00EB11()
+	public void L00EB11_Skip()
 	{
 		[0x3C] = A;
 		C = 1;
@@ -1015,14 +1011,14 @@ public class SnesRom
 		A = 0x0000;
 	}
 
-	public void L00EB28()
+	public void L00EB28_Loop()
 	{
 		C = 0;
 		A += [0x1255] + C;
 		X--;
 
 		if (Z == 0)
-			return this.L00EB28();
+			return this.L00EB28_Loop();
 
 		C = 0;
 		A += [0x3A] + C;
@@ -1063,14 +1059,14 @@ public class SnesRom
 		Y = A;
 	}
 
-	public void L00EB74()
+	public void L00EB74_Loop()
 	{
 		Stack.Push(Y);
 		Y = 0x000C;
 		Stack.Push(X);
 	}
 
-	public void L00EB79()
+	public void L00EB79_Loop()
 	{
 		[0x125D] = X;
 		P |= 0x20;
@@ -1107,7 +1103,7 @@ public class SnesRom
 		A &= 0x00FF;
 
 		if (Z == 1)
-			return this.L00EBE0();
+			return this.L00EBE0_Skip();
 
 		A = X;
 		C = 0;
@@ -1120,7 +1116,7 @@ public class SnesRom
 		A &= 0x00FF;
 
 		if (Z == 1)
-			return this.L00EBE0();
+			return this.L00EBE0_Skip();
 
 		[0x36] = A;
 		[0x127B]++;
@@ -1133,7 +1129,7 @@ public class SnesRom
 		A &= 0xFFFF;
 
 		if (Z == 0)
-			return this.L00EBE0();
+			return this.L00EBE0_Skip();
 
 		P |= 0x20;
 		A = 0x00;
@@ -1141,7 +1137,7 @@ public class SnesRom
 		P &= ~0x20;
 	}
 
-	public void L00EBE0()
+	public void L00EBE0_Skip()
 	{
 		X = Stack.Pop();
 		A = [0x1250];
@@ -1152,7 +1148,7 @@ public class SnesRom
 		Y--;
 
 		if (Z == 0)
-			return this.L00EB79();
+			return this.L00EB79_Loop();
 
 		X = Stack.Pop();
 		A = X;
@@ -1169,12 +1165,12 @@ public class SnesRom
 		Y--;
 
 		if (Z == 1)
-			return this.L00EC0D();
+			return this.L00EC0D_Done();
 
-		return this.L00EB74();
+		return this.L00EB74_Loop();
 	}
 
-	public void L00EC0D()
+	public void L00EC0D_Done()
 	{
 		return;
 	}
@@ -1206,7 +1202,7 @@ public class SnesRom
 		if (C == 0)
 			return this.L00EC38();
 
-		return this.L00ED14();
+		return this.L00ED14_Done();
 	}
 
 	public void L00EC38()
@@ -1219,7 +1215,7 @@ public class SnesRom
 			return this.L00EC45();
 
 		X = Y;
-		return this.L00ED14();
+		return this.L00ED14_Done();
 	}
 
 	public void L00EC45()
@@ -1367,7 +1363,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L00ED14()
+	public void L00ED14_Done()
 	{
 		X = Stack.Pop();
 		P &= ~0x20;
@@ -1382,6 +1378,11 @@ public class SnesRom
 		temp = C; C = E; E = temp;
 
 		return this.L0293A1_Start();
+	}
+
+	public void L00FD21_Break()
+	{
+		return;
 	}
 
 	public void L01F074()
@@ -1556,7 +1557,7 @@ public class SnesRom
 		P |= 0x20;
 		A = 0x01;
 		X = 0x84BC;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = [0x700026];
 		[0xB7] = A;
@@ -1583,7 +1584,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0x8513;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = [0x7000E4];
 		[0x19AC] = A;
@@ -1749,7 +1750,7 @@ public class SnesRom
 		[0x8B] = A;
 		A = [0xCF];
 		[0x8C] = A;
-		return this.L01F438();
+		return this.L01F438_Done();
 	}
 
 	public void L01F3D2()
@@ -1849,7 +1850,7 @@ public class SnesRom
 		A = [0xCF];
 		A -= [0x8C] - !C;
 		[0x8C] = A;
-		return this.L01F438();
+		return this.L01F438_Done();
 	}
 
 	public void L01F42B()
@@ -1863,7 +1864,7 @@ public class SnesRom
 		[0x8C] = A;
 	}
 
-	public void L01F438()
+	public void L01F438_Done()
 	{
 		return;
 	}
@@ -2111,7 +2112,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xBA8F;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P |= 0x30;
 		return;
 	}
@@ -2209,7 +2210,7 @@ public class SnesRom
 		P &= ~0x20;
 		A = 0x0C00;
 		A |= [0x10B2];
-		return this.L029213();
+		return this.L029213_SendApuCommand();
 	}
 
 	public void L029167_ResetSound()
@@ -2238,7 +2239,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L029213()
+	public void L029213_SendApuCommand()
 	{
 		P &= ~0x30;
 		A |= [0x109C];
@@ -2288,7 +2289,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L029283()
+	public void L029283_LoadSong()
 	{
 		Stack.Push(X);
 		Stack.Push(A);
@@ -2297,9 +2298,9 @@ public class SnesRom
 		P &= ~0x30;
 		A <<= 1;
 		X = A;
-		this.L0292C9();
+		this.L0292C9_LoadCompressedApuData();
 		A = 0x4201;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P = Stack.Pop();
 		Y = Stack.Pop();
 		A = Stack.Pop();
@@ -2307,19 +2308,19 @@ public class SnesRom
 		return;
 	}
 
-	public void L02929A()
+	public void L02929A_LoadSong()
 	{
 		P &= ~0x30;
 		[0x0010B0] = A;
 		A <<= 1;
 		X = A;
-		this.L0292C9();
+		this.L0292C9_LoadCompressedApuData();
 		A = 0x4203;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		return;
 	}
 
-	public void L0292AD()
+	public void L0292AD_LoadSong11()
 	{
 		Stack.Push(X);
 		Stack.Push(A);
@@ -2329,9 +2330,9 @@ public class SnesRom
 		A = 0x0011;
 		A <<= 1;
 		X = A;
-		this.L0292C9();
+		this.L0292C9_LoadCompressedApuData();
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		P &= ~0x20;
 		P = Stack.Pop();
 		Y = Stack.Pop();
@@ -2340,24 +2341,61 @@ public class SnesRom
 		return;
 	}
 
-	public void L0292C9()
+	public byte[] L029257_Pointers = new byte[]
 	{
+		0xC8, 0x81,		// 0x0F81C8
+		0xE4, 0x87,		// 0x0F87E4
+		0x1C, 0x91,		// 0x0F911C
+		0x04, 0x98,		// 0x0F9804
+		0x6C, 0x9D,		// 0x0F9D6C
+		0xE8, 0x9E,		// 0x0F9EE8
+		0x40, 0xA5,		// 0x0FA540
+		0x20, 0xAD,		// 0x0FAD20
+		0xD4, 0xB4,		// 0x0FB4D4
+		0x9C, 0xBD,		// 0x0FBD9C
+		0x44, 0xBF,		// 0x0FBF44
+		0x84, 0xC0,		// 0x0FC084
+		0x68, 0xC3,		// 0x0FC368
+		0x14, 0xC4,		// 0x0FC414
+		0x14, 0xC4,		// 0x0FC414
+		0x14, 0xC4,		// 0x0FC414
+		0x10, 0xC7,		// 0x0FC710
+		0x7C, 0xCB,		// 0x0FCB7C
+		0xE4, 0xCC,		// 0x0FCCE4
+		0x64, 0xD1,		// 0x0FD164
+		0x58, 0xD2,		// 0x0FD258
+		0x98, 0xD4 		// 0x0FD498
+	}
+
+	public void L0292C9_LoadCompressedApuData()
+	{
+		// Source = PointerTable029257[X];
 		A = [0x029257 + X];
 		[0x700064] = A;
+
+		// Destination = 0x1000;
 		A = 0x1000;
 		[0x70002C] = A;
+
+		// Source Bank = 0x0F;
 		P |= 0x20;
 		A = 0x0F;
 		[0x700066] = A;
+
+		// Function = 0x01BDB1;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+
+		this.L7ED7E8_ExecuteSuperFX();
+
 		P &= ~0x20;
 		A = 0x1000;
 		[0x53] = A;
 		A = 0x0070;
 		[0x55] = A;
+
 		this.L02931D_LoadApu();
+
 		P &= ~0x20;
 		Y = 0x0002;
 	}
@@ -2370,15 +2408,18 @@ public class SnesRom
 			return this.L0292FD_Loop();
 
 		this.L029167_ResetSound();
+
 		return;
 	}
 
-	public void L029310()
+	public void L029310_SendApuCommand()
 	{
 		P &= ~0x20;
 		A &= 0x00FF;
 		A |= 0x0400;
-		this.L029213();
+
+		this.L029213_SendApuCommand();
+
 		return;
 	}
 
@@ -2388,21 +2429,24 @@ public class SnesRom
 		Stack.Push(Y);
 		Stack.Push(A);
 		Stack.Push(P);
+
 		this.L029167_ResetSound();
+
 		P &= ~0x30;
 		Y = 0x0000;
 		A = 0xBBAA;
 	}
 
-	public void L02932C()
+	public void L02932C_Wait()
 	{
 		C = 1; temp = A - [0x2140];
 
 		if (Z == 0)
-			return this.L02932C();
+			return this.L02932C_Wait();
 
 		P |= 0x20;
 		A = 0xCC;
+
 		return this.L029367_LoadAPU();
 	}
 
@@ -2411,19 +2455,21 @@ public class SnesRom
 		[0x55]++;
 		Y = 0x0000;
 		A = (A >> 8) | (A << 8);
-		return this.L02934E();
+
+		return this.L02934E_Wait();
 	}
 
-	public void L02933F()
+	public void L02933F_Loop()
 	{
 		A = [[0x53] + Y];
 		Y++;
 		A = (A >> 8) | (A << 8);
 		A = 0x00;
-		return this.L029354();
+
+		return this.L029354_Skip();
 	}
 
-	public void L029347()
+	public void L029347_Loop()
 	{
 		A = (A >> 8) | (A << 8);
 		A = [[0x53] + Y];
@@ -2435,17 +2481,17 @@ public class SnesRom
 		A = (A >> 8) | (A << 8);
 	}
 
-	public void L02934E()
+	public void L02934E_Wait()
 	{
 		C = 1; temp = A - [0x2140];
 
 		if (Z == 0)
-			return this.L02934E();
+			return this.L02934E_Wait();
 
 		A++;
 	}
 
-	public void L029354()
+	public void L029354_Skip()
 	{
 		P &= ~0x20;
 		[0x2140] = A;
@@ -2453,8 +2499,7 @@ public class SnesRom
 		X--;
 
 		if (Z == 0)
-			return this.L029347();
-
+			return this.L029347_Loop();
 	}
 
 	public void L02935E()
@@ -2463,7 +2508,6 @@ public class SnesRom
 
 		if (Z == 0)
 			return this.L02935E();
-
 	}
 
 	public void L029363()
@@ -2472,7 +2516,6 @@ public class SnesRom
 
 		if (Z == 1)
 			return this.L029363();
-
 	}
 
 	public void L029367_LoadAPU()
@@ -2497,16 +2540,15 @@ public class SnesRom
 		[0x2140] = A;
 	}
 
-	public void L029387()
+	public void L029387_Wait()
 	{
 		C = 1; temp = A - [0x2140];
 
 		if (Z == 0)
-			return this.L029387();
-
+			return this.L029387_Wait();
 
 		if (V == 1)
-			return this.L02933F();
+			return this.L02933F_Loop();
 
 		[0x2140] = 0;
 		[0x2141] = 0;
@@ -2566,17 +2608,17 @@ public class SnesRom
 		A = 0x0002;
 	}
 
-	public void L0293D6_Loop()
+	public void L0293D6_Wait()
 	{
 		C = 1; temp = A - [0x002140];
 
 		if (Z == 0)
-			return this.L0293D6_Loop();
+			return this.L0293D6_Wait();
 
 		this.L029167_ResetSound();
 		P |= 0x30;
-		this.L029599();
-		return this.L029EDB();
+		this.L029599_SetSuperFXScreenBase();
+		return this.L029EDB_InitializeRegisters();
 	}
 
 	public void L0293E9()
@@ -2816,11 +2858,13 @@ public class SnesRom
 		return;
 	}
 
-	public void L029599()
+	public void L029599_SetSuperFXScreenBase()
 	{
 		this.L02C494();
 		P |= 0x20;
 		P &= ~0x10;
+
+		// SuperFX.ScreenBase = Value45 / 4;
 		A = [0x45];
 		A >>= 1;
 		A >>= 1;
@@ -2836,7 +2880,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L0295BD()
+	public void L0295BD_InitializeRegisters()
 	{
 		this.L0293E9();
 		this.L09FB88();
@@ -2867,9 +2911,9 @@ public class SnesRom
 		this.L0CF55D();
 	}
 
-	public void L02960E()
+	public void L02960E_MainLoop()
 	{
-		this.L07852B();
+		this.L07852B_UpdateSound();
 		P &= ~0x20;
 		[0x120C] = 0;
 		P |= 0x20;
@@ -3091,7 +3135,7 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		P |= 0x20;
@@ -3102,7 +3146,7 @@ public class SnesRom
 		X = A;
 		A = [0x048000 + X];
 		[0x1932] = A;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		P &= ~0x20;
@@ -3136,7 +3180,7 @@ public class SnesRom
 	public void L0298B4()
 	{
 		P |= 0x20;
-		this.L03A17D();
+		this.L03A17D_ResetSound();
 		this.L038186();
 		P &= ~0x20;
 		[0x11DB] = 0;
@@ -3179,7 +3223,7 @@ public class SnesRom
 	public void L02990C()
 	{
 		P |= 0x20;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P |= 0x20;
 		A = [0x112D];
 		temp = A & 0x08;
@@ -3267,7 +3311,7 @@ public class SnesRom
 			return this.L029998();
 
 		A = 0x01;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		P |= 0x20;
 		this.L02CC8F();
 		P &= ~0x30;
@@ -3276,7 +3320,7 @@ public class SnesRom
 		X = A;
 		A = [0x048062 + X];
 		A &= 0x00FF;
-		this.L029283();
+		this.L029283_LoadSong();
 		return this.L0299A7();
 	}
 
@@ -3284,7 +3328,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0201;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		this.L02CC8F();
 	}
@@ -3315,9 +3359,9 @@ public class SnesRom
 		this.L02C494();
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		A = 0x0004;
-		this.L029283();
+		this.L029283_LoadSong();
 		A = 0xFFFF;
 		return;
 	}
@@ -3342,7 +3386,7 @@ public class SnesRom
 			return this.L029A66();
 
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		P &= ~0x20;
 		A = [0x1233];
 		Stack.Push(A);
@@ -3356,13 +3400,13 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		this.L0298B4();
 		P &= ~0x20;
 		A = 0x0010;
-		this.L029283();
+		this.L029283_LoadSong();
 		P &= ~0x20;
 		A = 0x0028;
 		[0x00197C] = A;
@@ -3373,7 +3417,7 @@ public class SnesRom
 		[0x00197E] = A;
 		A = 0xFF;
 		[0x1232] = A;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P |= 0x20;
 		A = 0x01;
 		[0x1ACB] = A;
@@ -3396,9 +3440,9 @@ public class SnesRom
 		this.L02C494();
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		A = 0x0005;
-		this.L029283();
+		this.L029283_LoadSong();
 		A = 0xFFFF;
 		return;
 	}
@@ -3423,7 +3467,7 @@ public class SnesRom
 		P &= ~0x20;
 		[0x120C] = 0;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		P |= 0x20;
 		this.L02CC8F();
 		P &= ~0x30;
@@ -3432,7 +3476,7 @@ public class SnesRom
 		X = A;
 		A = [0x048062 + X];
 		A &= 0x00FF;
-		this.L029283();
+		this.L029283_LoadSong();
 		return this.L0299A7();
 	}
 
@@ -3440,11 +3484,11 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC8F();
 		P &= ~0x20;
 		A = 0x0004;
-		this.L029283();
+		this.L029283_LoadSong();
 	}
 
 	public void L029ADD()
@@ -3466,7 +3510,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC8F();
 		this.L02BD43();
 		P &= ~0x20;
@@ -3517,7 +3561,7 @@ public class SnesRom
 		A = 0x0000;
 		[0x3A] = A;
 		A = 0x000B;
-		this.L029283();
+		this.L029283_LoadSong();
 		return this.L029B4B();
 	}
 
@@ -3527,7 +3571,7 @@ public class SnesRom
 		A = 0xFFFF;
 		[0x3A] = A;
 		A = 0x000C;
-		this.L029283();
+		this.L029283_LoadSong();
 	}
 
 	public void L029B4B()
@@ -3680,7 +3724,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xCA04;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = 0x0000;
 		[0x700240] = A;
@@ -3694,7 +3738,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xBA8F;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		return;
 	}
 
@@ -3702,7 +3746,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		A = [0xF4];
 		C = 1; temp = A - 0x0006;
 
@@ -3723,7 +3767,7 @@ public class SnesRom
 		this.L02BD43();
 		P &= ~0x20;
 		A = 0x000C;
-		this.L029283();
+		this.L029283_LoadSong();
 		this.L029BBA();
 		P |= 0x20;
 		P &= ~0x10;
@@ -3838,12 +3882,12 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC8F();
 		this.L02BD43();
 		P &= ~0x20;
 		A = 0x000B;
-		this.L029283();
+		this.L029283_LoadSong();
 		this.L029BBA();
 		P |= 0x20;
 		P &= ~0x10;
@@ -3973,7 +4017,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC8F();
 		[0x1ACF] = 0;
 		A = 0x0000;
@@ -4009,7 +4053,7 @@ public class SnesRom
 
 	public void L029E55()
 	{
-		this.L078072();
+		this.L078072_Skip();
 		P |= 0x20;
 		P &= ~0x10;
 		[0x1982]++;
@@ -4066,7 +4110,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L029EDB()
+	public void L029EDB_InitializeRegisters()
 	{
 		P |= 0x30;
 		A = 0x21;
@@ -4149,7 +4193,7 @@ public class SnesRom
 		X = 0x0000;
 	}
 
-	public void L029FA7()
+	public void L029FA7_Loop()
 	{
 		A = [0x02A37E + X];
 		[0x7EDE0E + X] = A;
@@ -4158,7 +4202,7 @@ public class SnesRom
 		C = 1; temp = X - 0x0D9C;
 
 		if (C == 0)
-			return this.L029FA7();
+			return this.L029FA7_Loop();
 
 		P |= 0x20;
 		A = 0x00;
@@ -4216,7 +4260,7 @@ public class SnesRom
 		[0x4200] = A;
 		A = [0x004211];
 		I = 0;
-		return this.L0295BD();
+		return this.L0295BD_InitializeRegisters();
 	}
 
 	public void L02A04E()
@@ -4244,7 +4288,7 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		P &= ~0x20;
@@ -4258,11 +4302,11 @@ public class SnesRom
 		A = 0xFF;
 		[0x1B77] = A;
 		P |= 0x20;
-		this.L03A17D();
-		return this.L02A0F6();
+		this.L03A17D_ResetSound();
+		return this.L02A0F6_Done();
 	}
 
-	public void L02A0F6()
+	public void L02A0F6_Done()
 	{
 		P |= 0x20;
 		return;
@@ -4333,7 +4377,7 @@ public class SnesRom
 		if (C == 0)
 			return this.L02A196();
 
-		return this.L02A1A8();
+		return this.L02A1A8_Done();
 	}
 
 	public void L02A196()
@@ -4347,7 +4391,7 @@ public class SnesRom
 		this.L03EA39();
 	}
 
-	public void L02A1A8()
+	public void L02A1A8_Done()
 	{
 		return;
 	}
@@ -4616,7 +4660,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L02B322()
+	public void L02B322_Dma()
 	{
 		A = 0x22;
 		[0x4301] = A;
@@ -4655,7 +4699,7 @@ public class SnesRom
 		P &= ~0x20;
 	}
 
-	public void L02B37B()
+	public void L02B37B_Loop()
 	{
 		A = [0x0000 + X];
 		Stack.Push(X);
@@ -4669,7 +4713,7 @@ public class SnesRom
 		C = 1; temp = Y - 0x0100;
 
 		if (Z == 0)
-			return this.L02B37B();
+			return this.L02B37B_Loop();
 
 		A = 0x0000;
 		[0x00137A] = A;
@@ -4679,7 +4723,7 @@ public class SnesRom
 		X = 0x0000;
 	}
 
-	public void L02B39D()
+	public void L02B39D_Loop()
 	{
 		A = [0x08EB2D + X];
 		[0x00139C + X] = A;
@@ -4688,7 +4732,7 @@ public class SnesRom
 		C = 1; temp = X - 0x0100;
 
 		if (Z == 0)
-			return this.L02B39D();
+			return this.L02B39D_Loop();
 
 		A = 0x0004;
 		[0x18C9] = A;
@@ -4728,7 +4772,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		this.L02B1CB();
 		P |= 0x20;
 		P &= ~0x10;
@@ -4761,7 +4805,7 @@ public class SnesRom
 		[0x18C5] = X;
 		A = 0x0C;
 		[0x18C7] = A;
-		this.L02B322();
+		this.L02B322_Dma();
 		P &= ~0x20;
 		A = 0xF4A4;
 		[0x700064] = A;
@@ -4772,7 +4816,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		A = 0x80;
 		[0x2115] = A;
 		A = 0x18;
@@ -4801,13 +4845,13 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		this.L02B1CB();
 		P |= 0x20;
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xBF8F;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		this.L02B2F9();
 		P |= 0x20;
 		[0x210F] = 0;
@@ -4844,8 +4888,18 @@ public class SnesRom
 
 	public void L02BE3B()
 	{
-		A = 0x02;
-		Cpu.Break();
+		A = 0x0002;
+		[0x38] = A;
+	}
+
+	public void L02BE40_Wait()
+	{
+		A = [0x38];
+
+		if (Z == 0)
+			return this.L02BE40_Wait();
+
+		return;
 	}
 
 	public void L02BE46()
@@ -4860,7 +4914,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		X = 0x0000;
 	}
@@ -4906,8 +4960,10 @@ public class SnesRom
 		P &= ~0x20;
 		A = 0x0000;
 		[0x70022A] = A;
+
 		this.L00E8D5();
 		this.L00EA5B();
+
 		P |= 0x20;
 		P &= ~0x10;
 		A = 0xFF;
@@ -4924,18 +4980,22 @@ public class SnesRom
 		A = 0x0002;
 		[0x198A] = A;
 		[0x1986] = 0;
+
 		this.L02C23D();
+
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0x0000;
 		[0x70021E] = A;
+
 		this.L02C127();
 
 		if (Z == 0)
 			return this.L02BF18();
 
 		this.L0784F5();
-		return this.L02960E();
+
+		return this.L02960E_MainLoop();
 	}
 
 	public void L02BF18()
@@ -4948,13 +5008,15 @@ public class SnesRom
 			return this.L02BF29();
 
 		this.L02BFF2();
-		return this.L02960E();
+
+		return this.L02960E_MainLoop();
 	}
 
 	public void L02BF29()
 	{
 		this.L02BF54();
-		return this.L02960E();
+
+		return this.L02960E_MainLoop();
 	}
 
 	public void L02BF54()
@@ -4979,8 +5041,10 @@ public class SnesRom
 		P |= 0x20;
 		A = [0x1986];
 		[0xF4] = A;
+
 		this.L02CC8F();
 		this.L0784F5();
+
 		return;
 	}
 
@@ -4993,9 +5057,13 @@ public class SnesRom
 		[0x198C] = 0;
 		P |= 0x20;
 		[0x1AD4] = 0;
+
 		this.L02C08F();
+
 		P |= 0x20;
+
 		this.L02CC8F();
+
 		P |= 0x20;
 		[0x1ACF] = 0;
 		P &= ~0x30;
@@ -5014,14 +5082,19 @@ public class SnesRom
 		A &= 0x00FF;
 		Stack.Push(A);
 		A = 0x0001;
-		this.L029310();
+
+		this.L029310_SendApuCommand();
+
 		A = Stack.Pop();
-		this.L029283();
+
+		this.L029283_LoadSong();
+
 		[0x1230] = 0;
+
 		this.L0298F2();
 
 		if (Z == 1)
-			return this.L02BFEF();
+			return this.L02BFEF_Done();
 
 		P |= 0x20;
 		A = [0xF4];
@@ -5030,12 +5103,12 @@ public class SnesRom
 		C = 1; temp = A - 0x07;
 
 		if (Z == 1)
-			return this.L02BFEF();
+			return this.L02BFEF_Done();
 
 		return this.L02BF54();
 	}
 
-	public void L02BFEF()
+	public void L02BFEF_Done()
 	{
 		[0xF4] = 0;
 		return;
@@ -5051,6 +5124,7 @@ public class SnesRom
 		[0x198A] = A;
 		A = 0x000A;
 		[0x1AD6] = A;
+
 		this.L0CF6F7();
 
 		if (Z == 0)
@@ -5058,6 +5132,7 @@ public class SnesRom
 
 		this.L02CC8F();
 		this.L0784F5();
+
 		return;
 	}
 
@@ -5065,9 +5140,13 @@ public class SnesRom
 	{
 		P |= 0x20;
 		[0x1AD4] = 0;
+
 		this.L02C08F();
+
 		P |= 0x20;
+
 		this.L02CC8F();
+
 		P &= ~0x20;
 		A = 0x0000;
 		[0x700226] = A;
@@ -5081,21 +5160,29 @@ public class SnesRom
 		[0xF3] = A;
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+
+		this.L029310_SendApuCommand();
+
 		A = 0x0006;
-		this.L029283();
+
+		this.L029283_LoadSong();
+
 		P |= 0x20;
 		A = 0xFF;
 		[0x1AD0] = A;
+
 		this.L0298F2();
+
 		P |= 0x20;
 		[0x1AD0] = 0;
+
 		return;
 	}
 
 	public void L02C062()
 	{
 		this.L02C066();
+
 		return;
 	}
 
@@ -5129,7 +5216,9 @@ public class SnesRom
 	public void L02C098()
 	{
 		P |= 0x20;
+
 		this.L02C278();
+
 		P &= ~0x20;
 		A = [0x70021E];
 
@@ -5148,7 +5237,9 @@ public class SnesRom
 	{
 		P |= 0x20;
 		P &= ~0x10;
-		this.L02C897();
+
+		this.L02C897_LongFunction();
+
 		A = [0x10BC];
 		temp = A & 0x10;
 
@@ -5162,13 +5253,17 @@ public class SnesRom
 	{
 		P |= 0x20;
 		P &= ~0x10;
+
 		this.L02C1B3();
+
 		P |= 0x20;
 		A = [0x10BC];
 		[0x1188] = A;
 		A = [0x10BE];
 		[0x1189] = A;
-		this.L02C897();
+
+		this.L02C897_LongFunction();
+
 		P &= ~0x30;
 		A = 0x000C;
 		[0x700064] = A;
@@ -5188,6 +5283,7 @@ public class SnesRom
 	public void L02C17C()
 	{
 		this.L02A0F9();
+
 		A = [0x10BE];
 		temp = A & 0x0040;
 
@@ -5207,13 +5303,16 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0xEA03;
-		this.L029213();
+
+		this.L029213_SendApuCommand();
+
 		P |= 0x20;
 	}
 
 	public void L02C19E()
 	{
-		this.L02C897();
+		this.L02C897_LongFunction();
+
 		A = [0x10BC];
 		temp = A & 0x90;
 
@@ -5221,12 +5320,14 @@ public class SnesRom
 			return this.L02C19E();
 
 		A = 0xFF;
+
 		return;
 	}
 
 	public void L02C1AC()
 	{
 		this.L02CC8F();
+
 		A = 0x6000;
 	}
 
@@ -5278,7 +5379,9 @@ public class SnesRom
 	public void L02C1F2()
 	{
 		[0x1986] = A;
+
 		this.L02C23D();
+
 		return this.L02C22D();
 	}
 
@@ -5291,7 +5394,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L02C207();
 
-		return this.L02C238();
+		return this.L02C238_Done();
 	}
 
 	public void L02C207()
@@ -5302,7 +5405,7 @@ public class SnesRom
 		if (Z == 1)
 			return this.L02C212();
 
-		return this.L02C238();
+		return this.L02C238_Done();
 	}
 
 	public void L02C212()
@@ -5324,6 +5427,7 @@ public class SnesRom
 	public void L02C227()
 	{
 		[0x1986] = A;
+
 		this.L02C23D();
 	}
 
@@ -5331,11 +5435,13 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0xEA03;
-		this.L029213();
+
+		this.L029213_SendApuCommand();
+
 		P |= 0x20;
 	}
 
-	public void L02C238()
+	public void L02C238_Done()
 	{
 		return;
 	}
@@ -5343,6 +5449,7 @@ public class SnesRom
 	public void L02C239()
 	{
 		this.L02C23D();
+
 		return;
 	}
 
@@ -5374,6 +5481,7 @@ public class SnesRom
 	public void L02C25E()
 	{
 		[0x1986] = A;
+
 		return this.L02C23D();
 	}
 
@@ -5385,6 +5493,7 @@ public class SnesRom
 		P &= ~0x20;
 		A &= 0x00FF;
 		[0x700220] = A;
+
 		return;
 	}
 
@@ -5441,6 +5550,7 @@ public class SnesRom
 			return this.L02C2A9();
 
 		this.L02C418();
+
 		P &= ~0x30;
 		[0x198C]++;
 		A = 0x000C;
@@ -5475,7 +5585,9 @@ public class SnesRom
 		[0x700228] = A;
 		A = 0x07A9;
 		[0x7000BA] = A;
+
 		this.L03EA3E();
+
 		P |= 0x20;
 		A = [0x1DFB];
 
@@ -5495,7 +5607,9 @@ public class SnesRom
 		[0x700064] = A;
 		A = 0x0030;
 		[0x70002C] = A;
+
 		this.L03EA3E();
+
 		P |= 0x20;
 	}
 
@@ -5559,7 +5673,9 @@ public class SnesRom
 	public void L02C388()
 	{
 		[0x7000BA] = A;
+
 		this.L03EA3E();
+
 		P &= ~0x20;
 		A = [0x70022E];
 
@@ -5577,6 +5693,7 @@ public class SnesRom
 		[0x1990] = A;
 		A = 0x0001;
 		[0x198C] = A;
+
 		return this.L02C3B3();
 	}
 
@@ -5597,6 +5714,7 @@ public class SnesRom
 		[0x700228] = A;
 		A = 0x2D5B;
 		[0x7000BA] = A;
+
 		this.L03EA3E();
 		this.L078010();
 	}
@@ -5609,6 +5727,7 @@ public class SnesRom
 		A = 0x0000;
 		[0x70021E] = A;
 		P = Stack.Pop();
+
 		return;
 	}
 
@@ -5619,8 +5738,11 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xC88E;
-		this.L7ED7E8();
+
+		this.L7ED7E8_ExecuteSuperFX();
+
 		P = Stack.Pop();
+
 		return;
 	}
 
@@ -5628,18 +5750,24 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0E02;
-		this.L029213();
+
+		this.L029213_SendApuCommand();
+
 		P |= 0x20;
 		A = 0xFF;
 		[0x1AD4] = A;
 		[0x1AD5] = A;
+
 		this.L029E45();
+
 		P |= 0x20;
 		[0x1AD4] = 0;
 		[0x1AD5] = 0;
 		P &= ~0x20;
 		A = 0x0E01;
-		this.L029213();
+
+		this.L029213_SendApuCommand();
+
 		return;
 	}
 
@@ -5665,6 +5793,7 @@ public class SnesRom
 
 		[0x00 + X] = 0;
 		P |= 0x20;
+
 		return;
 	}
 
@@ -5676,29 +5805,33 @@ public class SnesRom
 		A = [0x121B];
 
 		if (Z == 0)
-			return this.L02C4D8();
+			return this.L02C4D8_Done();
 
 		A = 0x28;
 		[0x121B] = A;
 		A = [0x121A];
 
 		if (Z == 1)
-			return this.L02C4D8();
+			return this.L02C4D8_Done();
 
 		A--;
 		[0x121A] = A;
 		P &= ~0x20;
 		A = 0xEA90;
-		this.L029213();
+
+		this.L029213_SendApuCommand();
+
 		P |= 0x20;
+
 		this.L02C4DE();
 	}
 
-	public void L02C4D8()
+	public void L02C4D8_Done()
 	{
 		P |= 0x20;
 		P &= ~0x10;
 		X = Stack.Pop();
+
 		return;
 	}
 
@@ -5712,8 +5845,7 @@ public class SnesRom
 		X = [0x10DB];
 
 		if (Z == 1)
-			return this.L02C538();
-
+			return this.L02C538_Done();
 	}
 
 	public void L02C4F0()
@@ -5739,7 +5871,8 @@ public class SnesRom
 	public void L02C501()
 	{
 		P |= 0x20;
-		return this.L02C515();
+
+		return this.L02C515_Skip();
 	}
 
 	public void L02C505()
@@ -5749,7 +5882,7 @@ public class SnesRom
 		A &= 0x10;
 
 		if (Z == 0)
-			return this.L02C515();
+			return this.L02C515_Skip();
 
 		A = [0x001E + X];
 		A &= 0x08;
@@ -5759,7 +5892,7 @@ public class SnesRom
 
 	}
 
-	public void L02C515()
+	public void L02C515_Skip()
 	{
 		[0x3A] = 0;
 		A = [0x28 + X];
@@ -5767,13 +5900,13 @@ public class SnesRom
 		A -= 0x0A - !C;
 
 		if (N == 0)
-			return this.L02C522();
+			return this.L02C522_Skip();
 
 		[0x3A] = A;
 		A = 0x00;
 	}
 
-	public void L02C522()
+	public void L02C522_Skip()
 	{
 		[0x28 + X] = A;
 		A = 0xF6;
@@ -5783,7 +5916,7 @@ public class SnesRom
 		A += [0x3E] + C;
 
 		if (N == 1)
-			return this.L02C538();
+			return this.L02C538_Done();
 
 		[0x3E] = A;
 	}
@@ -5794,12 +5927,12 @@ public class SnesRom
 		X = Y;
 
 		if (Z == 1)
-			return this.L02C538();
+			return this.L02C538_Done();
 
 		return this.L02C4F0();
 	}
 
-	public void L02C538()
+	public void L02C538_Done()
 	{
 		P &= ~0x20;
 		A = 0x0002;
@@ -5879,7 +6012,7 @@ public class SnesRom
 		X = [0x10DB];
 
 		if (Z == 1)
-			return this.L02C63F();
+			return this.L02C63F_Done();
 
 	}
 
@@ -5984,12 +6117,12 @@ public class SnesRom
 		X = Y;
 
 		if (Z == 1)
-			return this.L02C63F();
+			return this.L02C63F_Done();
 
 		return this.L02C5DC();
 	}
 
-	public void L02C63F()
+	public void L02C63F_Done()
 	{
 		return;
 	}
@@ -6041,13 +6174,13 @@ public class SnesRom
 		A -= [0x08] - !C;
 
 		if (N == 0)
-			return this.L02C684();
+			return this.L02C684_Done();
 
 		A ^= 0xFFFF;
 		A++;
 	}
 
-	public void L02C684()
+	public void L02C684_Done()
 	{
 		C = 0;
 		A += [0x0A] + C;
@@ -6061,17 +6194,17 @@ public class SnesRom
 		A = [0x10DB];
 
 		if (Z == 1)
-			return this.L02C6A0();
+			return this.L02C6A0_Done();
 
 		this.L02C6A2();
 		P |= 0x20;
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xC8AE;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 	}
 
-	public void L02C6A0()
+	public void L02C6A0_Done()
 	{
 		P = Stack.Pop();
 		return;
@@ -6315,12 +6448,12 @@ public class SnesRom
 		Y = A;
 
 		if (Z == 1)
-			return this.L02C802();
+			return this.L02C802_Done();
 
 		return this.L02C6C1();
 	}
 
-	public void L02C802()
+	public void L02C802_Done()
 	{
 		A = [0x1AC3];
 		[0x7001BA] = A;
@@ -6329,7 +6462,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L02C897()
+	public void L02C897_LongFunction()
 	{
 		P |= 0x20;
 		this.L03EC1A();
@@ -6337,19 +6470,19 @@ public class SnesRom
 		A = [0x1AC1];
 
 		if (Z == 1)
-			return this.L02C8DA();
+			return this.L02C8DA_Skip();
 
 		A = [0x7EC644];
 
 		if (Z == 1)
-			return this.L02C8DA();
+			return this.L02C8DA_Skip();
 
 		A = [0x7EC643];
 		A--;
 		[0x7EC643] = A;
 
 		if (N == 0)
-			return this.L02C8DA();
+			return this.L02C8DA_Skip();
 
 		A = 0x28;
 		[0x7EC643] = A;
@@ -6357,25 +6490,25 @@ public class SnesRom
 		P &= ~0x20;
 		A &= 0x00FF;
 		A |= 0x0800;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		A = [0x7EC644];
 		A++;
 		C = 1; temp = A - 0x10;
 
 		if (Z == 1)
-			return this.L02C8DA();
+			return this.L02C8DA_Skip();
 
 		[0x7EC644] = A;
 	}
 
-	public void L02C8DA()
+	public void L02C8DA_Skip()
 	{
 		P |= 0x20;
 		A = [0x122F];
 
 		if (Z == 1)
-			return this.L02C8FA();
+			return this.L02C8FA_Skip();
 
 		[0x122F] = 0;
 		P &= ~0x20;
@@ -6389,13 +6522,13 @@ public class SnesRom
 		this.L04B914();
 	}
 
-	public void L02C8FA()
+	public void L02C8FA_Skip()
 	{
 		P |= 0x20;
 		A = [0x122B];
 
 		if (Z == 1)
-			return this.L02C920();
+			return this.L02C920_Skip();
 
 		[0x122B] = 0;
 		A = [0x122A];
@@ -6411,18 +6544,18 @@ public class SnesRom
 		this.L04B93D();
 	}
 
-	public void L02C920()
+	public void L02C920_Skip()
 	{
 		P |= 0x20;
 		P &= ~0x10;
 	}
 
-	public void L02C924()
+	public void L02C924_Wait()
 	{
 		A = [0x38];
 
 		if (Z == 0)
-			return this.L02C924();
+			return this.L02C924_Wait();
 
 		[0x1ADF] = 0;
 		A = 0x02;
@@ -6434,67 +6567,66 @@ public class SnesRom
 		A &= 0x00FF;
 
 		if (Z == 1)
-			return this.L02C971();
+			return this.L02C971_Skip();
 
 		A = [0xF3];
 		A &= 0x00FF;
 		C = 1; temp = A - 0x000C;
 
 		if (Z == 0)
-			return this.L02C954();
+			return this.L02C954_Skip();
 
 		A = [0x1237];
 		C = 1; temp = A - 0x0005;
 
 		if (C == 0)
-			return this.L02C971();
+			return this.L02C971_Skip();
 
-		return this.L02C961();
+		return this.L02C961_Skip();
 	}
 
-	public void L02C954()
+	public void L02C954_Skip()
 	{
 		C = 1; temp = A - 0x000A;
 
 		if (Z == 0)
-			return this.L02C971();
+			return this.L02C971_Skip();
 
 		A = [0x1235];
 		C = 1; temp = A - 0x001E;
 
 		if (C == 0)
-			return this.L02C971();
-
+			return this.L02C971_Skip();
 	}
 
-	public void L02C961()
+	public void L02C961_Skip()
 	{
 		P |= 0x20;
 		P &= ~0x10;
 		A = [0x118F];
 
 		if (Z == 0)
-			return this.L02C971();
+			return this.L02C971_Skip();
 
 		X = [0x10FC];
 		this.L03B469();
 	}
 
-	public void L02C971()
+	public void L02C971_Skip()
 	{
 		P |= 0x20;
 		P &= ~0x10;
 		[0x1982]++;
 
 		if (Z == 0)
-			return this.L02C97D();
+			return this.L02C97D_Skip();
 
 		[0x1983]++;
 	}
 
-	public void L02C97D()
+	public void L02C97D_Skip()
 	{
-		this.L03A5C3();
+		this.L03A5C3_UpdateSound();
 		P |= 0x20;
 		P &= ~0x10;
 		X = 0xFFFF;
@@ -6552,7 +6684,7 @@ public class SnesRom
 
 		P &= ~0x20;
 		A = 0xEA22;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		return this.L02C9D4();
 	}
@@ -6561,7 +6693,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0xEA23;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 	}
 
@@ -6771,7 +6903,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L02CB17();
 
-		this.L03853B();
+		this.L03853B_ClearRam();
 	}
 
 	public void L02CB17()
@@ -6960,7 +7092,7 @@ public class SnesRom
 		A = [0x11DA];
 
 		if (Z == 1)
-			return this.L02CC46();
+			return this.L02CC46_Done();
 
 		P &= ~0x20;
 	}
@@ -6989,7 +7121,7 @@ public class SnesRom
 		[0x11DA] = 0;
 	}
 
-	public void L02CC46()
+	public void L02CC46_Done()
 	{
 		return;
 	}
@@ -7040,7 +7172,7 @@ public class SnesRom
 
 	public void L02CC83()
 	{
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P |= 0x20;
 		A = [0x1ACB];
 
@@ -7275,7 +7407,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xC85E;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P = Stack.Pop();
 		return;
 	}
@@ -7328,7 +7460,7 @@ public class SnesRom
 		[0x1B7E] = X;
 		A = 0x01;
 		X = 0xBCFC;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		A = [0x10C4];
 		[0x420C] = A;
 		X = 0x0000;
@@ -7395,14 +7527,14 @@ public class SnesRom
 		C = 1; temp = A - 0x03;
 
 		if (Z == 0)
-			return this.L02D2B4();
+			return this.L02D2B4_Skip();
 
 		A = [0x121A];
 		[0x70024C] = A;
 		[0x70024D] = A;
 	}
 
-	public void L02D2B4()
+	public void L02D2B4_Skip()
 	{
 		P &= ~0x20;
 		A = [0x11F9];
@@ -7497,7 +7629,7 @@ public class SnesRom
 		Y = 0x0000;
 	}
 
-	public void L02D35A()
+	public void L02D35A_Loop()
 	{
 		P &= ~0x30;
 		Stack.Push(X);
@@ -7528,7 +7660,7 @@ public class SnesRom
 		P &= ~0x10;
 	}
 
-	public void L02D39D()
+	public void L02D39D_Loop()
 	{
 		A = [0x0BFBD3 + X];
 		Stack.Push(X);
@@ -7540,13 +7672,13 @@ public class SnesRom
 		[0x3A]--;
 
 		if (Z == 0)
-			return this.L02D39D();
+			return this.L02D39D_Loop();
 
 		P |= 0x20;
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xCE5B;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		Y = Stack.Pop();
 		X = Stack.Pop();
 		P |= 0x20;
@@ -7554,21 +7686,21 @@ public class SnesRom
 		A = [0x7EEBAA + X];
 
 		if (Z == 1)
-			return this.L02D3CE();
+			return this.L02D3CE_Skip();
 
 		A--;
 		[0x7EEBAA + X] = A;
-		return this.L02D3EA();
+		return this.L02D3EA_Skip();
 	}
 
-	public void L02D3CE()
+	public void L02D3CE_Skip()
 	{
 		A = [0x7EEBAB + X];
 		A++;
 		C = 1; temp = A - 0x07;
 
 		if (Z == 0)
-			return this.L02D3E6();
+			return this.L02D3E6_Skip();
 
 		this.L03E814();
 		A &= 0x3F;
@@ -7578,12 +7710,12 @@ public class SnesRom
 		A = 0x00;
 	}
 
-	public void L02D3E6()
+	public void L02D3E6_Skip()
 	{
 		[0x7EEBAB + X] = A;
 	}
 
-	public void L02D3EA()
+	public void L02D3EA_Skip()
 	{
 		X++;
 		X++;
@@ -7594,12 +7726,12 @@ public class SnesRom
 		C = 1; temp = A - [0x1E02];
 
 		if (Z == 1)
-			return this.L02D3F8();
+			return this.L02D3F8_Done();
 
-		return this.L02D35A();
+		return this.L02D35A_Loop();
 	}
 
-	public void L02D3F8()
+	public void L02D3F8_Done()
 	{
 		return;
 	}
@@ -7620,7 +7752,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		A = 0x80;
 		[0x2115] = A;
 		A = 0x18;
@@ -7639,7 +7771,7 @@ public class SnesRom
 		[0x420B] = A;
 		A = 0x01;
 		X = 0xBF8F;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 	}
 
 	public void L03805D()
@@ -7719,7 +7851,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		A = 0x80;
 		[0x2115] = A;
 		A = 0x18;
@@ -7738,7 +7870,7 @@ public class SnesRom
 		[0x420B] = A;
 		A = 0x01;
 		X = 0xBF8F;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		return this.L03805D();
 	}
 
@@ -8135,7 +8267,7 @@ public class SnesRom
 		[0x700234] = A;
 
 		if (Z == 1)
-			return this.L0384A6();
+			return this.L0384A6_Done();
 
 		this.L0384FD();
 		this.L038503();
@@ -8143,7 +8275,7 @@ public class SnesRom
 		this.L0385F7();
 	}
 
-	public void L0384A6()
+	public void L0384A6_Done()
 	{
 		return;
 	}
@@ -8214,11 +8346,36 @@ public class SnesRom
 
 	public void L038503()
 	{
-		A = 0x02;
-		Cpu.Break();
+		A = 0x0002;
+		P &= ~0x20;
+		A &= 0x00FF;
+		A = (A >> 8) | (A << 8);
+		A <<= 1;
+		A |= 0x3000;
+		[0x1DCA] = A;
+		P |= 0x20;
+		P &= ~0x10;
+		X = [0x10FC];
+		A = [0x13 + X];
+		A >>= 1;
+		A >>= 1;
+		A >>= 1;
+		A >>= 1;
+		A <<= 1;
+		P &= ~0x20;
+		A &= 0x00FF;
+		C = 0;
+		A += 0x00E0 + C;
+		A |= [0x1DCA];
+		X = 0x00F0;
+		[0x1B93 + X] = A;
+		C = 0;
+		A += 0x0001 + C;
+		[0x1B97 + X] = A;
+		return;
 	}
 
-	public void L03853B()
+	public void L03853B_ClearRam()
 	{
 		P &= ~0x20;
 		X = 0x011C;
@@ -8243,7 +8400,7 @@ public class SnesRom
 		A &= 0x00FF;
 
 		if (Z == 1)
-			return this.L038599();
+			return this.L038599_Done();
 
 		A = 0xAF13;
 		[0x1CAD] = A;
@@ -8263,7 +8420,7 @@ public class SnesRom
 		[0x1CBB] = A;
 	}
 
-	public void L038599()
+	public void L038599_Done()
 	{
 		X = Stack.Pop();
 		P |= 0x20;
@@ -8556,7 +8713,7 @@ public class SnesRom
 		P = Stack.Pop();
 	}
 
-	public void L0387B6()
+	public void L0387B6_Done()
 	{
 		return;
 	}
@@ -8602,7 +8759,6 @@ public class SnesRom
 
 		if (Z == 1)
 			return this.L038829();
-
 	}
 
 	public void L038821()
@@ -8612,13 +8768,12 @@ public class SnesRom
 
 		if (Z == 1)
 			return this.L038830();
-
 	}
 
 	public void L038829()
 	{
 		this.L0387D7();
-		return this.L038D64();
+		return this.L038D64_Done();
 	}
 
 	public void L038830()
@@ -9041,7 +9196,7 @@ public class SnesRom
 	{
 		[0x11ED] = A;
 		P |= 0x20;
-		return this.L038D64();
+		return this.L038D64_Done();
 	}
 
 	public void L038A1B()
@@ -9582,7 +9737,7 @@ public class SnesRom
 
 		P &= ~0x20;
 		A = 0xEA1D;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 	}
 
@@ -9610,12 +9765,12 @@ public class SnesRom
 
 	public void L038CC2()
 	{
-		return this.L038D64();
+		return this.L038D64_Done();
 	}
 
 	public void L038CC5()
 	{
-		this.L0387B6();
+		this.L0387B6_Done();
 		X = [0x10E1];
 		P |= 0x20;
 		A = [0x001E + X];
@@ -9624,7 +9779,7 @@ public class SnesRom
 		if (Z == 1)
 			return this.L038CD9();
 
-		return this.L038D64();
+		return this.L038D64_Done();
 	}
 
 	public void L038CD9()
@@ -9677,7 +9832,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L038D18();
 
-		return this.L038D64();
+		return this.L038D64_Done();
 	}
 
 	public void L038D18()
@@ -9740,13 +9895,13 @@ public class SnesRom
 		Y--;
 
 		if (Z == 1)
-			return this.L038D64();
+			return this.L038D64_Done();
 
 		X = A;
 		return this.L038D01();
 	}
 
-	public void L038D64()
+	public void L038D64_Done()
 	{
 		P &= ~0x20;
 		return;
@@ -9818,7 +9973,7 @@ public class SnesRom
 		[0x10DB] = Y;
 		A = 0x0000;
 		[0x0002 + Y] = A;
-		return this.L038DB5();
+		return this.L038DB5_Done();
 	}
 
 	public void L038DA7()
@@ -9840,7 +9995,7 @@ public class SnesRom
 		X = Stack.Pop();
 	}
 
-	public void L038DB5()
+	public void L038DB5_Done()
 	{
 		A = [0x10DD];
 		[0x00 + X] = A;
@@ -9936,7 +10091,7 @@ public class SnesRom
 		[0x10DB] = Y;
 		A = 0x0000;
 		[0x0002 + Y] = A;
-		return this.L038E1D();
+		return this.L038E1D_Done();
 	}
 
 	public void L038E0F()
@@ -9958,7 +10113,7 @@ public class SnesRom
 		X = Stack.Pop();
 	}
 
-	public void L038E1D()
+	public void L038E1D_Done()
 	{
 		A = [0x10DD];
 		[0x00 + X] = A;
@@ -10054,13 +10209,13 @@ public class SnesRom
 		C = 1; temp = A - 0x0000;
 
 		if (Z == 1)
-			return this.L0394E5();
+			return this.L0394E5_Done();
 
 		[0x3A] = X;
 		X = [0x112A];
 
 		if (Z == 1)
-			return this.L0394E1();
+			return this.L0394E1_Done();
 
 		Y = X;
 	}
@@ -10098,13 +10253,13 @@ public class SnesRom
 		return;
 	}
 
-	public void L0394E1()
+	public void L0394E1_Done()
 	{
 		Y = 0x0000;
 		return;
 	}
 
-	public void L0394E5()
+	public void L0394E5_Done()
 	{
 		Y = [0x112A];
 		A = [0x00 + X];
@@ -10123,7 +10278,7 @@ public class SnesRom
 		X = [0x112A];
 
 		if (Z == 1)
-			return this.L03958D();
+			return this.L03958D_Done();
 
 		[0x08] = A;
 		[0x3C] = 0;
@@ -10170,7 +10325,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L03958D()
+	public void L03958D_Done()
 	{
 		Y = 0x0000;
 		return;
@@ -10182,7 +10337,7 @@ public class SnesRom
 		X = [0x112A];
 
 		if (Z == 1)
-			return this.L039604();
+			return this.L039604_Done();
 
 		[0x3C] = 0;
 		[0x1125] = 0;
@@ -10277,7 +10432,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L039604()
+	public void L039604_Done()
 	{
 		Y = 0x0000;
 		return;
@@ -10379,7 +10534,7 @@ public class SnesRom
 
 		C = 0;
 		A += [0x1115] + C;
-		return this.L039CEF();
+		return this.L039CEF_Done();
 	}
 
 	public void L039CE9()
@@ -10389,7 +10544,7 @@ public class SnesRom
 		A -= [0x06] - !C;
 	}
 
-	public void L039CEF()
+	public void L039CEF_Done()
 	{
 		[0x1115] = A;
 		P |= 0x20;
@@ -10459,7 +10614,7 @@ public class SnesRom
 		C = 1; temp = A - 0x00;
 
 		if (Z == 0)
-			return this.L039EA4();
+			return this.L039EA4_Done();
 
 		A = [0x1DDC];
 		A++;
@@ -10476,7 +10631,7 @@ public class SnesRom
 		C = 1; temp = A - [0x1DDC];
 
 		if (Z == 1)
-			return this.L039EA4();
+			return this.L039EA4_Done();
 
 		[0x1DDC] = A;
 		P &= ~0x20;
@@ -10496,7 +10651,7 @@ public class SnesRom
 		P |= 0x20;
 	}
 
-	public void L039EA4()
+	public void L039EA4_Done()
 	{
 		return;
 	}
@@ -10519,7 +10674,7 @@ public class SnesRom
 		C = 1; temp = A - [0x1DED];
 
 		if (Z == 1)
-			return this.L039EEC();
+			return this.L039EEC_Done();
 
 		[0x1DED] = A;
 		P &= ~0x20;
@@ -10550,7 +10705,7 @@ public class SnesRom
 		P |= 0x20;
 	}
 
-	public void L039EEC()
+	public void L039EEC_Done()
 	{
 		return;
 	}
@@ -10707,7 +10862,7 @@ public class SnesRom
 		A = [0x16 + X];
 
 		if (Z == 1)
-			return this.L03A003();
+			return this.L03A003_Done();
 
 	}
 
@@ -10733,7 +10888,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L03A003()
+	public void L03A003_Done()
 	{
 		P = Stack.Pop();
 		return;
@@ -10830,7 +10985,7 @@ public class SnesRom
 
 		P |= 0x20;
 		X = Y;
-		return this.L03A137();
+		return this.L03A137_Done();
 	}
 
 	public void L03A110()
@@ -10862,19 +11017,19 @@ public class SnesRom
 		Y = [0x00 + X];
 
 		if (Z == 1)
-			return this.L03A133();
+			return this.L03A133_Done();
 
 		[0x02 + Y] = Y;
 	}
 
-	public void L03A133()
+	public void L03A133_Done()
 	{
 		P |= 0x20;
 		C = 1;
 		return;
 	}
 
-	public void L03A137()
+	public void L03A137_Done()
 	{
 		P &= ~0x20;
 		[0x127B]++;
@@ -10883,7 +11038,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L03A17D()
+	public void L03A17D_ResetSound()
 	{
 		P &= ~0x20;
 		A = 0x012C;
@@ -10919,7 +11074,7 @@ public class SnesRom
 		P |= 0x20;
 		P &= ~0x10;
 		[0x1130] = 0;
-		this.L03A5C3();
+		this.L03A5C3_UpdateSound();
 		this.L03A1E2();
 		P |= 0x20;
 		P &= ~0x10;
@@ -10933,7 +11088,7 @@ public class SnesRom
 		A = X;
 
 		if (Z == 1)
-			return this.L03A205();
+			return this.L03A205_Done();
 
 	}
 
@@ -10956,7 +11111,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L03A1EA();
 
-		return this.L03A205();
+		return this.L03A205_Done();
 	}
 
 	public void L03A1FD()
@@ -10966,7 +11121,7 @@ public class SnesRom
 		return this.L03A1F8();
 	}
 
-	public void L03A205()
+	public void L03A205_Done()
 	{
 		return;
 	}
@@ -11182,7 +11337,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L03A4F0();
 
-		return this.L03A4F6();
+		return this.L03A4F6_Done();
 	}
 
 	public void L03A4F0()
@@ -11191,7 +11346,7 @@ public class SnesRom
 		[0x1191] = 0;
 	}
 
-	public void L03A4F6()
+	public void L03A4F6_Done()
 	{
 		A = 0x00;
 		return;
@@ -11214,7 +11369,7 @@ public class SnesRom
 		X = [0x10DB];
 
 		if (Z == 1)
-			return this.L03A516();
+			return this.L03A516_Done();
 
 	}
 
@@ -11224,7 +11379,7 @@ public class SnesRom
 		X = A;
 
 		if (Z == 1)
-			return this.L03A516();
+			return this.L03A516_Done();
 
 		A = 0xE035;
 		C = 1; temp = A - [0x16 + X];
@@ -11236,7 +11391,7 @@ public class SnesRom
 		[0x04 + X] = A;
 	}
 
-	public void L03A516()
+	public void L03A516_Done()
 	{
 		X = Stack.Pop();
 		P |= 0x20;
@@ -11250,7 +11405,7 @@ public class SnesRom
 		X = [0x10DB];
 
 		if (Z == 1)
-			return this.L03A533();
+			return this.L03A533_Done();
 
 	}
 
@@ -11260,7 +11415,7 @@ public class SnesRom
 		X = A;
 
 		if (Z == 1)
-			return this.L03A533();
+			return this.L03A533_Done();
 
 		A = 0xE182;
 		C = 1; temp = A - [0x16 + X];
@@ -11272,7 +11427,7 @@ public class SnesRom
 		[0x04 + X] = A;
 	}
 
-	public void L03A533()
+	public void L03A533_Done()
 	{
 		X = Stack.Pop();
 		P |= 0x20;
@@ -11286,7 +11441,7 @@ public class SnesRom
 		X = [0x10DB];
 
 		if (Z == 1)
-			return this.L03A550();
+			return this.L03A550_Done();
 
 	}
 
@@ -11296,7 +11451,7 @@ public class SnesRom
 		X = A;
 
 		if (Z == 1)
-			return this.L03A550();
+			return this.L03A550_Done();
 
 		A = 0xE035;
 		C = 1; temp = A - [0x16 + X];
@@ -11308,7 +11463,7 @@ public class SnesRom
 		[0x04 + X] = A;
 	}
 
-	public void L03A550()
+	public void L03A550_Done()
 	{
 		X = Stack.Pop();
 		P |= 0x20;
@@ -11322,7 +11477,7 @@ public class SnesRom
 		X = [0x10DB];
 
 		if (Z == 1)
-			return this.L03A56D();
+			return this.L03A56D_Done();
 
 	}
 
@@ -11332,7 +11487,7 @@ public class SnesRom
 		X = A;
 
 		if (Z == 1)
-			return this.L03A56D();
+			return this.L03A56D_Done();
 
 		A = 0xE182;
 		C = 1; temp = A - [0x16 + X];
@@ -11344,7 +11499,7 @@ public class SnesRom
 		[0x04 + X] = A;
 	}
 
-	public void L03A56D()
+	public void L03A56D_Done()
 	{
 		X = Stack.Pop();
 		P |= 0x20;
@@ -11409,7 +11564,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L03A5A5();
 
-		this.L02C897();
+		this.L02C897_LongFunction();
 		return this.L03A591();
 	}
 
@@ -11448,7 +11603,7 @@ public class SnesRom
 		return;
 	}
 
-	public void L03A5C3()
+	public void L03A5C3_UpdateSound()
 	{
 		P |= 0x20;
 		P &= ~0x10;
@@ -11571,7 +11726,7 @@ public class SnesRom
 		if (Z == 1)
 			return this.L03A654();
 
-		return this.L03AE3E();
+		return this.L03AE3E_Done();
 	}
 
 	public void L03A654()
@@ -11659,7 +11814,7 @@ public class SnesRom
 		this.L039E61();
 		P &= ~0x20;
 		A = 0xEA28;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		return this.L03A901();
 	}
@@ -11691,7 +11846,7 @@ public class SnesRom
 		this.L039EA5();
 		P &= ~0x20;
 		A = 0xEA28;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		return this.L03A901();
 	}
@@ -11786,7 +11941,6 @@ public class SnesRom
 
 		if (Z == 0)
 			return this.L03A742();
-
 	}
 
 	public void L03A738()
@@ -11807,7 +11961,6 @@ public class SnesRom
 
 		if (Z == 0)
 			return this.L03A753();
-
 	}
 
 	public void L03A749()
@@ -11828,7 +11981,6 @@ public class SnesRom
 
 		if (Z == 0)
 			return this.L03A764();
-
 	}
 
 	public void L03A75A()
@@ -11921,11 +12073,11 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0xEA27;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0xCA80;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0x07EB;
@@ -11987,11 +12139,11 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0xEA27;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0xCA84;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0x07FB;
@@ -12053,11 +12205,11 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0xEA27;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0xCA83;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0x0811;
@@ -12114,11 +12266,11 @@ public class SnesRom
 
 		P &= ~0x20;
 		A = 0xEA27;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0xCA80;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0x082B;
@@ -12156,7 +12308,7 @@ public class SnesRom
 		if (Z == 1)
 			return this.L03A917();
 
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03A917()
@@ -12167,7 +12319,7 @@ public class SnesRom
 		if (Z == 1)
 			return this.L03A922();
 
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03A922()
@@ -12178,7 +12330,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L03A92D();
 
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03A92D()
@@ -12189,7 +12341,7 @@ public class SnesRom
 		if (Z == 1)
 			return this.L03A938();
 
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03A938()
@@ -12265,7 +12417,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0xEA1B;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0x08DB;
@@ -12281,7 +12433,7 @@ public class SnesRom
 
 	public void L03A9B1()
 	{
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03A9B4()
@@ -12299,7 +12451,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L03A9C8();
 
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03A9C8()
@@ -12320,7 +12472,7 @@ public class SnesRom
 		if (Z == 1)
 			return this.L03A9DC();
 
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03A9DC()
@@ -12341,7 +12493,7 @@ public class SnesRom
 			return this.L03A9F5();
 
 		P |= 0x20;
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03A9F5()
@@ -12354,15 +12506,15 @@ public class SnesRom
 		C = 1; temp = A - 0x0002;
 
 		if (Z == 0)
-			return this.L03AA09();
+			return this.L03AA09_Skip();
 
 		X = 0xEA1B;
 	}
 
-	public void L03AA09()
+	public void L03AA09_Skip()
 	{
 		A = X;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		X = Stack.Pop();
 		P |= 0x20;
 		A = 0x01;
@@ -12373,16 +12525,16 @@ public class SnesRom
 		C = 1; temp = A - 0x02;
 
 		if (Z == 0)
-			return this.L03AA2F();
+			return this.L03AA2F_Skip();
 
 		P &= ~0x20;
 		A = 0xFFCE;
 		[0x11A8] = A;
 		P |= 0x20;
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
-	public void L03AA2F()
+	public void L03AA2F_Skip()
 	{
 		A = 0x04;
 		[0x1186] = A;
@@ -12392,7 +12544,7 @@ public class SnesRom
 		X = Stack.Pop();
 		P |= 0x20;
 		P &= ~0x10;
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03AA43()
@@ -12403,7 +12555,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L03AA4D();
 
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03AA4D()
@@ -12426,7 +12578,7 @@ public class SnesRom
 
 	public void L03AA64()
 	{
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03AA67()
@@ -12437,12 +12589,12 @@ public class SnesRom
 		P |= 0x20;
 
 		if (Z == 1)
-			return this.L03AABA();
+			return this.L03AABA_Skip();
 
 		A = [0x1ABF];
 
 		if (Z == 0)
-			return this.L03AABA();
+			return this.L03AABA_Skip();
 
 		A = [0x1ABB];
 
@@ -12469,14 +12621,14 @@ public class SnesRom
 		if (Z == 1)
 			return this.L03AA99();
 
-		return this.L03AABA();
+		return this.L03AABA_Skip();
 	}
 
 	public void L03AA99()
 	{
 		P &= ~0x20;
 		A = 0xEA1A;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		A = 0xFF;
 		[0x11AB] = A;
@@ -12490,58 +12642,58 @@ public class SnesRom
 		P &= ~0x10;
 	}
 
-	public void L03AABA()
+	public void L03AABA_Skip()
 	{
 		A = [0x10BE];
 		A &= 0x20;
 
 		if (Z == 1)
-			return this.L03AAC5();
+			return this.L03AAC5_Skip();
 
-		return this.L03AB6C();
+		return this.L03AB6C_Skip();
 	}
 
-	public void L03AAC5()
+	public void L03AAC5_Skip()
 	{
 		A = [0x10BC];
 		A &= 0x80;
 
 		if (Z == 0)
-			return this.L03AAD0();
+			return this.L03AAD0_Skip();
 
-		return this.L03AB6C();
+		return this.L03AB6C_Skip();
 	}
 
-	public void L03AAD0()
+	public void L03AAD0_Skip()
 	{
 		A = [0x1188];
 		A &= 0x80;
 
 		if (Z == 1)
-			return this.L03AADB();
+			return this.L03AADB_Skip();
 
-		return this.L03AB6C();
+		return this.L03AB6C_Skip();
 	}
 
-	public void L03AADB()
+	public void L03AADB_Skip()
 	{
 		A = [0x1186];
 		C = 1; temp = A - 0x01;
 
 		if (Z == 0)
-			return this.L03AB33();
+			return this.L03AB33_Skip();
 
 		A = [0x7E328E];
 
 		if (N == 1)
-			return this.L03AB30();
+			return this.L03AB30_Skip();
 
 		A = 0xEC;
 		[0x7E328E] = A;
 		A = [0x1ABF];
 
 		if (Z == 1)
-			return this.L03AB05();
+			return this.L03AB05_Skip();
 
 		X = [0x10FC];
 		A = [0x13 + X];
@@ -12550,17 +12702,17 @@ public class SnesRom
 		C = 1; temp = A - 0x80;
 
 		if (C == 0)
-			return this.L03AB05();
+			return this.L03AB05_Skip();
 
 		A = 0x14;
 		[0x7E328E] = A;
 	}
 
-	public void L03AB05()
+	public void L03AB05_Skip()
 	{
 		P &= ~0x20;
 		A = 0xEA1B;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0x08F0;
@@ -12574,29 +12726,29 @@ public class SnesRom
 		P |= 0x20;
 	}
 
-	public void L03AB30()
+	public void L03AB30_Skip()
 	{
-		return this.L03AB6C();
+		return this.L03AB6C_Skip();
 	}
 
-	public void L03AB33()
+	public void L03AB33_Skip()
 	{
 		P &= ~0x20;
 		A = [0x1ABF];
 
 		if (Z == 0)
-			return this.L03AB44();
+			return this.L03AB44_Skip();
 
 		X = [0x10FC];
 		A = [0x0E + X];
 		C = 1; temp = A - [0x1175];
 
 		if (Z == 0)
-			return this.L03AB6C();
+			return this.L03AB6C_Skip();
 
 	}
 
-	public void L03AB44()
+	public void L03AB44_Skip()
 	{
 		A = 0x0008;
 		[0x11C9] = A;
@@ -12611,23 +12763,23 @@ public class SnesRom
 		[0x11AE] = A;
 		P &= ~0x20;
 		A = 0xEA1C;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 	}
 
-	public void L03AB6C()
+	public void L03AB6C_Skip()
 	{
 		P |= 0x20;
 		A = [0x1186];
 		C = 1; temp = A - 0x00;
 
 		if (Z == 0)
-			return this.L03AB89();
+			return this.L03AB89_Skip();
 
 		A = [0x1DFC];
 
 		if (Z == 1)
-			return this.L03AB89();
+			return this.L03AB89_Skip();
 
 		[0x1186] = A;
 		[0x1187] = A;
@@ -12638,109 +12790,111 @@ public class SnesRom
 		P &= ~0x10;
 	}
 
-	public void L03AB89()
+	public void L03AB89_Skip()
 	{
 		P &= ~0x20;
 		A = [0x118A];
 
 		if (Z == 0)
-			return this.L03AB97();
+			return this.L03AB97_Skip();
 
 		P |= 0x20;
 		X = [0x116C];
 		[0x28 + X] = 0;
 	}
 
-	public void L03AB97()
+	public void L03AB97_Skip()
 	{
 		P |= 0x20;
 		A = [0x10EF];
 		temp = A & 0x08;
 
 		if (Z == 0)
-			return this.L03ABA3();
+			return this.L03ABA3_Skip();
 
-		return this.L03AC4F();
+		return this.L03AC4F_Skip();
 	}
 
-	public void L03ABA3()
+	public void L03ABA3_Skip()
 	{
 		A = [0x10C0];
 		A &= 0x10;
 
 		if (Z == 1)
-			return this.L03ABB1();
+			return this.L03ABB1_Skip();
 
 		this.L03A572();
-		return this.L03AE3E();
+		return this.L03AE3E_Done();
 	}
 
-	public void L03ABB1()
+	public void L03ABB1_Skip()
 	{
 		A = [0x10C2];
 		A &= 0x10;
 
 		if (Z == 1)
-			return this.L03ABC0();
+			return this.L03ABC0_Skip();
 
 		A = [0x10EF];
 		A |= 0x0F;
 		[0x10EF] = A;
 	}
 
-	public void L03ABC0()
+	public void L03ABC0_Skip()
 	{
 		Stack.Push(X);
+
 		A = [0x10C0];
 		A &= 0x40;
 
 		if (Z == 1)
-			return this.L03ABD6();
+			return this.L03ABD6_Skip();
 
 		A = [0x10BF];
 		A &= 0x40;
 
 		if (Z == 0)
-			return this.L03ABD6();
+			return this.L03ABD6_Skip();
 
 		P |= 0x20;
 		X = [0x116C];
 		[0x28 + X] = 0;
 	}
 
-	public void L03ABD6()
+	public void L03ABD6_Skip()
 	{
 		A = [0x10EF];
 		temp = A & 0x10;
 
 		if (Z == 1)
-			return this.L03AC11();
+			return this.L03AC11_Skip();
 
 		A = [0x10C0];
 		A &= 0x80;
 
 		if (Z == 1)
-			return this.L03AC11();
+			return this.L03AC11_Skip();
 
 		A = [0x10BF];
 		A &= 0x80;
 
 		if (Z == 0)
-			return this.L03AC11();
+			return this.L03AC11_Skip();
 
 		A = [0x1285];
 
 		if (Z == 0)
-			return this.L03ABFE();
+			return this.L03ABFE_Skip();
 
 		this.L04B41C();
+
 		A = 0xFF;
 		[0x1215] = A;
 		[0x122E] = A;
-		return this.L03AC0D();
+		return this.L03AC0D_Skip();
 	}
 
-	public void L03ABFE()
+	public void L03ABFE_Skip()
 	{
 		X = [0x1286];
 		[0x28 + X] = 0;
@@ -12750,44 +12904,44 @@ public class SnesRom
 		[0x28 + X] = 0;
 	}
 
-	public void L03AC0D()
+	public void L03AC0D_Skip()
 	{
 		P |= 0x20;
 		P &= ~0x10;
 	}
 
-	public void L03AC11()
+	public void L03AC11_Skip()
 	{
 		A = [0x10C2];
 		A &= 0x40;
 
 		if (Z == 1)
-			return this.L03AC27();
+			return this.L03AC27_Skip();
 
 		A = [0x10C1];
 		A &= 0x40;
 
 		if (Z == 0)
-			return this.L03AC27();
+			return this.L03AC27_Skip();
 
 		A = [0x10EE];
 		A ^= 0xFF;
 		[0x10EE] = A;
 	}
 
-	public void L03AC27()
+	public void L03AC27_Skip()
 	{
 		A = [0x10C2];
 		A &= 0x80;
 
 		if (Z == 1)
-			return this.L03AC4A();
+			return this.L03AC4A_Skip();
 
 		A = [0x10C1];
 		A &= 0x80;
 
 		if (Z == 0)
-			return this.L03AC4A();
+			return this.L03AC4A_Skip();
 
 		A = [0x112D];
 		A |= 0x08;
@@ -12799,124 +12953,124 @@ public class SnesRom
 		[0x1235] = A;
 	}
 
-	public void L03AC4A()
+	public void L03AC4A_Skip()
 	{
 		P |= 0x20;
 		P &= ~0x10;
 		X = Stack.Pop();
 	}
 
-	public void L03AC4F()
+	public void L03AC4F_Skip()
 	{
 		A = [0x10BE];
 		A &= 0x20;
 
 		if (Z == 0)
-			return this.L03AC5A();
+			return this.L03AC5A_Skip();
 
-		return this.L03AC8E();
+		return this.L03AC8E_Skip();
 	}
 
-	public void L03AC5A()
+	public void L03AC5A_Skip()
 	{
 		A = [0x10BC];
 		A &= 0x02;
 
 		if (Z == 0)
-			return this.L03AC65();
+			return this.L03AC65_Skip();
 
-		return this.L03AC74();
+		return this.L03AC74_Skip();
 	}
 
-	public void L03AC65()
+	public void L03AC65_Skip()
 	{
 		A = [0x11BD];
 		A--;
 
 		if (N == 0)
-			return this.L03AC6D();
+			return this.L03AC6D_Skip();
 
 		A = 0xFF;
 	}
 
-	public void L03AC6D()
+	public void L03AC6D_Skip()
 	{
 		[0x11BD] = A;
-		return this.L03AC91();
+		return this.L03AC91_Skip();
 	}
 
-	public void L03AC74()
+	public void L03AC74_Skip()
 	{
 		A = [0x10BC];
 		A &= 0x01;
 
 		if (Z == 0)
-			return this.L03AC7F();
+			return this.L03AC7F_Skip();
 
-		return this.L03AC8E();
+		return this.L03AC8E_Skip();
 	}
 
-	public void L03AC7F()
+	public void L03AC7F_Skip()
 	{
 		A = [0x11BD];
 		A++;
 
 		if (Z == 1)
-			return this.L03AC87();
+			return this.L03AC87_Skip();
 
 		A = 0x01;
 	}
 
-	public void L03AC87()
+	public void L03AC87_Skip()
 	{
 		[0x11BD] = A;
-		return this.L03AC91();
+		return this.L03AC91_Skip();
 	}
 
-	public void L03AC8E()
+	public void L03AC8E_Skip()
 	{
 		[0x11BD] = 0;
 	}
 
-	public void L03AC91()
+	public void L03AC91_Skip()
 	{
 		A = [0x118E];
 		C = 1; temp = A - 0x00;
 
 		if (Z == 1)
-			return this.L03ACB5();
+			return this.L03ACB5_Skip();
 
 		A = [0x10BC];
 		A &= 0xEC;
 
 		if (Z == 0)
-			return this.L03ACA6();
+			return this.L03ACA6_Skip();
 
 		A = [0x10BE];
 		A &= 0xC0;
 
 		if (Z == 1)
-			return this.L03ACB5();
+			return this.L03ACB5_Skip();
 
 	}
 
-	public void L03ACA6()
+	public void L03ACA6_Skip()
 	{
 		A = [0x1ABF];
 
 		if (Z == 0)
-			return this.L03ACB5();
+			return this.L03ACB5_Skip();
 
 		A = [0x1216];
 
 		if (Z == 0)
-			return this.L03ACB5();
+			return this.L03ACB5_Skip();
 
 		A = 0x00;
 		[0x118E] = A;
 	}
 
-	public void L03ACB5()
+	public void L03ACB5_Skip()
 	{
 		P &= ~0x20;
 		X = [0x10FC];
@@ -12930,43 +13084,43 @@ public class SnesRom
 		A = [0x10D2];
 
 		if (Z == 0)
-			return this.L03ACD5();
+			return this.L03ACD5_Skip();
 
 		A = [0x1AD2];
 
 		if (Z == 1)
-			return this.L03ACD8();
+			return this.L03ACD8_Skip();
 
 	}
 
-	public void L03ACD5()
+	public void L03ACD5_Skip()
 	{
-		return this.L03AD43();
+		return this.L03AD43_Skip();
 	}
 
-	public void L03ACD8()
+	public void L03ACD8_Skip()
 	{
 		A = [0x1982];
 		A &= 0x7F;
 
 		if (Z == 0)
-			return this.L03AD0D();
+			return this.L03AD0D_Skip();
 
 		X = [0x116C];
 		A = [0x28 + X];
 
 		if (Z == 1)
-			return this.L03AD0D();
+			return this.L03AD0D_Skip();
 
 		C = 1; temp = A - 0x0A;
 
 		if (N == 0)
-			return this.L03AD0D();
+			return this.L03AD0D_Skip();
 
 		A = [0x1DBA];
 
 		if (Z == 1)
-			return this.L03AD0D();
+			return this.L03AD0D_Skip();
 
 		P &= ~0x20;
 		A = 0x3872;
@@ -12977,11 +13131,11 @@ public class SnesRom
 		this.L03855E();
 		P &= ~0x20;
 		A = 0xEA0F;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 	}
 
-	public void L03AD0D()
+	public void L03AD0D_Skip()
 	{
 		P &= ~0x20;
 		A = [0x118A];
@@ -12989,7 +13143,7 @@ public class SnesRom
 		P |= 0x20;
 
 		if (N == 0)
-			return this.L03AD43();
+			return this.L03AD43_Skip();
 
 		A = [0x1982];
 		C = 0;
@@ -12997,7 +13151,7 @@ public class SnesRom
 		A &= 0x7F;
 
 		if (Z == 0)
-			return this.L03AD43();
+			return this.L03AD43_Skip();
 
 		P &= ~0x20;
 		A = 0x38AC;
@@ -13008,57 +13162,56 @@ public class SnesRom
 		this.L03855E();
 		P &= ~0x20;
 		A = 0xEA0F;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
-		return this.L03AD43();
+		return this.L03AD43_Skip();
 	}
 
-	public void L03AD43()
+	public void L03AD43_Skip()
 	{
 		A = [0x1219];
 
 		if (Z == 1)
-			return this.L03AD62();
+			return this.L03AD62_Skip();
 
 		A--;
 		[0x1219] = A;
 		C = 1; temp = A - 0x14;
 
 		if (Z == 0)
-			return this.L03AD50();
-
+			return this.L03AD50_Skip();
 	}
 
-	public void L03AD50()
+	public void L03AD50_Skip()
 	{
 		A = [0x1219];
 
 		if (Z == 1)
-			return this.L03AD58();
+			return this.L03AD58_Skip();
 
-		return this.L03ADC0();
+		return this.L03ADC0_Skip();
 	}
 
-	public void L03AD58()
+	public void L03AD58_Skip()
 	{
 		A = [0x112D];
 		A |= 0x08;
 		[0x112D] = A;
-		return this.L03ADC0();
+		return this.L03ADC0_Skip();
 	}
 
-	public void L03AD62()
+	public void L03AD62_Skip()
 	{
 		A = [0x112D];
 		temp = A & 0x02;
 
 		if (Z == 0)
-			return this.L03AD6D();
+			return this.L03AD6D_Skip();
 
-		return this.L03ADC0();
+		return this.L03ADC0_Skip();
 	}
 
-	public void L03AD6D()
+	public void L03AD6D_Skip()
 	{
 		P &= ~0x20;
 		A = 0x0064;
@@ -13067,13 +13220,13 @@ public class SnesRom
 		A &= 0x00FF;
 
 		if (Z == 1)
-			return this.L03AD81();
+			return this.L03AD81_Skip();
 
 		A = 0x0000;
 		[0x3E] = A;
 	}
 
-	public void L03AD81()
+	public void L03AD81_Skip()
 	{
 		P |= 0x20;
 		P &= ~0x20;
@@ -13081,35 +13234,35 @@ public class SnesRom
 		C = 1; temp = A - [0x11B7];
 
 		if (Z == 1)
-			return this.L03ADBB();
+			return this.L03ADBB_Skip();
 
 		C = 1;
 		A -= [0x11B7] - !C;
 		C = 1; temp = A - 0x0000;
 
 		if (N == 1)
-			return this.L03AD9F();
+			return this.L03AD9F_Skip();
 
 		C = 1; temp = A - 0x0010;
 
 		if (N == 0)
-			return this.L03ADA7();
+			return this.L03ADA7_Skip();
 
 		A = 0x0010;
-		return this.L03ADA7();
+		return this.L03ADA7_Skip();
 	}
 
-	public void L03AD9F()
+	public void L03AD9F_Skip()
 	{
 		C = 1; temp = A - 0xFFF0;
 
 		if (N == 1)
-			return this.L03ADA7();
+			return this.L03ADA7_Skip();
 
 		A = 0xFFF0;
 	}
 
-	public void L03ADA7()
+	public void L03ADA7_Skip()
 	{
 		C = 1; temp = A - 0x8000;
 		Cpu.ROR();
@@ -13123,22 +13276,22 @@ public class SnesRom
 		A += [0x11B7] + C;
 	}
 
-	public void L03ADBB()
+	public void L03ADBB_Skip()
 	{
 		[0x11B7] = A;
 		P |= 0x20;
 	}
 
-	public void L03ADC0()
+	public void L03ADC0_Skip()
 	{
 		A = [0x7E328F];
 
 		if (N == 1)
-			return this.L03ADEB();
+			return this.L03ADEB_Skip();
 
 
 		if (Z == 0)
-			return this.L03ADEB();
+			return this.L03ADEB_Skip();
 
 		A = 0xFF;
 		[0x7E328F] = A;
@@ -13154,54 +13307,54 @@ public class SnesRom
 		this.L04B41C();
 	}
 
-	public void L03ADEB()
+	public void L03ADEB_Skip()
 	{
 		A = [0x001217];
 
 		if (Z == 1)
-			return this.L03ADFB();
+			return this.L03ADFB_Skip();
 
 		A = [0x1219];
 
 		if (Z == 0)
-			return this.L03ADFB();
+			return this.L03ADFB_Skip();
 
 		A = 0x14;
 		[0x1219] = A;
 	}
 
-	public void L03ADFB()
+	public void L03ADFB_Skip()
 	{
 		A = [0x112D];
 		temp = A & 0x08;
 
 		if (Z == 0)
-			return this.L03AE3E();
+			return this.L03AE3E_Done();
 
 		A = [0x1DBA];
 
 		if (Z == 1)
-			return this.L03AE3E();
+			return this.L03AE3E_Done();
 
 		A = [0x1219];
 
 		if (Z == 0)
-			return this.L03AE3E();
+			return this.L03AE3E_Done();
 
 		A = [0x00197E];
 
 		if (Z == 0)
-			return this.L03AE3E();
+			return this.L03AE3E_Done();
 
 		A = [0x197D];
 
 		if (N == 1)
-			return this.L03AE19();
+			return this.L03AE19_Skip();
 
-		return this.L03AE3E();
+		return this.L03AE3E_Done();
 	}
 
-	public void L03AE19()
+	public void L03AE19_Skip()
 	{
 		P &= ~0x20;
 		A = 0x0843;
@@ -13217,7 +13370,7 @@ public class SnesRom
 		[0x1219] = A;
 	}
 
-	public void L03AE3E()
+	public void L03AE3E_Done()
 	{
 		return;
 	}
@@ -13299,7 +13452,7 @@ public class SnesRom
 		Y = Stack.Pop();
 		P &= ~0x20;
 		A = 0xCA85;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 	}
 
@@ -13393,7 +13546,7 @@ public class SnesRom
 		Y = Stack.Pop();
 		P &= ~0x20;
 		A = 0xCA85;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 	}
 
@@ -14215,7 +14368,7 @@ public class SnesRom
 		A -= [0x4216] - !C;
 		C = 1;
 		A -= [0x69] - !C;
-		return this.L03E8F8();
+		return this.L03E8F8_Done();
 	}
 
 	public void L03E8D8()
@@ -14242,7 +14395,7 @@ public class SnesRom
 		A += [0x69] + C;
 	}
 
-	public void L03E8F8()
+	public void L03E8F8_Done()
 	{
 		[0x69] = A;
 		P |= 0x20;
@@ -14269,7 +14422,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0x8428;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = [0x700040];
 		P = Stack.Pop();
@@ -14392,7 +14545,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xBF9E;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = Stack.Pop();
 		[0x70002C] = A;
@@ -14404,7 +14557,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xBFC3;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = 0x0000;
 		[0x700230] = A;
@@ -14421,7 +14574,7 @@ public class SnesRom
 		A &= 0x04;
 
 		if (Z == 1)
-			return this.L03EB2E();
+			return this.L03EB2E_Done();
 
 		P &= ~0x20;
 		A = [0x700238];
@@ -14433,7 +14586,7 @@ public class SnesRom
 		P |= 0x20;
 		A = 0x01;
 		X = 0xC0D3;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x30;
 		A = [0x700238];
 		A--;
@@ -14444,10 +14597,10 @@ public class SnesRom
 		P |= 0x20;
 		A = 0x01;
 		X = 0xC0DA;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 	}
 
-	public void L03EB2E()
+	public void L03EB2E_Done()
 	{
 		P = Stack.Pop();
 		return;
@@ -14477,7 +14630,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xC1C2;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = Stack.Pop();
 		[0x700208] = A;
@@ -14491,7 +14644,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xC1C2;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P = Stack.Pop();
 		return;
 	}
@@ -14520,7 +14673,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xC1F4;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = Stack.Pop();
 		[0x700208] = A;
@@ -14534,7 +14687,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xC1F4;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P = Stack.Pop();
 		return;
 	}
@@ -14545,28 +14698,28 @@ public class SnesRom
 		X = [0x18BC];
 
 		if (Z == 0)
-			return this.L03EC22();
+			return this.L03EC22_Skip();
 
 		return;
 	}
 
-	public void L03EC22()
+	public void L03EC22_Skip()
 	{
 		A = [0x18C3];
 
 		if (Z == 1)
-			return this.L03EC31();
+			return this.L03EC31_Skip();
 
 		this.L03EDDF();
 		A = [0x18C3];
 
 		if (Z == 1)
-			return this.L03EC31();
+			return this.L03EC31_Skip();
 
 		return;
 	}
 
-	public void L03EC31()
+	public void L03EC31_Skip()
 	{
 		P &= ~0x20;
 		X = [0x18BC];
@@ -14577,12 +14730,12 @@ public class SnesRom
 		return [(0xEC4B + X)]();
 	}
 
-	public void L03EDC2()
+	public void L03EDC2_Loop()
 	{
 		X = 0x0000;
 	}
 
-	public void L03EDC5()
+	public void L03EDC5_Loop()
 	{
 		A = [0x00149C + X];
 		[0x00169C + X] = A;
@@ -14591,7 +14744,7 @@ public class SnesRom
 		C = 1; temp = X - 0x0200;
 
 		if (Z == 0)
-			return this.L03EDC5();
+			return this.L03EDC5_Loop();
 
 		[0x18C3] = 0;
 		P |= 0x20;
@@ -14607,18 +14760,18 @@ public class SnesRom
 		C = 1; temp = A - 0x000F;
 
 		if (Z == 0)
-			return this.L03EDEC();
+			return this.L03EDEC_Skip();
 
-		return this.L03EDC2();
+		return this.L03EDC2_Loop();
 	}
 
-	public void L03EDEC()
+	public void L03EDEC_Skip()
 	{
 		X = 0x0000;
 		Y = 0x0000;
 	}
 
-	public void L03EDF2()
+	public void L03EDF2_Loop()
 	{
 		A = [0x00169C + X];
 		[0x18C7] = A;
@@ -14630,46 +14783,45 @@ public class SnesRom
 		A -= [0x18C5] - !C;
 
 		if (Z == 1)
-			return this.L03EE3B();
-
+			return this.L03EE3B_Skip();
 
 		if (N == 1)
-			return this.L03EE1F();
+			return this.L03EE1F_Skip();
 
 		C = 1; temp = A - [0x18C9];
 
 		if (N == 1)
-			return this.L03EE16();
+			return this.L03EE16_Skip();
 
 		A = [0x18C9];
 	}
 
-	public void L03EE16()
+	public void L03EE16_Skip()
 	{
 		C = 0;
 		A += [0x18C5] + C;
 		[0x18C5] = A;
-		return this.L03EE2E();
+		return this.L03EE2E_Skip();
 	}
 
-	public void L03EE1F()
+	public void L03EE1F_Skip()
 	{
 		C = 1; temp = A - [0x18CF];
 
 		if (N == 0)
-			return this.L03EE27();
+			return this.L03EE27_Skip();
 
 		A = [0x18CF];
 	}
 
-	public void L03EE27()
+	public void L03EE27_Skip()
 	{
 		C = 0;
 		A += [0x18C5] + C;
 		[0x18C5] = A;
 	}
 
-	public void L03EE2E()
+	public void L03EE2E_Skip()
 	{
 		Y++;
 		A = [0x18C7];
@@ -14678,7 +14830,7 @@ public class SnesRom
 		[0x18C7] = A;
 	}
 
-	public void L03EE3B()
+	public void L03EE3B_Skip()
 	{
 		A = [0x00169C + X];
 		A &= 0x03E0;
@@ -14689,46 +14841,45 @@ public class SnesRom
 		A -= [0x18C5] - !C;
 
 		if (Z == 1)
-			return this.L03EE81();
-
+			return this.L03EE81_Skip();
 
 		if (N == 1)
-			return this.L03EE65();
+			return this.L03EE65_Skip();
 
 		C = 1; temp = A - [0x18CB];
 
 		if (N == 1)
-			return this.L03EE5C();
+			return this.L03EE5C_Skip();
 
 		A = [0x18CB];
 	}
 
-	public void L03EE5C()
+	public void L03EE5C_Skip()
 	{
 		C = 0;
 		A += [0x18C5] + C;
 		[0x18C5] = A;
-		return this.L03EE74();
+		return this.L03EE74_Skip();
 	}
 
-	public void L03EE65()
+	public void L03EE65_Skip()
 	{
 		C = 1; temp = A - [0x18D1];
 
 		if (N == 0)
-			return this.L03EE6D();
+			return this.L03EE6D_Skip();
 
 		A = [0x18D1];
 	}
 
-	public void L03EE6D()
+	public void L03EE6D_Skip()
 	{
 		C = 0;
 		A += [0x18C5] + C;
 		[0x18C5] = A;
 	}
 
-	public void L03EE74()
+	public void L03EE74_Skip()
 	{
 		Y++;
 		A = [0x18C7];
@@ -14737,7 +14888,7 @@ public class SnesRom
 		[0x18C7] = A;
 	}
 
-	public void L03EE81()
+	public void L03EE81_Skip()
 	{
 		A = [0x00169C + X];
 		A &= 0x7C00;
@@ -14748,46 +14899,46 @@ public class SnesRom
 		A -= [0x18C5] - !C;
 
 		if (Z == 1)
-			return this.L03EEC7();
+			return this.L03EEC7_Skip();
 
 
 		if (N == 1)
-			return this.L03EEAB();
+			return this.L03EEAB_Skip();
 
 		C = 1; temp = A - [0x18CD];
 
 		if (N == 1)
-			return this.L03EEA2();
+			return this.L03EEA2_Skip();
 
 		A = [0x18CD];
 	}
 
-	public void L03EEA2()
+	public void L03EEA2_Skip()
 	{
 		C = 0;
 		A += [0x18C5] + C;
 		[0x18C5] = A;
-		return this.L03EEBA();
+		return this.L03EEBA_Skip();
 	}
 
-	public void L03EEAB()
+	public void L03EEAB_Skip()
 	{
 		C = 1; temp = A - [0x18D3];
 
 		if (N == 0)
-			return this.L03EEB3();
+			return this.L03EEB3_Skip();
 
 		A = [0x18D3];
 	}
 
-	public void L03EEB3()
+	public void L03EEB3_Skip()
 	{
 		C = 0;
 		A += [0x18C5] + C;
 		[0x18C5] = A;
 	}
 
-	public void L03EEBA()
+	public void L03EEBA_Skip()
 	{
 		Y++;
 		A = [0x18C7];
@@ -14796,7 +14947,7 @@ public class SnesRom
 		[0x18C7] = A;
 	}
 
-	public void L03EEC7()
+	public void L03EEC7_Skip()
 	{
 		A = [0x18C7];
 		[0x00169C + X] = A;
@@ -14805,31 +14956,31 @@ public class SnesRom
 		C = 1; temp = X - 0x0200;
 
 		if (Z == 1)
-			return this.L03EED8();
+			return this.L03EED8_Skip();
 
-		return this.L03EDF2();
+		return this.L03EDF2_Loop();
 	}
 
-	public void L03EED8()
+	public void L03EED8_Skip()
 	{
 		C = 1; temp = Y - 0x0000;
 
 		if (Z == 1)
-			return this.L03EEE6();
+			return this.L03EEE6_Skip();
 
 		P |= 0x20;
 		A = 0x01;
 		[0x18C1] = A;
-		return this.L03EEEB();
+		return this.L03EEEB_Done();
 	}
 
-	public void L03EEE6()
+	public void L03EEE6_Skip()
 	{
 		P &= ~0x20;
 		[0x18C3] = 0;
 	}
 
-	public void L03EEEB()
+	public void L03EEEB_Done()
 	{
 		return;
 	}
@@ -14893,16 +15044,16 @@ public class SnesRom
 		A &= 0x000F;
 
 		if (Z == 0)
-			return this.L03EFE4();
+			return this.L03EFE4_Skip();
 
 		A = 0x0008;
-		return this.L03F008();
+		return this.L03F008_Skip();
 	}
 
-	public void L03EFE4()
+	public void L03EFE4_Skip()
 	{
 		A = 0x0000;
-		return this.L03F008();
+		return this.L03F008_Skip();
 	}
 
 	public void L03EFEA()
@@ -14924,7 +15075,7 @@ public class SnesRom
 		A = [0x03EFC3 + X];
 	}
 
-	public void L03F008()
+	public void L03F008_Skip()
 	{
 		A &= 0x00FF;
 		C = 0;
@@ -14934,7 +15085,7 @@ public class SnesRom
 		A &= 0x00FF;
 
 		if (Z == 1)
-			return this.L03F026();
+			return this.L03F026_Skip();
 
 		A = [0x1990];
 		X = A;
@@ -14944,12 +15095,12 @@ public class SnesRom
 		[0x3A] = A;
 	}
 
-	public void L03F026()
+	public void L03F026_Skip()
 	{
 		X = 0x011C;
 	}
 
-	public void L03F029()
+	public void L03F029_Loop()
 	{
 		A = [0x1B93 + X];
 		A &= 0xFE00;
@@ -14967,7 +15118,7 @@ public class SnesRom
 		C = 1; temp = X - 0x012C;
 
 		if (Z == 0)
-			return this.L03F029();
+			return this.L03F029_Loop();
 
 		P |= 0x20;
 		P &= ~0x10;
@@ -14981,19 +15132,19 @@ public class SnesRom
 		this.L03A102();
 
 		if (C == 0)
-			return this.L04B427();
+			return this.L04B427_Skip();
 
-		return this.L04B42F();
+		return this.L04B42F_Skip();
 	}
 
-	public void L04B427()
+	public void L04B427_Skip()
 	{
 		Y = 0xA600;
 		A--;
-		return this.L04B4A3();
+		return this.L04B4A3_Skip();
 	}
 
-	public void L04B42F()
+	public void L04B42F_Skip()
 	{
 		Y = X;
 		X = [0x3A];
@@ -15043,7 +15194,7 @@ public class SnesRom
 		[0x0018 + Y] = A;
 	}
 
-	public void L04B4A3()
+	public void L04B4A3_Skip()
 	{
 		X = Stack.Pop();
 		A = 0xFF;
@@ -15056,7 +15207,7 @@ public class SnesRom
 		this.L02CC8F();
 		P &= ~0x20;
 		A = 0x000C;
-		this.L029283();
+		this.L029283_LoadSong();
 		P &= ~0x20;
 		A = 0x0028;
 		[0x1992] = A;
@@ -15084,14 +15235,14 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		P &= ~0x20;
 		A = 0x0001;
 		[0x198C] = A;
 		[0x1990] = 0;
-		this.L03A17D();
+		this.L03A17D_ResetSound();
 		P &= ~0x20;
 		X = 0x0000;
 		A = [0x0BFABC + X];
@@ -15104,17 +15255,17 @@ public class SnesRom
 		A = 0xFF;
 		[0x1216] = A;
 		[0x1ACB] = 0;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P |= 0x20;
 		A = 0x01;
 		[0x1ACB] = A;
 	}
 
-	public void L04B62E()
+	public void L04B62E_Loop()
 	{
 		P |= 0x20;
 		P &= ~0x10;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P &= ~0x30;
 		A = 0x0002;
 		[0x700064] = A;
@@ -15139,19 +15290,19 @@ public class SnesRom
 		A = [0x70022E];
 
 		if (Z == 1)
-			return this.L04B6A7();
+			return this.L04B6A7_Skip();
 
 		A = [0x1992];
 		A--;
 
 		if (Z == 1)
-			return this.L04B681();
+			return this.L04B681_Skip();
 
 		[0x1992] = A;
-		return this.L04B6AD();
+		return this.L04B6AD_Skip();
 	}
 
-	public void L04B681()
+	public void L04B681_Skip()
 	{
 		X = [0x1988];
 		A = [0x0BF83E + X];
@@ -15162,32 +15313,32 @@ public class SnesRom
 		C = 1; temp = A - 0x0008;
 
 		if (Z == 0)
-			return this.L04B69C();
+			return this.L04B69C_Skip();
 
 		A = 0x0000;
-		return this.L04B6C1();
+		return this.L04B6C1_Skip();
 	}
 
-	public void L04B69C()
+	public void L04B69C_Skip()
 	{
 		[0x1990] = A;
 		A = 0x0001;
 		[0x198C] = A;
-		return this.L04B6AD();
+		return this.L04B6AD_Skip();
 	}
 
-	public void L04B6A7()
+	public void L04B6A7_Skip()
 	{
 		this.L03EFEA();
-		return this.L04B6B1();
+		return this.L04B6B1_Skip();
 	}
 
-	public void L04B6AD()
+	public void L04B6AD_Skip()
 	{
 		this.L03EFCF();
 	}
 
-	public void L04B6B1()
+	public void L04B6B1_Skip()
 	{
 		P |= 0x20;
 		P &= ~0x10;
@@ -15195,17 +15346,17 @@ public class SnesRom
 		temp = A & 0x90;
 
 		if (Z == 0)
-			return this.L04B6BF();
+			return this.L04B6BF_Skip();
 
-		return this.L04B62E();
+		return this.L04B62E_Loop();
 	}
 
-	public void L04B6BF()
+	public void L04B6BF_Skip()
 	{
 		A = 0xFF;
 	}
 
-	public void L04B6C1()
+	public void L04B6C1_Skip()
 	{
 		P |= 0x20;
 		[0x1AD3] = 0;
@@ -15215,7 +15366,7 @@ public class SnesRom
 		this.L04B73F();
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC8F();
 		P |= 0x20;
 		A = 0x0F;
@@ -15233,11 +15384,11 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC8F();
 		P &= ~0x20;
 		A = 0x0015;
-		this.L029283();
+		this.L029283_LoadSong();
 		this.L029634();
 		P |= 0x20;
 		A = 0x16;
@@ -15269,13 +15420,13 @@ public class SnesRom
 		A = 0xFF;
 		[0x1216] = A;
 		[0x1ACB] = 0;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P |= 0x20;
 		A = 0x01;
 		[0x1ACB] = A;
 	}
 
-	public void L04B7BA()
+	public void L04B7BA_Loop()
 	{
 		P |= 0x20;
 		P &= ~0x10;
@@ -15283,7 +15434,7 @@ public class SnesRom
 		[0x11B5] = A;
 		[0x118E] = 0;
 		[0x118F] = 0;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P &= ~0x20;
 		A = 0x00FA;
 		[0x1175] = A;
@@ -15295,35 +15446,35 @@ public class SnesRom
 		C = 1; temp = A - [0x0E + X];
 
 		if (Z == 1)
-			return this.L04B80E();
+			return this.L04B80E_Skip();
 
 		C = 1;
 		A -= [0x0E + X] - !C;
 		C = 1; temp = A - 0x0000;
 
 		if (N == 1)
-			return this.L04B7F7();
+			return this.L04B7F7_Skip();
 
 		C = 1; temp = A - 0x0008;
 
 		if (N == 0)
-			return this.L04B7FF();
+			return this.L04B7FF_Skip();
 
 		A = 0x0008;
-		return this.L04B7FF();
+		return this.L04B7FF_Skip();
 	}
 
-	public void L04B7F7()
+	public void L04B7F7_Skip()
 	{
 		C = 1; temp = A - 0xFFF8;
 
 		if (N == 1)
-			return this.L04B7FF();
+			return this.L04B7FF_Skip();
 
 		A = 0xFFF8;
 	}
 
-	public void L04B7FF()
+	public void L04B7FF_Skip()
 	{
 		C = 1; temp = A - 0x8000;
 		Cpu.ROR();
@@ -15335,7 +15486,7 @@ public class SnesRom
 		A += [0x0E + X] + C;
 	}
 
-	public void L04B80E()
+	public void L04B80E_Skip()
 	{
 		[0x0E + X] = A;
 		P |= 0x20;
@@ -15344,13 +15495,13 @@ public class SnesRom
 		A--;
 
 		if (Z == 1)
-			return this.L04B81F();
+			return this.L04B81F_Skip();
 
 		[0x1992] = A;
-		return this.L04B84A();
+		return this.L04B84A_Skip();
 	}
 
-	public void L04B81F()
+	public void L04B81F_Skip()
 	{
 		A = 0x008C;
 		[0x1992] = A;
@@ -15360,12 +15511,12 @@ public class SnesRom
 		C = 1; temp = A - 0x0026;
 
 		if (Z == 0)
-			return this.L04B834();
+			return this.L04B834_Skip();
 
-		return this.L04B8B0();
+		return this.L04B8B0_Skip();
 	}
 
-	public void L04B834()
+	public void L04B834_Skip()
 	{
 		[0x1990] = A;
 		this.L089160();
@@ -15374,13 +15525,13 @@ public class SnesRom
 		C = 1; temp = A - 0x01;
 
 		if (Z == 1)
-			return this.L04B84A();
+			return this.L04B84A_Skip();
 
 		A = 0x01;
 		this.L03A47D();
 	}
 
-	public void L04B84A()
+	public void L04B84A_Skip()
 	{
 		P |= 0x20;
 		P &= ~0x20;
@@ -15388,28 +15539,28 @@ public class SnesRom
 		C = 1; temp = A - 0x0000;
 
 		if (N == 1)
-			return this.L04B860();
+			return this.L04B860_Skip();
 
 		C = 1; temp = A - 0x0800;
 
 		if (N == 1)
-			return this.L04B868();
+			return this.L04B868_Skip();
 
 		A = 0x0800;
-		return this.L04B868();
+		return this.L04B868_Skip();
 	}
 
-	public void L04B860()
+	public void L04B860_Skip()
 	{
 		C = 1; temp = A - 0xF800;
 
 		if (N == 0)
-			return this.L04B868();
+			return this.L04B868_Skip();
 
 		A = 0xF800;
 	}
 
-	public void L04B868()
+	public void L04B868_Skip()
 	{
 		[0x10F6] = A;
 		P |= 0x20;
@@ -15417,19 +15568,19 @@ public class SnesRom
 		temp = A & 0x0F;
 
 		if (Z == 1)
-			return this.L04B877();
+			return this.L04B877_Skip();
 
-		return this.L04B8AD();
+		return this.L04B8AD_Skip();
 	}
 
-	public void L04B877()
+	public void L04B877_Skip()
 	{
 		P &= ~0x20;
 		A = 0x0000;
 		C = 1; temp = A - [0x10F6];
 
 		if (Z == 1)
-			return this.L04B8A8();
+			return this.L04B8A8_Skip();
 
 		C = 1;
 		A -= [0x10F6] - !C;
@@ -15441,10 +15592,10 @@ public class SnesRom
 		C = 1; temp = A - 0x0004;
 
 		if (N == 0)
-			return this.L04B89C();
+			return this.L04B89C_Skip();
 
 		A = 0x0004;
-		return this.L04B89C();
+		return this.L04B89C_Skip();
 	}
 
 	public void L04B894()
@@ -15452,12 +15603,12 @@ public class SnesRom
 		C = 1; temp = A - 0xFFFC;
 
 		if (N == 1)
-			return this.L04B89C();
+			return this.L04B89C_Skip();
 
 		A = 0xFFFC;
 	}
 
-	public void L04B89C()
+	public void L04B89C_Skip()
 	{
 		C = 1; temp = A - 0x8000;
 		Cpu.ROR();
@@ -15467,18 +15618,18 @@ public class SnesRom
 		A += [0x10F6] + C;
 	}
 
-	public void L04B8A8()
+	public void L04B8A8_Skip()
 	{
 		[0x10F6] = A;
 		P |= 0x20;
 	}
 
-	public void L04B8AD()
+	public void L04B8AD_Skip()
 	{
-		return this.L04B7BA();
+		return this.L04B7BA_Loop();
 	}
 
-	public void L04B8B0()
+	public void L04B8B0_Skip()
 	{
 		P &= ~0x20;
 		A = 0x0000;
@@ -15530,7 +15681,7 @@ public class SnesRom
 		X = 0x0000;
 	}
 
-	public void L04BA10()
+	public void L04BA10_Loop()
 	{
 		A = [0x7E363E + X];
 		[0x7E963E + X] = A;
@@ -15538,13 +15689,13 @@ public class SnesRom
 		Y--;
 
 		if (Z == 0)
-			return this.L04BA10();
+			return this.L04BA10_Loop();
 
 		Y = 0x3000;
 		X = 0x0000;
 	}
 
-	public void L04BA22()
+	public void L04BA22_Loop()
 	{
 		A = [0x7E663E + X];
 		[0x7E363E + X] = A;
@@ -15552,13 +15703,13 @@ public class SnesRom
 		Y--;
 
 		if (Z == 0)
-			return this.L04BA22();
+			return this.L04BA22_Loop();
 
 		Y = 0x3000;
 		X = 0x0000;
 	}
 
-	public void L04BA34()
+	public void L04BA34_Loop()
 	{
 		A = [0x7E963E + X];
 		[0x7E663E + X] = A;
@@ -15566,7 +15717,7 @@ public class SnesRom
 		Y--;
 
 		if (Z == 0)
-			return this.L04BA34();
+			return this.L04BA34_Loop();
 
 		return;
 	}
@@ -15577,11 +15728,10 @@ public class SnesRom
 		X = [0x10DB];
 
 		if (Z == 1)
-			return this.L04BA60();
-
+			return this.L04BA60_Done();
 	}
 
-	public void L04BA48()
+	public void L04BA48_Loop()
 	{
 		A = [0x0C + X];
 		C = 0;
@@ -15595,12 +15745,12 @@ public class SnesRom
 		X = A;
 
 		if (Z == 1)
-			return this.L04BA60();
+			return this.L04BA60_Done();
 
-		return this.L04BA48();
+		return this.L04BA48_Loop();
 	}
 
-	public void L04BA60()
+	public void L04BA60_Done()
 	{
 		return;
 	}
@@ -15611,69 +15761,68 @@ public class SnesRom
 		X = [0x10DB];
 
 		if (Z == 1)
-			return this.L04BA9D();
-
+			return this.L04BA9D_Skip();
 	}
 
-	public void L04BA68()
+	public void L04BA68_Loop()
 	{
 		A = X;
 		C = 1; temp = A - [0x10FC];
 
 		if (Z == 1)
-			return this.L04BA95();
+			return this.L04BA95_Skip();
 
 		C = 1; temp = A - [0x11A0];
 
 		if (Z == 1)
-			return this.L04BA95();
+			return this.L04BA95_Skip();
 
 		C = 1; temp = A - [0x11A2];
 
 		if (Z == 1)
-			return this.L04BA95();
+			return this.L04BA95_Skip();
 
 		C = 1; temp = A - [0x119E];
 
 		if (Z == 1)
-			return this.L04BA95();
+			return this.L04BA95_Skip();
 
 		C = 1; temp = A - [0x116C];
 
 		if (Z == 1)
-			return this.L04BA95();
+			return this.L04BA95_Skip();
 
 		C = 1; temp = A - [0x11BB];
 
 		if (Z == 1)
-			return this.L04BA95();
+			return this.L04BA95_Skip();
 
 		Y = [0x00 + X];
 		P |= 0x20;
 		A = 0x00;
 		[0x7E1CDE + X] = A;
 		P &= ~0x20;
-		return this.L04BA97();
+		return this.L04BA97_Skip();
 	}
 
-	public void L04BA95()
+	public void L04BA95_Skip()
 	{
 		Y = [0x00 + X];
 	}
 
-	public void L04BA97()
+	public void L04BA97_Skip()
 	{
 		X = Y;
 
 		if (Z == 1)
-			return this.L04BA9D();
+			return this.L04BA9D_Skip();
 
-		return this.L04BA68();
+		return this.L04BA68_Loop();
 	}
 
-	public void L04BA9D()
+	public void L04BA9D_Skip()
 	{
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		return;
 	}
 
@@ -15683,75 +15832,75 @@ public class SnesRom
 		X = [0x10DB];
 
 		if (Z == 1)
-			return this.L04BAE3();
+			return this.L04BAE3_Skip();
 
 	}
 
-	public void L04BAA9()
+	public void L04BAA9_Loop()
 	{
 		A = X;
 		C = 1; temp = A - [0x10FC];
 
 		if (Z == 1)
-			return this.L04BADB();
+			return this.L04BADB_Skip();
 
 		C = 1; temp = A - [0x11A0];
 
 		if (Z == 1)
-			return this.L04BADB();
+			return this.L04BADB_Skip();
 
 		C = 1; temp = A - [0x11A2];
 
 		if (Z == 1)
-			return this.L04BADB();
+			return this.L04BADB_Skip();
 
 		C = 1; temp = A - [0x119E];
 
 		if (Z == 1)
-			return this.L04BADB();
+			return this.L04BADB_Skip();
 
 		C = 1; temp = A - [0x116C];
 
 		if (Z == 1)
-			return this.L04BADB();
+			return this.L04BADB_Skip();
 
 		C = 1; temp = A - [0x11BB];
 
 		if (Z == 1)
-			return this.L04BADB();
+			return this.L04BADB_Skip();
 
 		A = [0x04 + X];
 		C = 1; temp = A - 0xCD16;
 
 		if (Z == 1)
-			return this.L04BADB();
+			return this.L04BADB_Skip();
 
 		Y = [0x00 + X];
 		Stack.Push(Y);
 		this.L038DC1();
 		Y = Stack.Pop();
 		P &= ~0x20;
-		return this.L04BADD();
+		return this.L04BADD_Skip();
 	}
 
-	public void L04BADB()
+	public void L04BADB_Skip()
 	{
 		Y = [0x00 + X];
 	}
 
-	public void L04BADD()
+	public void L04BADD_Skip()
 	{
 		X = Y;
 
 		if (Z == 1)
-			return this.L04BAE3();
+			return this.L04BAE3_Skip();
 
-		return this.L04BAA9();
+		return this.L04BAA9_Loop();
 	}
 
-	public void L04BAE3()
+	public void L04BAE3_Skip()
 	{
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		return;
 	}
 
@@ -15773,13 +15922,13 @@ public class SnesRom
 		A = [0x10ED];
 
 		if (Z == 1)
-			return this.L07802D();
+			return this.L07802D_Skip();
 
 		X = 0x0000;
 		Y = 0x1000;
 	}
 
-	public void L07801F()
+	public void L07801F_Loop()
 	{
 		A = [0x7E563E + X];
 		[0x701010 + X] = A;
@@ -15787,12 +15936,65 @@ public class SnesRom
 		Y--;
 
 		if (Z == 0)
-			return this.L07801F();
+			return this.L07801F_Loop();
 
-		return this.L07805D();
+		return this.L07805D_Skip();
 	}
 
-	public void L07802D()
+	public byte[] L048030_IndexTable = new byte[]
+	{
+		0x44, 0x00,
+		0x1A, 0x00,
+		0x44, 0x00,
+		0x32, 0x00,
+		0x56, 0x00,
+		0x74, 0x00,
+		0x7A, 0x00,
+		0x8C, 0x00,
+		0x38, 0x00,
+		0x38, 0x00,
+		0x02, 0x00,
+		0x08, 0x00,
+		0x0E, 0x00,
+		0x38, 0x00,
+		0x36, 0x00,
+		0x04, 0x00,
+		0x37, 0x00,
+		0x2C, 0x00,
+		0x3B, 0x00,
+		0x11, 0x00,
+		0x64, 0x00,
+		0x54, 0x00,
+		0x45, 0x00,
+		0xAB, 0x00,
+		0x6F, 0x00
+	}
+
+	public byte[] L02F4F2_RecordTable = new byte[]
+	{
+		0x00, 0x00,
+		0x8C, 0xFE, 0x04,
+		0xB0, 0xFF, 0x04,
+		0x7E, 0x93, 0x07,
+		0xDE, 0x93, 0x07,
+		0x4E, 0x95, 0x07,
+		0x16, 0x96, 0x07,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00,
+	};
+
+	public void L07802D_Skip()
 	{
 		A = [0xF3];
 		P &= ~0x20;
@@ -15810,25 +16012,25 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 	}
 
-	public void L07805D()
+	public void L07805D_Skip()
 	{
 		P |= 0x20;
 		A = [0x10ED];
 
 		if (Z == 0)
-			return this.L078072();
+			return this.L078072_Skip();
 
 		P |= 0x20;
 		A = 0x01;
 		X = 0xCD65;
-		this.L7ED7E8();
-		return this.L07814B();
+		this.L7ED7E8_ExecuteSuperFX();
+		return this.L07814B_Done();
 	}
 
-	public void L078072()
+	public void L078072_Skip()
 	{
 		P &= ~0x20;
 		A = [0x1982];
@@ -15841,17 +16043,17 @@ public class SnesRom
 		P |= 0x20;
 		A = 0x01;
 		X = 0xCC4A;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x30;
 		A = [0x1285];
 
 		if (Z == 1)
-			return this.L07809B();
+			return this.L07809B_Skip();
 
-		return this.L07814B();
+		return this.L07814B_Done();
 	}
 
-	public void L07809B()
+	public void L07809B_Skip()
 	{
 		X = [0x10FC];
 		A = [0x0C + X];
@@ -15927,10 +16129,10 @@ public class SnesRom
 		P |= 0x20;
 		A = 0x01;
 		X = 0xCE17;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 	}
 
-	public void L07814B()
+	public void L07814B_Done()
 	{
 		return;
 	}
@@ -15941,12 +16143,12 @@ public class SnesRom
 		A = [0x1ACF];
 
 		if (Z == 0)
-			return this.L0781CE();
+			return this.L0781CE_Done();
 
 		A = [0x1DBA];
 
 		if (Z == 1)
-			return this.L0781CE();
+			return this.L0781CE_Done();
 
 		P &= ~0x20;
 		A = [0x11DD];
@@ -15991,7 +16193,7 @@ public class SnesRom
 		this.L0781CF();
 	}
 
-	public void L0781CE()
+	public void L0781CE_Done()
 	{
 		return;
 	}
@@ -16037,7 +16239,7 @@ public class SnesRom
 		P |= 0x20;
 		A = 0x01;
 		X = 0xCDD9;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		return;
 	}
@@ -16093,7 +16295,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xC499;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P &= ~0x20;
 		A = 0x00A1;
 		[0x700064] = A;
@@ -16105,7 +16307,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xC499;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P = Stack.Pop();
 		return;
 	}
@@ -16376,7 +16578,7 @@ public class SnesRom
 		this.L078EA5();
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC50();
 		P |= 0x20;
 		[0x420C] = 0;
@@ -16386,7 +16588,7 @@ public class SnesRom
 		[0x2100] = A;
 		P &= ~0x20;
 		A = 0x000D;
-		this.L029283();
+		this.L029283_LoadSong();
 		this.L078DDE();
 		P |= 0x20;
 		[0x420C] = 0;
@@ -16402,7 +16604,7 @@ public class SnesRom
 		this.L02C062();
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC50();
 		return;
 	}
@@ -16411,9 +16613,9 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		A = 0x0004;
-		this.L029283();
+		this.L029283_LoadSong();
 		return;
 	}
 
@@ -16434,12 +16636,12 @@ public class SnesRom
 		return;
 	}
 
-	public void L07852B()
+	public void L07852B_UpdateSound()
 	{
 		this.L078506();
 	}
 
-	public void L07852E()
+	public void L07852E_Loop()
 	{
 		P &= ~0x20;
 		[0x10B6] = 0;
@@ -16457,12 +16659,12 @@ public class SnesRom
 		A = [0x10B6];
 
 		if (Z == 1)
-			return this.L078589();
+			return this.L078589_Skip();
 
 		C = 1; temp = A - 0x0001;
 
 		if (Z == 0)
-			return this.L078572();
+			return this.L078572_Skip();
 
 		A = [0x10CB];
 		Stack.Push(A);
@@ -16472,7 +16674,7 @@ public class SnesRom
 		C = 1; temp = A - [0x10CB];
 
 		if (Z == 1)
-			return this.L078570();
+			return this.L078570_Skip();
 
 		P |= 0x20;
 		A = 0x01;
@@ -16482,48 +16684,48 @@ public class SnesRom
 		[0x7E2DD6] = A;
 	}
 
-	public void L078570()
+	public void L078570_Skip()
 	{
 		return this.L07853A();
 	}
 
-	public void L078572()
+	public void L078572_Skip()
 	{
 		C = 1; temp = A - 0x0002;
 
 		if (Z == 0)
-			return this.L07857D();
+			return this.L07857D_Skip();
 
 		this.L078F46();
-		return this.L07852E();
+		return this.L07852E_Loop();
 	}
 
-	public void L07857D()
+	public void L07857D_Skip()
 	{
 		C = 1; temp = A - 0x0003;
 
 		if (Z == 0)
-			return this.L07852E();
+			return this.L07852E_Loop();
 
 		this.L079164();
-		return this.L07852B();
+		return this.L07852B_UpdateSound();
 	}
 
-	public void L078589()
+	public void L078589_Skip()
 	{
 		A = [0x1982];
 		[0xF7] = A;
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC8F();
 		this.L038168();
 		this.L038000();
 		this.L0387A6();
 		P &= ~0x20;
-		this.L0292AD();
+		this.L0292AD_LoadSong11();
 		A = 0x0005;
-		this.L029283();
+		this.L029283_LoadSong();
 		return;
 	}
 
@@ -16552,7 +16754,7 @@ public class SnesRom
 		X = 0x012C;
 	}
 
-	public void L0785E0()
+	public void L0785E0_Loop()
 	{
 		P &= ~0x20;
 		A = [0x7E2DD6];
@@ -16629,7 +16831,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0x00C8;
@@ -16638,12 +16840,12 @@ public class SnesRom
 		A--;
 
 		if (N == 0)
-			return this.L078654();
+			return this.L078654_Skip();
 
 		A = 0x0003;
 	}
 
-	public void L078654()
+	public void L078654_Skip()
 	{
 		[0x10B6] = A;
 	}
@@ -16655,27 +16857,27 @@ public class SnesRom
 		A &= 0x04;
 
 		if (Z == 0)
-			return this.L078664();
+			return this.L078664_Skip();
 
-		return this.L078692();
+		return this.L078692_Skip();
 	}
 
-	public void L078664()
+	public void L078664_Skip()
 	{
 		A = [0x1188];
 		A &= 0x04;
 
 		if (Z == 1)
-			return this.L07866F();
+			return this.L07866F_Skip();
 
-		return this.L078692();
+		return this.L078692_Skip();
 	}
 
-	public void L07866F()
+	public void L07866F_Skip()
 	{
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = 0x00C8;
@@ -16685,17 +16887,17 @@ public class SnesRom
 		C = 1; temp = A - 0x0004;
 
 		if (Z == 0)
-			return this.L07868F();
+			return this.L07868F_Skip();
 
 		A = 0x0000;
 	}
 
-	public void L07868F()
+	public void L07868F_Skip()
 	{
 		[0x10B6] = A;
 	}
 
-	public void L078692()
+	public void L078692_Skip()
 	{
 		X = Stack.Pop();
 		P |= 0x20;
@@ -16703,16 +16905,16 @@ public class SnesRom
 		temp = A & 0x90;
 
 		if (Z == 0)
-			return this.L07869F();
+			return this.L07869F_Skip();
 
-		return this.L0785E0();
+		return this.L0785E0_Loop();
 	}
 
-	public void L07869F()
+	public void L07869F_Skip()
 	{
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		return;
 	}
@@ -16733,7 +16935,7 @@ public class SnesRom
 		X = 0x012C;
 	}
 
-	public void L0786CB()
+	public void L0786CB_Skip()
 	{
 		this.L07891C();
 		P |= 0x20;
@@ -16743,7 +16945,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L0786DB();
 
-		return this.L07870B();
+		return this.L07870B_Skip();
 	}
 
 	public void L0786DB()
@@ -16754,7 +16956,7 @@ public class SnesRom
 		if (Z == 1)
 			return this.L0786E6();
 
-		return this.L07870B();
+		return this.L07870B_Skip();
 	}
 
 	public void L0786E6()
@@ -16767,7 +16969,7 @@ public class SnesRom
 
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 	}
 
@@ -16778,56 +16980,56 @@ public class SnesRom
 		A--;
 
 		if (N == 0)
-			return this.L078703();
+			return this.L078703_Skip();
 
 		A = 0x0004;
 	}
 
-	public void L078703()
+	public void L078703_Skip()
 	{
 		[0x10B6] = A;
 		P |= 0x20;
-		return this.L0786CB();
+		return this.L0786CB_Skip();
 	}
 
-	public void L07870B()
+	public void L07870B_Skip()
 	{
 		P |= 0x20;
 		A = [0x10BC];
 		A &= 0x04;
 
 		if (Z == 0)
-			return this.L078718();
+			return this.L078718_Skip();
 
-		return this.L07874B();
+		return this.L07874B_Skip();
 	}
 
-	public void L078718()
+	public void L078718_Skip()
 	{
 		A = [0x1188];
 		A &= 0x04;
 
 		if (Z == 1)
-			return this.L078723();
+			return this.L078723_Skip();
 
-		return this.L07874B();
+		return this.L07874B_Skip();
 	}
 
-	public void L078723()
+	public void L078723_Skip()
 	{
 		A = [0x10B6];
 		C = 1; temp = A - 0x04;
 
 		if (Z == 1)
-			return this.L078735();
+			return this.L078735_Skip();
 
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 	}
 
-	public void L078735()
+	public void L078735_Skip()
 	{
 		P &= ~0x20;
 		A = [0x10B6];
@@ -16835,313 +17037,313 @@ public class SnesRom
 		C = 1; temp = A - 0x0005;
 
 		if (Z == 0)
-			return this.L078743();
+			return this.L078743_Skip();
 
 		A = 0x0000;
 	}
 
-	public void L078743()
+	public void L078743_Skip()
 	{
 		[0x10B6] = A;
 		P |= 0x20;
-		return this.L0786CB();
+		return this.L0786CB_Skip();
 	}
 
-	public void L07874B()
+	public void L07874B_Skip()
 	{
 		P |= 0x20;
 		A = [0x10BC];
 		A &= 0x02;
 
 		if (Z == 0)
-			return this.L078758();
+			return this.L078758_Skip();
 
-		return this.L0787C2();
+		return this.L0787C2_Skip();
 	}
 
-	public void L078758()
+	public void L078758_Skip()
 	{
 		A = [0x1188];
 		A &= 0x02;
 
 		if (Z == 1)
-			return this.L078763();
+			return this.L078763_Skip();
 
-		return this.L0787C2();
+		return this.L0787C2_Skip();
 	}
 
-	public void L078763()
+	public void L078763_Skip()
 	{
 		P &= ~0x20;
 		A = [0x10B6];
 
 		if (Z == 0)
-			return this.L078775();
+			return this.L078775_Skip();
 
 		A = [0x10CB];
 		A ^= 0x0001;
 		[0x10CB] = A;
-		return this.L0787B2();
+		return this.L0787B2_Skip();
 	}
 
-	public void L078775()
+	public void L078775_Skip()
 	{
 		C = 1; temp = A - 0x0001;
 
 		if (Z == 0)
-			return this.L078788();
+			return this.L078788_Skip();
 
 		A = [0x10B4];
 		A--;
 
 		if (N == 0)
-			return this.L078783();
+			return this.L078783_Skip();
 
 		A = 0x0002;
 	}
 
-	public void L078783()
+	public void L078783_Skip()
 	{
 		[0x10B4] = A;
-		return this.L0787B2();
+		return this.L0787B2_Skip();
 	}
 
-	public void L078788()
+	public void L078788_Skip()
 	{
 		C = 1; temp = A - 0x0003;
 
 		if (Z == 0)
-			return this.L07879C();
+			return this.L07879C_Skip();
 
 		A = [0x10B2];
 		A ^= 0x0001;
 		[0x10B2] = A;
 		this.L02915C();
-		return this.L0787B2();
+		return this.L0787B2_Skip();
 	}
 
-	public void L07879C()
+	public void L07879C_Skip()
 	{
 		C = 1; temp = A - 0x0002;
 
 		if (Z == 0)
-			return this.L0787AC();
+			return this.L0787AC_Skip();
 
 		A = [0x10E5];
 		A ^= 0x0001;
 		[0x10E5] = A;
-		return this.L0787B2();
+		return this.L0787B2_Skip();
 	}
 
-	public void L0787AC()
+	public void L0787AC_Skip()
 	{
 		this.L0788C6();
-		return this.L078854();
+		return this.L078854_Skip();
 	}
 
-	public void L0787B2()
+	public void L0787B2_Skip()
 	{
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P |= 0x20;
-		return this.L0786CB();
+		return this.L0786CB_Skip();
 	}
 
-	public void L0787C2()
+	public void L0787C2_Skip()
 	{
 		P |= 0x20;
 		A = [0x10BC];
 		A &= 0x01;
 
 		if (Z == 0)
-			return this.L0787CF();
+			return this.L0787CF_Skip();
 
-		return this.L0787DC();
+		return this.L0787DC_Skip();
 	}
 
-	public void L0787CF()
+	public void L0787CF_Skip()
 	{
 		A = [0x1188];
 		A &= 0x01;
 
 		if (Z == 1)
-			return this.L0787DA();
+			return this.L0787DA_Skip();
 
-		return this.L0787DC();
+		return this.L0787DC_Skip();
 	}
 
-	public void L0787DA()
+	public void L0787DA_Skip()
 	{
-		return this.L0787F2();
+		return this.L0787F2_Skip();
 	}
 
-	public void L0787DC()
+	public void L0787DC_Skip()
 	{
 		A = [0x10BC];
 		A &= 0x20;
 
 		if (Z == 0)
-			return this.L0787E7();
+			return this.L0787E7_Skip();
 
-		return this.L078854();
+		return this.L078854_Skip();
 	}
 
-	public void L0787E7()
+	public void L0787E7_Skip()
 	{
 		A = [0x1188];
 		A &= 0x20;
 
 		if (Z == 1)
-			return this.L0787F2();
+			return this.L0787F2_Skip();
 
-		return this.L078854();
+		return this.L078854_Skip();
 	}
 
-	public void L0787F2()
+	public void L0787F2_Skip()
 	{
 		P &= ~0x20;
 		A = [0x10B6];
 
 		if (Z == 0)
-			return this.L078804();
+			return this.L078804_Skip();
 
 		A = [0x10CB];
 		A ^= 0x0001;
 		[0x10CB] = A;
-		return this.L078844();
+		return this.L078844_Skip();
 	}
 
-	public void L078804()
+	public void L078804_Skip()
 	{
 		C = 1; temp = A - 0x0001;
 
 		if (Z == 0)
-			return this.L07881A();
+			return this.L07881A_Skip();
 
 		A = [0x10B4];
 		A++;
 		C = 1; temp = A - 0x0003;
 
 		if (Z == 0)
-			return this.L078815();
+			return this.L078815_Skip();
 
 		A = 0x0000;
 	}
 
-	public void L078815()
+	public void L078815_Skip()
 	{
 		[0x10B4] = A;
-		return this.L078844();
+		return this.L078844_Skip();
 	}
 
-	public void L07881A()
+	public void L07881A_Skip()
 	{
 		C = 1; temp = A - 0x0003;
 
 		if (Z == 0)
-			return this.L07882E();
+			return this.L07882E_Skip();
 
 		A = [0x10B2];
 		A ^= 0x0001;
 		[0x10B2] = A;
 		this.L02915C();
-		return this.L078844();
+		return this.L078844_Skip();
 	}
 
-	public void L07882E()
+	public void L07882E_Skip()
 	{
 		C = 1; temp = A - 0x0002;
 
 		if (Z == 0)
-			return this.L07883E();
+			return this.L07883E_Skip();
 
 		A = [0x10E5];
 		A ^= 0x0001;
 		[0x10E5] = A;
-		return this.L078844();
+		return this.L078844_Skip();
 	}
 
-	public void L07883E()
+	public void L07883E_Skip()
 	{
 		this.L0788AD();
-		return this.L078854();
+		return this.L078854_Skip();
 	}
 
-	public void L078844()
+	public void L078844_Skip()
 	{
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P |= 0x20;
-		return this.L0786CB();
+		return this.L0786CB_Skip();
 	}
 
-	public void L078854()
+	public void L078854_Skip()
 	{
 		P |= 0x20;
 		A = [0x10BC];
 		temp = A & 0x90;
 
 		if (Z == 0)
-			return this.L07887E();
+			return this.L07887E_Skip();
 
 		P &= ~0x20;
 		A = [0x10B6];
 		C = 1; temp = A - 0x0004;
 
 		if (Z == 1)
-			return this.L078876();
+			return this.L078876_Skip();
 
 		A = [0x10AC];
 
 		if (Z == 1)
-			return this.L078876();
+			return this.L078876_Skip();
 
 		[0x10AC] = 0;
 		A = 0x0001;
 		[0x7E2DD6] = A;
 	}
 
-	public void L078876()
+	public void L078876_Skip()
 	{
 		this.L0788DC();
 		P |= 0x20;
-		return this.L0786CB();
+		return this.L0786CB_Skip();
 	}
 
-	public void L07887E()
+	public void L07887E_Skip()
 	{
 		A = [0x10B6];
 		C = 1; temp = A - 0x04;
 
 		if (Z == 1)
-			return this.L078890();
+			return this.L078890_Skip();
 
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 	}
 
-	public void L078890()
+	public void L078890_Skip()
 	{
 		A = [0x10AC];
 
 		if (Z == 1)
-			return this.L0788A7();
+			return this.L0788A7_Done();
 
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		P &= ~0x20;
 		A = 0x0004;
-		this.L029283();
+		this.L029283_LoadSong();
 	}
 
-	public void L0788A7()
+	public void L0788A7_Done()
 	{
 		P &= ~0x20;
 		[0x10B6] = 0;
@@ -17156,12 +17358,12 @@ public class SnesRom
 		C = 1; temp = A - 0x000F;
 
 		if (Z == 0)
-			return this.L0788BB();
+			return this.L0788BB_Skip();
 
 		A = 0x0000;
 	}
 
-	public void L0788BB()
+	public void L0788BB_Skip()
 	{
 		[0x10AC] = A;
 		A = 0x001E;
@@ -17213,12 +17415,12 @@ public class SnesRom
 	public void L0788EC()
 	{
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		A = [0x10AC];
 		X = A;
 		A = [0x0BF82C + X];
 		A &= 0x00FF;
-		this.L02929A();
+		this.L02929A_LoadSong();
 		Y = 0x0005;
 	}
 
@@ -17438,7 +17640,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xC4BF;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		return;
 	}
 
@@ -17637,7 +17839,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		A = 0x80;
 		[0x2115] = A;
 		A = 0x18;
@@ -17666,13 +17868,13 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		this.L02B1CB();
 		P |= 0x20;
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xBF8F;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		this.L078001();
 		return;
 	}
@@ -17705,7 +17907,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		A = 0x80;
 		[0x2115] = A;
 		A = 0x18;
@@ -17732,7 +17934,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		A = 0x80;
 		[0x2115] = A;
 		A = 0x18;
@@ -17761,13 +17963,13 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		this.L02B1CB();
 		P |= 0x20;
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xBF8F;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		this.L078001();
 		return;
 	}
@@ -17800,7 +18002,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		A = 0x80;
 		[0x2115] = A;
 		A = 0x18;
@@ -17829,13 +18031,13 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		this.L02B1CB();
 		P |= 0x20;
 		P &= ~0x10;
 		A = 0x01;
 		X = 0xBF8F;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		this.L078001();
 		A = [0x10C4];
 		[0x420C] = A;
@@ -17850,9 +18052,9 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		A = 0x0012;
-		this.L029283();
+		this.L029283_LoadSong();
 		P &= ~0x20;
 		A = 0x0000;
 		[0x70022A] = A;
@@ -17871,7 +18073,7 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		P &= ~0x20;
@@ -17881,7 +18083,7 @@ public class SnesRom
 		[0x1DD8] = A;
 		[0x1186] = 0;
 		[0x1187] = 0;
-		this.L03A17D();
+		this.L03A17D_ResetSound();
 		X = 0x007D;
 	}
 
@@ -17988,7 +18190,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = [0x702490];
@@ -18032,7 +18234,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = [0x702490];
@@ -18077,7 +18279,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = [0x702490];
@@ -18168,7 +18370,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P &= ~0x20;
 		A = [0x702490];
@@ -18250,7 +18452,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x2A00;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		P |= 0x20;
 		P &= ~0x10;
@@ -18359,12 +18561,12 @@ public class SnesRom
 		this.L07890F();
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC8F();
 		P &= ~0x20;
-		this.L0292AD();
+		this.L0292AD_LoadSong11();
 		A = 0x0014;
-		this.L029283();
+		this.L029283_LoadSong();
 		P &= ~0x20;
 		A = 0x0000;
 		[0x70022A] = A;
@@ -18393,7 +18595,7 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		P &= ~0x20;
@@ -18402,7 +18604,7 @@ public class SnesRom
 		A = 0xC4C7;
 		[0x1DD8] = A;
 		P |= 0x20;
-		this.L03A17D();
+		this.L03A17D_ResetSound();
 		P |= 0x20;
 		[0x10B6] = 0;
 		P &= ~0x20;
@@ -18419,7 +18621,7 @@ public class SnesRom
 	{
 		P |= 0x20;
 		P &= ~0x10;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P &= ~0x20;
 		A = 0x002E;
 		[0x700064] = A;
@@ -18515,11 +18717,11 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC8F();
 		P &= ~0x20;
 		A = 0x0004;
-		this.L029283();
+		this.L029283_LoadSong();
 		this.L02C494();
 		this.L038168();
 		P &= ~0x20;
@@ -18775,7 +18977,7 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		P &= ~0x20;
@@ -18787,7 +18989,7 @@ public class SnesRom
 		A = 0x0001;
 		[0x198C] = A;
 		[0x1990] = 0;
-		this.L03A17D();
+		this.L03A17D_ResetSound();
 		P &= ~0x20;
 		X = 0x0000;
 		A = [0x0BFABC + X];
@@ -18799,7 +19001,7 @@ public class SnesRom
 		X = 0x005F;
 		[0x197C] = X;
 		[0x1ACB] = 0;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P |= 0x20;
 		A = 0x01;
 		[0x1ACB] = A;
@@ -18814,18 +19016,18 @@ public class SnesRom
 		C = 1; temp = A - [0x1186];
 
 		if (Z == 1)
-			return this.L09F972();
+			return this.L09F972_Skip();
 
 		this.L03A479();
 	}
 
-	public void L09F972()
+	public void L09F972_Skip()
 	{
 		P |= 0x20;
 		P &= ~0x10;
 		A = [0x10BC];
 		[0x1188] = A;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P &= ~0x30;
 		A = 0x0002;
 		[0x700064] = A;
@@ -19200,7 +19402,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P |= 0x20;
 		P &= ~0x10;
 		X = 0x0000;
@@ -19226,7 +19428,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P |= 0x20;
 		P &= ~0x10;
 		X = 0x0000;
@@ -19252,7 +19454,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P |= 0x20;
 		P &= ~0x10;
 		X = 0x0000;
@@ -19278,7 +19480,7 @@ public class SnesRom
 		[0x700066] = A;
 		A = 0x01;
 		X = 0xBDB1;
-		this.L7ED7E8();
+		this.L7ED7E8_ExecuteSuperFX();
 		P |= 0x20;
 		P &= ~0x10;
 		X = 0x0000;
@@ -19301,7 +19503,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		this.L02CC8F();
 	}
 
@@ -19311,7 +19513,7 @@ public class SnesRom
 		A = 0x0028;
 		[0x1992] = A;
 		A = 0x0013;
-		this.L029283();
+		this.L029283_LoadSong();
 		P |= 0x20;
 		P &= ~0x10;
 		A = 0xFF;
@@ -19336,7 +19538,7 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		P &= ~0x20;
@@ -19348,7 +19550,7 @@ public class SnesRom
 		A = 0x0001;
 		[0x198C] = A;
 		[0x1990] = 0;
-		this.L03A17D();
+		this.L03A17D_ResetSound();
 		P &= ~0x20;
 		X = 0x0000;
 		A = [0x0BFABC + X];
@@ -19364,7 +19566,7 @@ public class SnesRom
 	public void L0CF5F2()
 	{
 		[0x1ACB] = 0;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P |= 0x20;
 		A = 0x01;
 		[0x1ACB] = A;
@@ -19376,7 +19578,7 @@ public class SnesRom
 		P &= ~0x10;
 		A = [0x10BC];
 		[0x1188] = A;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P &= ~0x30;
 		A = 0x0002;
 		[0x700064] = A;
@@ -19475,7 +19677,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0x0001;
-		this.L029310();
+		this.L029310_SendApuCommand();
 		P |= 0x20;
 		this.L02CC8F();
 		P |= 0x20;
@@ -19486,7 +19688,7 @@ public class SnesRom
 		[0x7EDE12] = A;
 		P &= ~0x20;
 		A = 0x0004;
-		this.L029283();
+		this.L029283_LoadSong();
 		this.L09F8D2();
 		this.L0CF878();
 		return;
@@ -19503,7 +19705,7 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		return this.L0CF5F2();
@@ -19554,14 +19756,14 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		P &= ~0x20;
 		A = 0x0001;
 		[0x198C] = A;
 		[0x1990] = 0;
-		this.L03A17D();
+		this.L03A17D_ResetSound();
 		P &= ~0x20;
 		X = 0x0000;
 		A = [0x0BFABC + X];
@@ -19612,7 +19814,7 @@ public class SnesRom
 	{
 		P |= 0x20;
 		P &= ~0x10;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P &= ~0x30;
 		A = 0x0002;
 		[0x700064] = A;
@@ -19705,7 +19907,7 @@ public class SnesRom
 	{
 		P &= ~0x20;
 		A = 0xEA02;
-		this.L029213();
+		this.L029213_SendApuCommand();
 		P |= 0x20;
 		A = 0xFF;
 		P |= 0x20;
@@ -19750,7 +19952,7 @@ public class SnesRom
 		A = [0x048000 + X];
 		[0x1932] = A;
 		P |= 0x20;
-		this.L00E0BA();
+		this.L00E0BA_Done();
 		X = [0x1932];
 		this.L00E0F6();
 		P &= ~0x20;
@@ -19761,7 +19963,7 @@ public class SnesRom
 		A = [0x0BF930];
 		[0x110C] = A;
 		P |= 0x20;
-		this.L03A17D();
+		this.L03A17D_ResetSound();
 		P &= ~0x20;
 		X = 0x0000;
 		A = [0x0BFABC + X];
@@ -19780,7 +19982,7 @@ public class SnesRom
 		[0x110C] = A;
 		P |= 0x20;
 		P &= ~0x10;
-		this.L02C897();
+		this.L02C897_LongFunction();
 		P &= ~0x30;
 		A = 0x0000;
 		[0x70022C] = A;
@@ -19846,7 +20048,7 @@ public class SnesRom
 		if (Z == 0)
 			return this.L0CF999();
 
-		return this.L0CFAC4();
+		return this.L0CFAC4_Skip();
 	}
 
 	public void L0CF999()
@@ -20127,7 +20329,7 @@ public class SnesRom
 		temp = A & 0x10;
 
 		if (Z == 0)
-			return this.L0CFAC4();
+			return this.L0CFAC4_Skip();
 
 		A = [0x10BC];
 		[0x1188] = A;
@@ -20136,7 +20338,7 @@ public class SnesRom
 		return this.L0CF8F9();
 	}
 
-	public void L0CFAC4()
+	public void L0CFAC4_Skip()
 	{
 		P |= 0x20;
 		this.L02CC8F();
@@ -20152,12 +20354,3221 @@ public class SnesRom
 
 	public void L7EC654()
 	{
-		Cpu.Break();
+		P &= ~0x30;
+		A = [0x10DB];
+
+		if (Z == 0)
+			return this.L7EC65C_Skip();
+
+		return;
 	}
 
-	public void L7ED7E8()
+	public void L7EC65C_Skip()
 	{
-		Cpu.Break();
+		A = [0x1AEE];
+		[0x7001B6] = A;
+		A = [0x001ABB];
+		[0x700058] = A;
+		A = [0x001ABD];
+		[0x70005A] = A;
+		A = [0x1ACF];
+		A &= 0x00FF;
+		[0x700236] = A;
+		A = 0xFFFF;
+		X = [0x1286];
+
+		if (Z == 1)
+			return this.L7EC68B_Skip();
+
+		A = [0x28 + X];
+		A >>= 1;
+		A &= 0x00FF;
 	}
 
+	public void L7EC68B_Skip()
+	{
+		[0x70025C] = A;
+		A = [0x1AC3];
+		[0x7001BA] = A;
+		P |= 0x20;
+		A = 0x01;
+		X = 0xC53A;
+		[0x3034] = A;
+		A = [0x1923];
+		A |= 0x18;
+		[0x303A] = A;
+		[0x301E] = X;
+		this.L7EC6C2();
+		P |= 0x20;
+	}
+
+	public void L7EC6B0_Wait()
+	{
+		A = [0x3030];
+		A &= 0x20;
+
+		if (Z == 0)
+			return this.L7EC6B0_Wait();
+
+		A = [0x1923];
+		[0x303A] = A;
+		this.L02C80C();
+		return;
+	}
+
+	public void L7EC6C2()
+	{
+		this.L7EC6CB();
+		return;
+	}
+
+	public void L7EC6CB()
+	{
+		Stack.Push(B);
+		Stack.Push(P);
+		P |= 0x20;
+		P &= ~0x10;
+		A = 0x7E;
+		Stack.Push(A);
+		B = Stack.Pop();
+		X = [0x10DB];
+	}
+
+	public void L7EC6D8()
+	{
+		A = [0x001D + X];
+		A &= 0x08;
+
+		if (Z == 1)
+			return this.L7EC6E3();
+
+		return this.L7EC6F2();
+	}
+
+	public void L7EC6E3()
+	{
+		A = 0x01;
+		[0x2B + X] = A;
+		P &= ~0x20;
+		A = 0x0000;
+		[0x1B + X] = A;
+		P |= 0x20;
+		return this.L7EC702();
+	}
+
+	public void L7EC6F2()
+	{
+		A = [0x001D + X];
+		A |= 0x80;
+		[0x001D + X] = A;
+		A = [0x001D + X];
+		A &= 0xF7;
+		[0x001D + X] = A;
+	}
+
+	public void L7EC702()
+	{
+		Y = X;
+		X = [0x00 + Y];
+
+		if (Z == 0)
+			return this.L7EC6D8();
+
+		A = [0x1DC6];
+
+		if (Z == 1)
+			return this.L7EC723();
+
+		X = 0x0000;
+	}
+
+	public void L7EC70F()
+	{
+		Stack.Push(X);
+		this.L7EC726();
+		X = Stack.Pop();
+		P &= ~0x20;
+		A = X;
+		C = 0;
+		A += 0x000A + C;
+		X = A;
+		P |= 0x20;
+		[0x1DC6]--;
+
+		if (Z == 0)
+			return this.L7EC70F();
+
+	}
+
+	public void L7EC723()
+	{
+		P = Stack.Pop();
+		B = Stack.Pop();
+		return;
+	}
+
+	public void L7EC726()
+	{
+		[0x7B] = X;
+		Y = [0xDBB2 + X];
+		X = Y;
+		[0x79] = X;
+		A = [0x001D + X];
+		A &= 0x08;
+
+		if (Z == 1)
+			return this.L7EC738();
+
+		return this.L7ECA3A();
+	}
+
+	public void L7EC738()
+	{
+		Y = [0x04 + X];
+		[0x1DCE] = Y;
+		Y = [0x7B];
+		[0x1DC4] = 0;
+		[0x1AC6] = 0;
+		P &= ~0x20;
+		A = [0xDBB4 + Y];
+
+		if (Z == 0)
+			return this.L7EC74F();
+
+		return this.L7ECA3D();
+	}
+
+	public void L7EC74F()
+	{
+		Y = A;
+		P |= 0x20;
+		[0x1DC5] = 0;
+		A = [0x0002 + Y];
+
+		if (Z == 1)
+			return this.L7EC784();
+
+		A--;
+		[0x00] = A;
+		A = [0x7E1CDC + X];
+
+		if (N == 0)
+			return this.L7EC769();
+
+		A &= [0x00];
+
+		if (Z == 1)
+			return this.L7EC784();
+
+		return this.L7EC770();
+	}
+
+	public void L7EC769()
+	{
+		A = [0x00];
+		A &= [0x1982];
+
+		if (Z == 1)
+			return this.L7EC784();
+
+	}
+
+	public void L7EC770()
+	{
+		P &= ~0x20;
+		A &= 0x007F;
+		[0x00] = A;
+		A = Y;
+		Y = [0x00];
+		C = 0;
+	}
+
+	public void L7EC77B()
+	{
+		A += 0x0012 + C;
+		Y--;
+
+		if (Z == 0)
+			return this.L7EC77B();
+
+		Y = A;
+		P |= 0x20;
+	}
+
+	public void L7EC784()
+	{
+		A = [0x0009 + Y];
+		[0x1AC5] = A;
+		temp = A & 0x70;
+
+		if (Z == 0)
+			return this.L7EC791();
+
+		return this.L7EC9F3();
+	}
+
+	public void L7EC791()
+	{
+		temp = A & 0x10;
+
+		if (Z == 1)
+			return this.L7EC798();
+
+		return this.L7EC974();
+	}
+
+	public void L7EC798()
+	{
+		temp = A & 0x20;
+
+		if (Z == 1)
+			return this.L7EC79F();
+
+		return this.L7EC8F2();
+	}
+
+	public void L7EC79F()
+	{
+		temp = A & 0x40;
+
+		if (Z == 1)
+			return this.L7EC7A6();
+
+		return this.L7EC870();
+	}
+
+	public void L7EC7A6()
+	{
+		A = [0x0003 + Y];
+		[0x00] = A;
+		[0x02] = A;
+		A = [0x0005 + Y];
+		[0x06] = A;
+		[0x08] = A;
+		A = [0x14 + X];
+
+		if (Z == 1)
+			return this.L7EC7BB();
+
+		this.L7ED2CE();
+	}
+
+	public void L7EC7BB()
+	{
+		A = [0x08];
+		[0x06] = A;
+		A = [0x0007 + Y];
+		[0x93] = A;
+		[0x1997] = A;
+		A = [0x12 + X];
+
+		if (Z == 1)
+			return this.L7EC7CE();
+
+		this.L7ED131();
+	}
+
+	public void L7EC7CE()
+	{
+		A = [0x02];
+		[0x00] = A;
+		A = [0x08];
+		[0x06] = A;
+		A = [0x13 + X];
+
+		if (Z == 1)
+			return this.L7EC7DD();
+
+		this.L7ECF91();
+	}
+
+	public void L7EC7DD()
+	{
+		P &= ~0x20;
+		A = [0x02];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7EC7EB();
+
+		A |= 0xFF00;
+		return this.L7EC7EE();
+	}
+
+	public void L7EC7EB()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7EC7EE()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7EC807();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7EC7FE()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7EC7FE();
+
+		Y = [0x1AC7];
+		return this.L7EC809();
+	}
+
+	public void L7EC807()
+	{
+		A = [0x00];
+	}
+
+	public void L7EC809()
+	{
+		C = 0;
+		A += [0x0C + X] + C;
+		[0x6F] = A;
+		A = [0x1997];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7EC81B();
+
+		A |= 0xFF00;
+		return this.L7EC81E();
+	}
+
+	public void L7EC81B()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7EC81E()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7EC837();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7EC82E()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7EC82E();
+
+		Y = [0x1AC7];
+		return this.L7EC839();
+	}
+
+	public void L7EC837()
+	{
+		A = [0x00];
+	}
+
+	public void L7EC839()
+	{
+		C = 0;
+		A += [0x10 + X] + C;
+		[0x71] = A;
+		A = [0x08];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7EC84A();
+
+		A |= 0xFF00;
+		return this.L7EC84D();
+	}
+
+	public void L7EC84A()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7EC84D()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7EC866();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7EC85D()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7EC85D();
+
+		Y = [0x1AC7];
+		return this.L7EC868();
+	}
+
+	public void L7EC866()
+	{
+		A = [0x00];
+	}
+
+	public void L7EC868()
+	{
+		C = 0;
+		A += [0x0E + X] + C;
+		[0x77] = A;
+		return this.L7ECA0D();
+	}
+
+	public void L7EC870()
+	{
+		A = [0x0005 + Y];
+		[0x06] = A;
+		[0x08] = A;
+		A = [0x0007 + Y];
+		[0x93] = A;
+		[0x1997] = A;
+		A = [0x12 + X];
+
+		if (Z == 1)
+			return this.L7EC886();
+
+		this.L7ED131();
+	}
+
+	public void L7EC886()
+	{
+		P &= ~0x20;
+		A = [0x08];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7EC894();
+
+		A |= 0xFF00;
+		return this.L7EC897();
+	}
+
+	public void L7EC894()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7EC897()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7EC8B0();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7EC8A7()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7EC8A7();
+
+		Y = [0x1AC7];
+		return this.L7EC8B2();
+	}
+
+	public void L7EC8B0()
+	{
+		A = [0x00];
+	}
+
+	public void L7EC8B2()
+	{
+		C = 0;
+		A += [0x0E + X] + C;
+		[0x77] = A;
+		A = [0x1997];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7EC8C4();
+
+		A |= 0xFF00;
+		return this.L7EC8C7();
+	}
+
+	public void L7EC8C4()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7EC8C7()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7EC8E0();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7EC8D7()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7EC8D7();
+
+		Y = [0x1AC7];
+		return this.L7EC8E2();
+	}
+
+	public void L7EC8E0()
+	{
+		A = [0x00];
+	}
+
+	public void L7EC8E2()
+	{
+		C = 0;
+		A += [0x10 + X] + C;
+		[0x71] = A;
+		A = [0x0003 + Y];
+		C = 0;
+		A += [0x0C + X] + C;
+		[0x6F] = A;
+		return this.L7ECA0D();
+	}
+
+	public void L7EC8F2()
+	{
+		A = [0x0003 + Y];
+		[0x00] = A;
+		[0x02] = A;
+		A = [0x0007 + Y];
+		[0x93] = A;
+		[0x1997] = A;
+		A = [0x13 + X];
+
+		if (Z == 1)
+			return this.L7EC908();
+
+		this.L7ECF91();
+	}
+
+	public void L7EC908()
+	{
+		P &= ~0x20;
+		A = [0x02];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7EC916();
+
+		A |= 0xFF00;
+		return this.L7EC919();
+	}
+
+	public void L7EC916()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7EC919()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7EC932();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7EC929()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7EC929();
+
+		Y = [0x1AC7];
+		return this.L7EC934();
+	}
+
+	public void L7EC932()
+	{
+		A = [0x00];
+	}
+
+	public void L7EC934()
+	{
+		C = 0;
+		A += [0x0C + X] + C;
+		[0x6F] = A;
+		A = [0x1997];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7EC946();
+
+		A |= 0xFF00;
+		return this.L7EC949();
+	}
+
+	public void L7EC946()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7EC949()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7EC962();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7EC959()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7EC959();
+
+		Y = [0x1AC7];
+		return this.L7EC964();
+	}
+
+	public void L7EC962()
+	{
+		A = [0x00];
+	}
+
+	public void L7EC964()
+	{
+		C = 0;
+		A += [0x10 + X] + C;
+		[0x71] = A;
+		A = [0x0005 + Y];
+		C = 0;
+		A += [0x0E + X] + C;
+		[0x77] = A;
+		return this.L7ECA0D();
+	}
+
+	public void L7EC974()
+	{
+		A = [0x0003 + Y];
+		[0x00] = A;
+		[0x02] = A;
+		A = [0x0005 + Y];
+		[0x06] = A;
+		[0x08] = A;
+		A = [0x14 + X];
+
+		if (Z == 1)
+			return this.L7EC989();
+
+		this.L7ED2CE();
+	}
+
+	public void L7EC989()
+	{
+		P &= ~0x20;
+		A = [0x02];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7EC997();
+
+		A |= 0xFF00;
+		return this.L7EC99A();
+	}
+
+	public void L7EC997()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7EC99A()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7EC9B3();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7EC9AA()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7EC9AA();
+
+		Y = [0x1AC7];
+		return this.L7EC9B5();
+	}
+
+	public void L7EC9B3()
+	{
+		A = [0x00];
+	}
+
+	public void L7EC9B5()
+	{
+		C = 0;
+		A += [0x0C + X] + C;
+		[0x6F] = A;
+		A = [0x08];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7EC9C6();
+
+		A |= 0xFF00;
+		return this.L7EC9C9();
+	}
+
+	public void L7EC9C6()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7EC9C9()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7EC9E2();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7EC9D9()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7EC9D9();
+
+		Y = [0x1AC7];
+		return this.L7EC9E4();
+	}
+
+	public void L7EC9E2()
+	{
+		A = [0x00];
+	}
+
+	public void L7EC9E4()
+	{
+		C = 0;
+		A += [0x0E + X] + C;
+		[0x77] = A;
+		A = [0x0007 + Y];
+		C = 0;
+		A += [0x10 + X] + C;
+		[0x71] = A;
+		return this.L7ECA0D();
+	}
+
+	public void L7EC9F3()
+	{
+		P &= ~0x20;
+		A = [0x0003 + Y];
+		C = 0;
+		A += [0x0C + X] + C;
+		[0x6F] = A;
+		A = [0x0005 + Y];
+		C = 0;
+		A += [0x0E + X] + C;
+		[0x77] = A;
+		A = [0x0007 + Y];
+		C = 0;
+		A += [0x10 + X] + C;
+		[0x71] = A;
+	}
+
+	public void L7ECA0D()
+	{
+		A = [0x000A + Y];
+		[0x111D] = A;
+		A = [0x000C + Y];
+		[0x111F] = A;
+		A = [0x000E + Y];
+		[0x1121] = A;
+		Stack.Push(X);
+		Stack.Push(Y);
+		P |= 0x20;
+		A = [0x0010 + Y];
+		[0x1DC4] = A;
+		P &= ~0x20;
+		this.L7ECA5B();
+		Y = Stack.Pop();
+		X = Stack.Pop();
+		P &= ~0x20;
+		A = [0x0000 + Y];
+
+		if (Z == 1)
+			return this.L7ECA3A();
+
+		return this.L7EC74F();
+	}
+
+	public void L7ECA3A()
+	{
+		P |= 0x20;
+		return;
+	}
+
+	public void L7ECA3D()
+	{
+		A = [0xDBB6 + Y];
+		[0x111D] = A;
+		A = [0xDBB8 + Y];
+		[0x111F] = A;
+		A = [0xDBBA + Y];
+		[0x1121] = A;
+		A = [0x0C + X];
+		[0x6F] = A;
+		A = [0x10 + X];
+		[0x71] = A;
+		A = [0x0E + X];
+		[0x77] = A;
+	}
+
+	public void L7ECA5B()
+	{
+		A = [0x1DC6];
+		[0x1DC8] = A;
+		Y = [0x7B];
+		[0x1DCA] = Y;
+		return this.L7ECF7C();
+	}
+
+	public void L7ECA69()
+	{
+		P |= 0x20;
+		[0x1DCA] = Y;
+		X = [0xDBB2 + Y];
+		[0x1DC3] = 0;
+		P &= ~0x20;
+		Y = [0x79];
+		A = [0x001D + Y];
+		A &= 0x0008;
+
+		if (Z == 1)
+			return this.L7ECA83();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECA83()
+	{
+		A = [0x002C + Y];
+		A &= [0x2C + X];
+		A &= 0x00F8;
+
+		if (Z == 1)
+			return this.L7ECA90();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECA90()
+	{
+		A = [0x001E + X];
+		A &= 0x0008;
+
+		if (Z == 1)
+			return this.L7ECAAE();
+
+		A = [0x001E + Y];
+		A &= 0x0008;
+
+		if (Z == 1)
+			return this.L7ECAA3();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECAA3()
+	{
+		A = [0x002C + Y];
+		A &= 0x0001;
+
+		if (Z == 1)
+			return this.L7ECAAE();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECAAE()
+	{
+		A = [0x001E + Y];
+		A &= 0x0008;
+
+		if (Z == 1)
+			return this.L7ECACC();
+
+		A = [0x001E + X];
+		A &= 0x0008;
+
+		if (Z == 1)
+			return this.L7ECAC1();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECAC1()
+	{
+		A = [0x002C + X];
+		A &= 0x0001;
+
+		if (Z == 1)
+			return this.L7ECACC();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECACC()
+	{
+		A = Y;
+		C = 1; temp = A - [0x19 + X];
+
+		if (Z == 0)
+			return this.L7ECAD4();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECAD4()
+	{
+		A = X;
+		X = Y;
+		C = 1; temp = A - [0x19 + X];
+
+		if (Z == 0)
+			return this.L7ECADD();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECADD()
+	{
+		Y = X;
+		X = A;
+		A = [0x0C + X];
+		[0x3A] = A;
+		A = [0x0E + X];
+		[0x3C] = A;
+		A = [0x10 + X];
+		[0x3E] = A;
+		A = [0x001E + X];
+		A &= 0x0040;
+
+		if (Z == 1)
+			return this.L7ECB00();
+
+		A = [0x001E + Y];
+		A &= 0x0040;
+
+		if (Z == 1)
+			return this.L7ECB00();
+
+		A = [0x04 + X];
+		Y = X;
+		return this.L7ECB0B();
+	}
+
+	public void L7ECB00()
+	{
+		A = [0x04 + X];
+		Y = X;
+		C = 1; temp = A - [0x1DCE];
+
+		if (Z == 0)
+			return this.L7ECB0B();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECB0B()
+	{
+		X = [0x1DCA];
+		A = [0xDBB4 + X];
+
+		if (Z == 0)
+			return this.L7ECB16();
+
+		return this.L7ECEFE();
+	}
+
+	public void L7ECB16()
+	{
+		Stack.Push(A);
+		A = [0x3A];
+		[0x1DBD] = A;
+		A = [0x3C];
+		[0x1DBF] = A;
+		A = [0x3E];
+		[0x1DC1] = A;
+		A = [0xDBBA + X];
+		C = 0;
+		A += [0x1121] + C;
+		[0x1115] = A;
+		A = [0x3E];
+		C = 1;
+		A -= [0x71] - !C;
+
+		if (N == 0)
+			return this.L7ECB3B();
+
+		A ^= 0xFFFF;
+		A++;
+	}
+
+	public void L7ECB3B()
+	{
+		C = 1;
+		A -= [0x1115] - !C;
+
+		if (N == 1)
+			return this.L7ECB44();
+
+		return this.L7ECB80();
+	}
+
+	public void L7ECB44()
+	{
+		A = [0xDBB6 + X];
+		C = 0;
+		A += [0x111D] + C;
+		[0x1115] = A;
+		A = [0x3A];
+		C = 1;
+		A -= [0x6F] - !C;
+
+		if (N == 0)
+			return this.L7ECB59();
+
+		A ^= 0xFFFF;
+		A++;
+	}
+
+	public void L7ECB59()
+	{
+		C = 1;
+		A -= [0x1115] - !C;
+
+		if (N == 1)
+			return this.L7ECB62();
+
+		return this.L7ECB80();
+	}
+
+	public void L7ECB62()
+	{
+		A = [0xDBB8 + X];
+		C = 0;
+		A += [0x111F] + C;
+		[0x1115] = A;
+		A = [0x3C];
+		C = 1;
+		A -= [0x77] - !C;
+
+		if (N == 0)
+			return this.L7ECB77();
+
+		A ^= 0xFFFF;
+		A++;
+	}
+
+	public void L7ECB77()
+	{
+		C = 1;
+		A -= [0x1115] - !C;
+
+		if (N == 1)
+			return this.L7ECB84();
+
+		return this.L7ECB80();
+	}
+
+	public void L7ECB80()
+	{
+		A = Stack.Pop();
+		return this.L7ECF7C();
+	}
+
+	public void L7ECB84()
+	{
+		A = Stack.Pop();
+		X = A;
+	}
+
+	public void L7ECB86()
+	{
+		P |= 0x20;
+		A = [0x0002 + X];
+
+		if (Z == 1)
+			return this.L7ECBBB();
+
+		A--;
+		[0x00] = A;
+		Stack.Push(X);
+		X = Y;
+		A = [0x7E1CDC + X];
+
+		if (N == 0)
+			return this.L7ECB9F();
+
+		X = Stack.Pop();
+		A &= [0x00];
+
+		if (Z == 1)
+			return this.L7ECBBB();
+
+		return this.L7ECBA7();
+	}
+
+	public void L7ECB9F()
+	{
+		X = Stack.Pop();
+		A = [0x00];
+		A &= [0x1982];
+
+		if (Z == 1)
+			return this.L7ECBBB();
+
+	}
+
+	public void L7ECBA7()
+	{
+		P &= ~0x20;
+		A &= 0x007F;
+		[0x00] = A;
+		A = X;
+		X = [0x00];
+		C = 0;
+	}
+
+	public void L7ECBB2()
+	{
+		A += 0x0012 + C;
+		X--;
+
+		if (Z == 0)
+			return this.L7ECBB2();
+
+		X = A;
+		P |= 0x20;
+	}
+
+	public void L7ECBBB()
+	{
+		A = [0x0009 + X];
+		[0x1AC5] = A;
+		A &= 0x70;
+
+		if (Z == 0)
+			return this.L7ECBC8();
+
+		return this.L7ECE3C();
+	}
+
+	public void L7ECBC8()
+	{
+		temp = A & 0x10;
+
+		if (Z == 1)
+			return this.L7ECBCF();
+
+		return this.L7ECDB9();
+	}
+
+	public void L7ECBCF()
+	{
+		temp = A & 0x20;
+
+		if (Z == 1)
+			return this.L7ECBD6();
+
+		return this.L7ECD33();
+	}
+
+	public void L7ECBD6()
+	{
+		temp = A & 0x40;
+
+		if (Z == 1)
+			return this.L7ECBDD();
+
+		return this.L7ECCAD();
+	}
+
+	public void L7ECBDD()
+	{
+		A = [0x0003 + X];
+		[0x00] = A;
+		[0x02] = A;
+		A = [0x0005 + X];
+		[0x06] = A;
+		[0x08] = A;
+		A = [0x0014 + Y];
+
+		if (Z == 1)
+			return this.L7ECBF3();
+
+		this.L7ED2CE();
+	}
+
+	public void L7ECBF3()
+	{
+		A = [0x08];
+		[0x06] = A;
+		A = [0x0007 + X];
+		[0x93] = A;
+		[0x1997] = A;
+		A = [0x0012 + Y];
+
+		if (Z == 1)
+			return this.L7ECC07();
+
+		this.L7ED131();
+	}
+
+	public void L7ECC07()
+	{
+		A = [0x02];
+		[0x00] = A;
+		A = [0x08];
+		[0x06] = A;
+		A = [0x0013 + Y];
+
+		if (Z == 1)
+			return this.L7ECC17();
+
+		this.L7ECF91();
+	}
+
+	public void L7ECC17()
+	{
+		P &= ~0x20;
+		A = [0x08];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7ECC25();
+
+		A |= 0xFF00;
+		return this.L7ECC28();
+	}
+
+	public void L7ECC25()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7ECC28()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7ECC41();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7ECC38()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7ECC38();
+
+		Y = [0x1AC7];
+		return this.L7ECC43();
+	}
+
+	public void L7ECC41()
+	{
+		A = [0x00];
+	}
+
+	public void L7ECC43()
+	{
+		C = 0;
+		A += [0x1DBF] + C;
+		[0x3C] = A;
+		A = [0x1997];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7ECC56();
+
+		A |= 0xFF00;
+		return this.L7ECC59();
+	}
+
+	public void L7ECC56()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7ECC59()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7ECC72();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7ECC69()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7ECC69();
+
+		Y = [0x1AC7];
+		return this.L7ECC74();
+	}
+
+	public void L7ECC72()
+	{
+		A = [0x00];
+	}
+
+	public void L7ECC74()
+	{
+		C = 0;
+		A += [0x1DC1] + C;
+		[0x3E] = A;
+		A = [0x02];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7ECC86();
+
+		A |= 0xFF00;
+		return this.L7ECC89();
+	}
+
+	public void L7ECC86()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7ECC89()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7ECCA2();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7ECC99()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7ECC99();
+
+		Y = [0x1AC7];
+		return this.L7ECCA4();
+	}
+
+	public void L7ECCA2()
+	{
+		A = [0x00];
+	}
+
+	public void L7ECCA4()
+	{
+		C = 0;
+		A += [0x1DBD] + C;
+		[0x3A] = A;
+		return this.L7ECE59();
+	}
+
+	public void L7ECCAD()
+	{
+		A = [0x0005 + X];
+		[0x06] = A;
+		[0x08] = A;
+		A = [0x0007 + X];
+		[0x93] = A;
+		[0x1997] = A;
+		A = [0x0012 + Y];
+
+		if (Z == 1)
+			return this.L7ECCC4();
+
+		this.L7ED131();
+	}
+
+	public void L7ECCC4()
+	{
+		P &= ~0x20;
+		A = [0x08];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7ECCD2();
+
+		A |= 0xFF00;
+		return this.L7ECCD5();
+	}
+
+	public void L7ECCD2()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7ECCD5()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7ECCEE();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7ECCE5()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7ECCE5();
+
+		Y = [0x1AC7];
+		return this.L7ECCF0();
+	}
+
+	public void L7ECCEE()
+	{
+		A = [0x00];
+	}
+
+	public void L7ECCF0()
+	{
+		C = 0;
+		A += [0x1DBF] + C;
+		[0x3C] = A;
+		A = [0x1997];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7ECD03();
+
+		A |= 0xFF00;
+		return this.L7ECD06();
+	}
+
+	public void L7ECD03()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7ECD06()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7ECD1F();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7ECD16()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7ECD16();
+
+		Y = [0x1AC7];
+		return this.L7ECD21();
+	}
+
+	public void L7ECD1F()
+	{
+		A = [0x00];
+	}
+
+	public void L7ECD21()
+	{
+		C = 0;
+		A += [0x1DC1] + C;
+		[0x3E] = A;
+		A = [0x1DBD];
+		C = 0;
+		A += [0x0003 + X] + C;
+		[0x3A] = A;
+		return this.L7ECE59();
+	}
+
+	public void L7ECD33()
+	{
+		A = [0x0003 + X];
+		[0x00] = A;
+		[0x02] = A;
+		A = [0x0007 + X];
+		[0x93] = A;
+		[0x1997] = A;
+		A = [0x0013 + Y];
+
+		if (Z == 1)
+			return this.L7ECD4A();
+
+		this.L7ECF91();
+	}
+
+	public void L7ECD4A()
+	{
+		P &= ~0x20;
+		A = [0x02];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7ECD58();
+
+		A |= 0xFF00;
+		return this.L7ECD5B();
+	}
+
+	public void L7ECD58()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7ECD5B()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7ECD74();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7ECD6B()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7ECD6B();
+
+		Y = [0x1AC7];
+		return this.L7ECD76();
+	}
+
+	public void L7ECD74()
+	{
+		A = [0x00];
+	}
+
+	public void L7ECD76()
+	{
+		C = 0;
+		A += [0x1DBD] + C;
+		[0x3A] = A;
+		A = [0x1997];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7ECD89();
+
+		A |= 0xFF00;
+		return this.L7ECD8C();
+	}
+
+	public void L7ECD89()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7ECD8C()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7ECDA5();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7ECD9C()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7ECD9C();
+
+		Y = [0x1AC7];
+		return this.L7ECDA7();
+	}
+
+	public void L7ECDA5()
+	{
+		A = [0x00];
+	}
+
+	public void L7ECDA7()
+	{
+		C = 0;
+		A += [0x1DC1] + C;
+		[0x3E] = A;
+		A = [0x1DBF];
+		C = 0;
+		A += [0x0005 + X] + C;
+		[0x3C] = A;
+		return this.L7ECE59();
+	}
+
+	public void L7ECDB9()
+	{
+		A = [0x0003 + X];
+		[0x00] = A;
+		[0x02] = A;
+		A = [0x0005 + X];
+		[0x06] = A;
+		[0x08] = A;
+		A = [0x0014 + Y];
+
+		if (Z == 1)
+			return this.L7ECDCF();
+
+		this.L7ED2CE();
+	}
+
+	public void L7ECDCF()
+	{
+		P &= ~0x20;
+		A = [0x02];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7ECDDD();
+
+		A |= 0xFF00;
+		return this.L7ECDE0();
+	}
+
+	public void L7ECDDD()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7ECDE0()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7ECDF9();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7ECDF0()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7ECDF0();
+
+		Y = [0x1AC7];
+		return this.L7ECDFB();
+	}
+
+	public void L7ECDF9()
+	{
+		A = [0x00];
+	}
+
+	public void L7ECDFB()
+	{
+		C = 0;
+		A += [0x1DBD] + C;
+		[0x3A] = A;
+		A = [0x08];
+		temp = A & 0x0080;
+
+		if (Z == 1)
+			return this.L7ECE0D();
+
+		A |= 0xFF00;
+		return this.L7ECE10();
+	}
+
+	public void L7ECE0D()
+	{
+		A &= 0x00FF;
+	}
+
+	public void L7ECE10()
+	{
+		[0x00] = A;
+		A = [0x1AC5];
+		A &= 0x000F;
+
+		if (Z == 1)
+			return this.L7ECE29();
+
+		[0x1AC7] = Y;
+		Y = A;
+		A = [0x00];
+	}
+
+	public void L7ECE20()
+	{
+		A <<= 1;
+		Y--;
+
+		if (Z == 0)
+			return this.L7ECE20();
+
+		Y = [0x1AC7];
+		return this.L7ECE2B();
+	}
+
+	public void L7ECE29()
+	{
+		A = [0x00];
+	}
+
+	public void L7ECE2B()
+	{
+		C = 0;
+		A += [0x1DBF] + C;
+		[0x3C] = A;
+		A = [0x1DC1];
+		C = 0;
+		A += [0x0007 + X] + C;
+		[0x3E] = A;
+		return this.L7ECE59();
+	}
+
+	public void L7ECE3C()
+	{
+		P &= ~0x20;
+		A = [0x1DBD];
+		C = 0;
+		A += [0x0003 + X] + C;
+		[0x3A] = A;
+		A = [0x1DBF];
+		C = 0;
+		A += [0x0005 + X] + C;
+		[0x3C] = A;
+		A = [0x1DC1];
+		C = 0;
+		A += [0x0007 + X] + C;
+		[0x3E] = A;
+	}
+
+	public void L7ECE59()
+	{
+		A = [0x000E + X];
+		C = 0;
+		A += [0x1121] + C;
+		[0x1115] = A;
+		A = [0x3E];
+		C = 1;
+		A -= [0x71] - !C;
+
+		if (N == 0)
+			return this.L7ECE6E();
+
+		A ^= 0xFFFF;
+		A++;
+	}
+
+	public void L7ECE6E()
+	{
+		C = 1;
+		A -= [0x1115] - !C;
+
+		if (N == 1)
+			return this.L7ECE77();
+
+		return this.L7ECEC0();
+	}
+
+	public void L7ECE77()
+	{
+		A = [0x000A + X];
+		C = 0;
+		A += [0x111D] + C;
+		[0x1115] = A;
+		A = [0x3A];
+		C = 1;
+		A -= [0x6F] - !C;
+
+		if (N == 0)
+			return this.L7ECE8C();
+
+		A ^= 0xFFFF;
+		A++;
+	}
+
+	public void L7ECE8C()
+	{
+		C = 1;
+		A -= [0x1115] - !C;
+
+		if (N == 1)
+			return this.L7ECE95();
+
+		return this.L7ECEC0();
+	}
+
+	public void L7ECE95()
+	{
+		A = [0x000C + X];
+		C = 0;
+		A += [0x111F] + C;
+		[0x1115] = A;
+		A = [0x3C];
+		C = 1;
+		A -= [0x77] - !C;
+
+		if (N == 0)
+			return this.L7ECEAA();
+
+		A ^= 0xFFFF;
+		A++;
+	}
+
+	public void L7ECEAA()
+	{
+		C = 1;
+		A -= [0x1115] - !C;
+
+		if (N == 1)
+			return this.L7ECEB3();
+
+		return this.L7ECEC0();
+	}
+
+	public void L7ECEB3()
+	{
+		P |= 0x20;
+		A = [0x0010 + X];
+		A |= [0x1DC3];
+		[0x1DC3] = A;
+		P &= ~0x20;
+	}
+
+	public void L7ECEC0()
+	{
+		A = [0x0000 + X];
+		X = A;
+
+		if (Z == 1)
+			return this.L7ECEC9();
+
+		return this.L7ECB86();
+	}
+
+	public void L7ECEC9()
+	{
+		P |= 0x20;
+		A = [0x1DC3];
+
+		if (Z == 1)
+			return this.L7ECEFB();
+
+		Stack.Push(X);
+		X = [0x79];
+		A = [0x001D + X];
+		A |= 0x08;
+		[0x001D + X] = A;
+		[0x1B + X] = X;
+		A = [0x001D + Y];
+		A |= 0x08;
+		[0x001D + Y] = A;
+		[0x1B + Y] = Y;
+		A = [0x0033 + Y];
+		A |= [0x1DC3];
+		[0x0033 + Y] = A;
+		A = [0x33 + X];
+		A |= [0x1DC4];
+		[0x33 + X] = A;
+		X = Stack.Pop();
+		return this.L7ECF8E();
+	}
+
+	public void L7ECEFB()
+	{
+		return this.L7ECF7C();
+	}
+
+	public void L7ECEFE()
+	{
+		A = [0xDBBA + X];
+		C = 0;
+		A += [0x1121] + C;
+		[0x1115] = A;
+		A = [0x3E];
+		C = 1;
+		A -= [0x71] - !C;
+
+		if (N == 0)
+			return this.L7ECF13();
+
+		A ^= 0xFFFF;
+		A++;
+	}
+
+	public void L7ECF13()
+	{
+		C = 1;
+		A -= [0x1115] - !C;
+
+		if (N == 1)
+			return this.L7ECF1C();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECF1C()
+	{
+		A = [0xDBB6 + X];
+		C = 0;
+		A += [0x111D] + C;
+		[0x1115] = A;
+		A = [0x3A];
+		C = 1;
+		A -= [0x6F] - !C;
+
+		if (N == 0)
+			return this.L7ECF31();
+
+		A ^= 0xFFFF;
+		A++;
+	}
+
+	public void L7ECF31()
+	{
+		C = 1;
+		A -= [0x1115] - !C;
+
+		if (N == 1)
+			return this.L7ECF3A();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECF3A()
+	{
+		A = [0xDBB8 + X];
+		C = 0;
+		A += [0x111F] + C;
+		[0x1115] = A;
+		A = [0x3C];
+		C = 1;
+		A -= [0x77] - !C;
+
+		if (N == 0)
+			return this.L7ECF4F();
+
+		A ^= 0xFFFF;
+		A++;
+	}
+
+	public void L7ECF4F()
+	{
+		C = 1;
+		A -= [0x1115] - !C;
+
+		if (N == 1)
+			return this.L7ECF58();
+
+		return this.L7ECF7C();
+	}
+
+	public void L7ECF58()
+	{
+		Stack.Push(X);
+		X = [0x79];
+		P |= 0x20;
+		A = [0x001D + X];
+		A |= 0x08;
+		[0x001D + X] = A;
+		[0x1B + X] = X;
+		A = [0x001D + Y];
+		A |= 0x08;
+		[0x001D + Y] = A;
+		[0x1B + Y] = Y;
+		A = [0x33 + X];
+		A |= [0x1DC4];
+		[0x33 + X] = A;
+		X = Stack.Pop();
+		return this.L7ECF8E();
+	}
+
+	public void L7ECF7C()
+	{
+		P &= ~0x20;
+		A = [0x1DCA];
+		C = 0;
+		A += 0x000A + C;
+		Y = A;
+		[0x1DC8]--;
+
+		if (Z == 1)
+			return this.L7ECF8E();
+
+		return this.L7ECA69();
+	}
+
+	public void L7ECF8E()
+	{
+		P |= 0x20;
+		return;
+	}
+
+	public void L7ECF91()
+	{
+		Stack.Push(Y);
+		Stack.Push(X);
+		Stack.Push(P);
+		P |= 0x10;
+		A ^= 0xFF;
+		A++;
+		X = A;
+		A = [0x7ED4A6 + X];
+		[0x19C9] = A;
+		A = [0x7ED466 + X];
+		[0x19C8] = A;
+		A = [0x00];
+
+		if (N == 1)
+			return this.L7ECFC5();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ECFEC();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ECFFC();
+	}
+
+	public void L7ECFC5()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ECFDA();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ECFF5();
+	}
+
+	public void L7ECFDA()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ECFFC();
+	}
+
+	public void L7ECFEC()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ECFF5()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ECFFC()
+	{
+		X = A;
+		[0x02] = X;
+		A = [0x93];
+
+		if (N == 1)
+			return this.L7ED01C();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED043();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED053();
+	}
+
+	public void L7ED01C()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED031();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED04C();
+	}
+
+	public void L7ED031()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED053();
+	}
+
+	public void L7ED043()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED04C()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED053()
+	{
+		X = A;
+		A = X;
+		C = 0;
+		A += [0x02] + C;
+		[0x02] = A;
+		temp = A & 0x80;
+
+		if (Z == 1)
+			return this.L7ED064();
+
+		A = 0xFF;
+		[0x03] = A;
+		return this.L7ED066();
+	}
+
+	public void L7ED064()
+	{
+		[0x03] = 0;
+	}
+
+	public void L7ED066()
+	{
+		A = [0x00];
+
+		if (N == 1)
+			return this.L7ED083();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED0AA();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED0BA();
+	}
+
+	public void L7ED083()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED098();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED0B3();
+	}
+
+	public void L7ED098()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED0BA();
+	}
+
+	public void L7ED0AA()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED0B3()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED0BA()
+	{
+		X = A;
+		A = X;
+		A ^= 0xFF;
+		A++;
+		[0x1997] = A;
+		A = [0x93];
+
+		if (N == 1)
+			return this.L7ED0DF();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ED106();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED116();
+	}
+
+	public void L7ED0DF()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ED0F4();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED10F();
+	}
+
+	public void L7ED0F4()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED116();
+	}
+
+	public void L7ED106()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED10F()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED116()
+	{
+		X = A;
+		A = X;
+		C = 0;
+		A += [0x1997] + C;
+		[0x1997] = A;
+		temp = A & 0x80;
+
+		if (Z == 1)
+			return this.L7ED12A_Skip();
+
+		A = 0xFF;
+		[0x1998] = A;
+		return this.L7ED12D_Done();
+	}
+
+	public void L7ED12A_Skip()
+	{
+		[0x1998] = 0;
+	}
+
+	public void L7ED12D_Done()
+	{
+		P = Stack.Pop();
+		X = Stack.Pop();
+		Y = Stack.Pop();
+		return;
+	}
+
+	public void L7ED131()
+	{
+		Stack.Push(X);
+		Stack.Push(Y);
+		Stack.Push(P);
+		P |= 0x10;
+		X = A;
+		A = [0x7ED4A6 + X];
+		[0x19C9] = A;
+		A = [0x7ED466 + X];
+		[0x19C8] = A;
+		A = [0x06];
+
+		if (N == 1)
+			return this.L7ED162_Skip();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ED189_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED199_Skip();
+	}
+
+	public void L7ED162_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ED177_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED192_Skip();
+	}
+
+	public void L7ED177_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED199_Skip();
+	}
+
+	public void L7ED189_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED192_Skip()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED199_Skip()
+	{
+		X = A;
+		[0x08] = X;
+		A = [0x93];
+
+		if (N == 1)
+			return this.L7ED1B9_Skip();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED1E0_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED1F0_Skip();
+	}
+
+	public void L7ED1B9_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED1CE_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED1E9_Skip();
+	}
+
+	public void L7ED1CE_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED1F0_Skip();
+	}
+
+	public void L7ED1E0_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED1E9_Skip()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED1F0_Skip()
+	{
+		X = A;
+		A = X;
+		C = 0;
+		A += [0x08] + C;
+		[0x08] = A;
+		temp = A & 0x80;
+
+		if (Z == 1)
+			return this.L7ED201_Skip();
+
+		A = 0xFF;
+		[0x09] = A;
+		return this.L7ED203_Skip();
+	}
+
+	public void L7ED201_Skip()
+	{
+		[0x09] = 0;
+	}
+
+	public void L7ED203_Skip()
+	{
+		A = [0x06];
+
+		if (N == 1)
+			return this.L7ED220_Skip();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED247_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED257_Skip();
+	}
+
+	public void L7ED220_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED235_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED250_Skip();
+	}
+
+	public void L7ED235_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED257_Skip();
+	}
+
+	public void L7ED247_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED250_Skip()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED257_Skip()
+	{
+		X = A;
+		A = X;
+		A ^= 0xFF;
+		A++;
+		[0x1997] = A;
+		A = [0x93];
+
+		if (N == 1)
+			return this.L7ED27C_Skip();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ED2A3_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED2B3_Skip();
+	}
+
+	public void L7ED27C_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ED291_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED2AC_Skip();
+	}
+
+	public void L7ED291_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED2B3_Skip();
+	}
+
+	public void L7ED2A3_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED2AC_Skip()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED2B3_Skip()
+	{
+		X = A;
+		A = X;
+		C = 0;
+		A += [0x1997] + C;
+		[0x1997] = A;
+		temp = A & 0x80;
+
+		if (Z == 1)
+			return this.L7ED2C7_Skip();
+
+		A = 0xFF;
+		[0x1998] = A;
+		return this.L7ED2CA_Done();
+	}
+
+	public void L7ED2C7_Skip()
+	{
+		[0x1998] = 0;
+	}
+
+	public void L7ED2CA_Done()
+	{
+		P = Stack.Pop();
+		Y = Stack.Pop();
+		X = Stack.Pop();
+		return;
+	}
+
+	public void L7ED2CE()
+	{
+		Stack.Push(Y);
+		Stack.Push(X);
+		Stack.Push(P);
+		P |= 0x10;
+		X = A;
+		A = [0x7ED4A6 + X];
+		[0x19C9] = A;
+		A = [0x7ED466 + X];
+		[0x19C8] = A;
+		A = [0x00];
+
+		if (N == 1)
+			return this.L7ED2FF_Skip();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ED326_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED336_Skip();
+	}
+
+	public void L7ED2FF_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ED314_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED32F_Skip();
+	}
+
+	public void L7ED314_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED336_Skip();
+	}
+
+	public void L7ED326_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED32F_Skip()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED336_Skip()
+	{
+		X = A;
+		[0x02] = X;
+		A = [0x06];
+
+		if (N == 1)
+			return this.L7ED356_Skip();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED37D_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED38D_Skip();
+	}
+
+	public void L7ED356_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED36B_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED386_Skip();
+	}
+
+	public void L7ED36B_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED38D_Skip();
+	}
+
+	public void L7ED37D_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED386_Skip()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED38D_Skip()
+	{
+		X = A;
+		A = X;
+		C = 0;
+		A += [0x02] + C;
+		[0x02] = A;
+		temp = A & 0x80;
+
+		if (Z == 1)
+			return this.L7ED39E_Skip();
+
+		A = 0xFF;
+		[0x03] = A;
+		return this.L7ED3A0_Skip();
+	}
+
+	public void L7ED39E_Skip()
+	{
+		[0x03] = 0;
+	}
+
+	public void L7ED3A0_Skip()
+	{
+		A = [0x00];
+
+		if (N == 1)
+			return this.L7ED3BD_Skip();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED3E4_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED3F4_Skip();
+	}
+
+	public void L7ED3BD_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C8];
+
+		if (N == 1)
+			return this.L7ED3D2_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED3ED_Skip();
+	}
+
+	public void L7ED3D2_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED3F4_Skip();
+	}
+
+	public void L7ED3E4_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED3ED_Skip()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED3F4_Skip()
+	{
+		X = A;
+		A = X;
+		A ^= 0xFF;
+		A++;
+		[0x08] = A;
+		A = [0x06];
+
+		if (N == 1)
+			return this.L7ED418_Skip();
+
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ED43F_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED44F_Skip();
+	}
+
+	public void L7ED418_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		A <<= 1;
+		[0x004202] = A;
+		A = [0x19C9];
+
+		if (N == 1)
+			return this.L7ED42D_Skip();
+
+		[0x004203] = A;
+		Cpu.NOP();
+		return this.L7ED448_Skip();
+	}
+
+	public void L7ED42D_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		Cpu.NOP();
+		A = [0x004217];
+		return this.L7ED44F_Skip();
+	}
+
+	public void L7ED43F_Skip()
+	{
+		A ^= 0xFF;
+		A++;
+		[0x004203] = A;
+		Cpu.NOP();
+		Cpu.NOP();
+	}
+
+	public void L7ED448_Skip()
+	{
+		A = 0x00;
+		C = 1;
+		A -= [0x004217] - !C;
+	}
+
+	public void L7ED44F_Skip()
+	{
+		X = A;
+		A = X;
+		C = 0;
+		A += [0x08] + C;
+		[0x08] = A;
+		temp = A & 0x80;
+
+		if (Z == 1)
+			return this.L7ED460_Skip();
+
+		A = 0xFF;
+		[0x09] = A;
+		return this.L7ED462_Done();
+	}
+
+	public void L7ED460_Skip()
+	{
+		[0x09] = 0;
+	}
+
+	public void L7ED462_Done()
+	{
+		P = Stack.Pop();
+		X = Stack.Pop();
+		Y = Stack.Pop();
+		return;
+	}
+
+	public void L7ED7E8_ExecuteSuperFX()
+	{
+		[0x3034] = A;
+		A = [0x1923];
+		A |= 0x18;
+		[0x303A] = A;
+		[0x301E] = X;
+	}
+
+	public void L7ED7F6_Loop()
+	{
+		A = [0x3030];
+		A &= 0x20;
+
+		if (Z == 0)
+			return this.L7ED7F6_Loop();
+
+		A = [0x1923];
+		[0x303A] = A;
+		return;
+	}
 }
