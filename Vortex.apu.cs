@@ -79,8 +79,8 @@ public class ApuProgram
 		[0xF4] = 0x02;
 		[0xF5] = 0x00;
 
-		// Value06 = Value06DF;
-		A = [0x06DF + X];
+		// Value06 = Value06DF_WriteAddress;
+		A = [0x06DF];
 		Y = [0x06E0];
 		[0x06] = YA;
 
@@ -569,7 +569,7 @@ public class ApuProgram
 
 	public void L04A8()
 	{
-		A = [0x1439 + X];
+		A = [0x1439];
 		A ^= 0x01;
 		[0x1439] = A;
 
@@ -1067,7 +1067,7 @@ public class ApuProgram
 		C = 1; temp = Y - [0xF4];
 
 		if (Z == 0)
-			return this.L06A2();
+			return this.L06A2_Skip();
 
 		// Word7A_WriteAddress[Y++] = I/O Port 1;
 		A = [0xF5];
@@ -1084,7 +1084,7 @@ public class ApuProgram
 		return this.L0691_Loop();
 	}
 
-	public void L06A2()
+	public void L06A2_Skip()
 	{
 		// if (Y > I/O Port) Loop;
 		if (N == 0)
@@ -1147,7 +1147,7 @@ public class ApuProgram
 		A = 0x3C;
 		[0xF2] = YA;
 
-		// Value06DF = Word7A_WriteAddress
+		// Value06DF_WriteAddress = Word7A_WriteAddress
 		YA = [0x7A];
 		[0x06DF] = A;
 		[0x06E0] = Y;
@@ -2903,7 +2903,7 @@ public class ApuProgram
 	public void L11D7_Loop()
 	{
 		Y = 0x51;
-		A = [0x1439 + X];
+		A = [0x1439];
 
 		if (Z == 0)
 			return this.L11F2_Skip();
@@ -2926,7 +2926,7 @@ public class ApuProgram
 		A = [0x01C1 + X];
 		YA = Y * A;
 		C = 0;
-		A = [0x1439 + X];
+		A = [0x1439];
 
 		if (Z == 0)
 			return this.L1204_Skip();
