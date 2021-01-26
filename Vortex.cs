@@ -2450,7 +2450,7 @@ public class SnesRom
 		return this.L029367_LoadAPU();
 	}
 
-	public void L029337()
+	public void L029337_Loop()
 	{
 		[0x55]++;
 		Y = 0x0000;
@@ -2476,7 +2476,7 @@ public class SnesRom
 		Y++;
 
 		if (N == 1)
-			return this.L029337();
+			return this.L029337_Loop();
 
 		A = (A >> 8) | (A << 8);
 	}
@@ -2502,20 +2502,20 @@ public class SnesRom
 			return this.L029347_Loop();
 	}
 
-	public void L02935E()
+	public void L02935E_Wait()
 	{
 		C = 1; temp = A - [0x2140];
 
 		if (Z == 0)
-			return this.L02935E();
+			return this.L02935E_Wait();
 	}
 
-	public void L029363()
+	public void L029363_Loop()
 	{
 		A += 0x03 + C;
 
 		if (Z == 1)
-			return this.L029363();
+			return this.L029363_Loop();
 	}
 
 	public void L029367_LoadAPU()

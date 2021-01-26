@@ -38,13 +38,13 @@ public class ApuProgram
 		C = 1; temp = X - 0xB0;
 
 		if (C == 1)
-			return this.L02CC();
+			return this.L02CC_Skip();
 
 		// Clear RAM 0x02B0 - 0x02FF
 		[0x0200 + X] = A;
 	}
 
-	public void L02CC()
+	public void L02CC_Skip()
 	{
 		X++;
 
@@ -62,7 +62,7 @@ public class ApuProgram
 
 		[0x31] |= 0x20;
 
-		// WordF2 = 0x155D;
+		// Dsp.Directory = 0x1500;
 		A = 0x15;
 		Y = 0x5D;
 		[0xF2] = Y;
@@ -79,20 +79,23 @@ public class ApuProgram
 		[0xF4] = 0x02;
 		[0xF5] = 0x00;
 
-		// A = Table06DF[X];
+		// Value06 = Value06DF;
 		A = [0x06DF + X];
 		Y = [0x06E0];
 		[0x06] = YA;
+
+		// Value2F = 2;
 		[0x2F] = 0x02;
 	}
 
-	public void L0301_Loop()
+	public void L0301_MainLoop()
 	{
 		Y = 0x0A;
 	}
 
 	public void L0303_Loop()
 	{
+		// Update DSP Registers
 		C = 1; temp = Y - 0x05;
 
 		if (Z == 1)
@@ -104,17 +107,17 @@ public class ApuProgram
 		C = 1; temp = [0x36] - [0x35];
 
 		if (Z == 0)
-			return this.L031D();
+			return this.L031D_Skip();
 	}
 
 	public void L030E()
 	{
 		if (([0x35] & 0x80) != 0)
-			return this.L031D();
+			return this.L031D_Skip();
 	}
 
 	public void L0311()
-	{
+	{	
 		// ValueF2_DSPAddress = Table038E[Y];
 		A = [0x038E + Y];
 		[0xF2] = A;
@@ -128,7 +131,7 @@ public class ApuProgram
 		[0xF3] = A;
 	}
 
-	public void L031D()
+	public void L031D_Skip()
 	{
 		Y--; if (Z == 0)
 			return this.L0303_Loop();
@@ -222,7 +225,7 @@ public class ApuProgram
 
 		this.L09CF();
 
-		return this.L0301_Loop();
+		return this.L0301_MainLoop();
 	}
 
 	public void L036B()
@@ -230,7 +233,7 @@ public class ApuProgram
 		A = [0x05];
 
 		if (Z == 1)
-			return this.L0301_Loop();
+			return this.L0301_MainLoop();
 
 		X = 0x00;
 		[0x2B] = 0x01;
@@ -268,7 +271,7 @@ public class ApuProgram
 		if (Z == 0)
 			return this.L0374_Loop();
 
-		return this.L0301_Loop();
+		return this.L0301_MainLoop();
 	}
 
 	public byte[] L038E = new byte[]
@@ -315,7 +318,7 @@ public class ApuProgram
 		Y = [0x71];
 
 		if (Z == 1)
-			return this.L0423();
+			return this.L0423_Done();
 	}
 
 	public void L03AE()
@@ -343,45 +346,45 @@ public class ApuProgram
 			return this.L040A();
 	}
 
-	public void L03C5()
+	public void L03C5_Loop()
 	{
 		A = [0x61 + X];
 		[0x61 + X]++;
 
 		if (Z == 0)
-			return this.L03CD();
+			return this.L03CD_Skip();
 
 		[0x62 + X]++;
 	}
 
-	public void L03CD()
+	public void L03CD_Skip()
 	{
 		Y = A;
 
 		if (Z == 0)
-			return this.L03E7();
+			return this.L03E7_Skip();
 
 		A = [0x8F + X];
 
 		if (Z == 1)
-			return this.L0424();
+			return this.L0424_Skip();
 
 		this.L0E78();
 
 		[0x8F]--;
 
 		if (Z == 0)
-			return this.L03C5();
+			return this.L03C5_Loop();
 
 		A = [0x0160 + X];
 		[0x61 + X] = A;
 		A = [0x0161 + X];
 		[0x62 + X] = A;
 
-		return this.L03C5();
+		return this.L03C5_Loop();
 	}
 
-	public void L03E7()
+	public void L03E7_Skip()
 	{
 		if (N == 1)
 			return this.L03F5();
@@ -410,18 +413,18 @@ public class ApuProgram
 
 		this.L044D();
 
-		return this.L03C5();
+		return this.L03C5_Loop();
 	}
 
 	public void L03FE()
 	{
-		this.L0748();
+		this.L0748_HandleNote();
 
 		A = [0x0130 + X];
 		[0x7F + X] = A;
 		[0x80 + X] = A;
 
-		return this.L040D();
+		return this.L040D_Skip();
 	}
 
 	public void L040A()
@@ -429,7 +432,7 @@ public class ApuProgram
 		this.L123E();
 	}
 
-	public void L040D()
+	public void L040D_Skip()
 	{
 		this.L102B();
 		this.L10EA();
@@ -442,12 +445,12 @@ public class ApuProgram
 		C = 1; temp = A - 0x02;
 
 		if (Z == 0)
-			return this.L041F();
+			return this.L041F_Skip();
 
 		this.L0615_FadeVolume();
 	}
 
-	public void L041F()
+	public void L041F_Skip()
 	{
 		A = Stack.Pop();
 		Y = A;
@@ -456,12 +459,12 @@ public class ApuProgram
 			return this.L03AE();
 	}
 
-	public void L0423()
+	public void L0423_Done()
 	{
 		return;
 	}
 
-	public void L0424()
+	public void L0424_Skip()
 	{
 		A = 0xFF;
 		[0x0271 + X] = A;
@@ -491,23 +494,23 @@ public class ApuProgram
 		A = [0x0B0A + Y];
 
 		if (Z == 1)
-			return this.L0468();
+			return this.L0468_Done();
 
 		A = [0x61 + X];
 		[0x61 + X]++;
 
 		if (Z == 0)
-			return this.L0467();
+			return this.L0467_Done();
 
 		[0x62 + X]++;
 	}
 
-	public void L0467()
+	public void L0467_Done()
 	{
 		Y = A;
 	}
 
-	public void L0468()
+	public void L0468_Done()
 	{
 		return;
 	}
@@ -527,19 +530,19 @@ public class ApuProgram
 
 	public byte[] L0477 = new byte[]
 	{
-		0x59, 0x06,
-		0x87, 0x04,
-		0x98, 0x04,
-		0xB1, 0x05,
-		0xD8, 0x04,
-		0xE0, 0x04,
-		0xA8, 0x04,
-		0xE5, 0x05
+		0x59, 0x06,		// L0659
+		0x87, 0x04,		// L0487
+		0x98, 0x04,		// L0498
+		0xB1, 0x05,		// L05B1
+		0xD8, 0x04,		// L04D8
+		0xE0, 0x04,		// L04E0
+		0xA8, 0x04,		// L04A8
+		0xE5, 0x05		// L05E5
 	}
 
 	public void L0487()
 	{
-		[0x00] = [0x05];
+		[0x05] = [0x00];
 		A = 0xFF;
 		[0x04] = A;
 		A = [0x2C];
@@ -577,7 +580,7 @@ public class ApuProgram
 		A |= [0x4C];
 
 		if (Z == 1)
-			return this.L04D7();
+			return this.L04D7_Done();
 
 		A = [0x4A];
 
@@ -616,7 +619,7 @@ public class ApuProgram
 		[0x46] = 0xFF;
 	}
 
-	public void L04D7()
+	public void L04D7_Done()
 	{
 		return;
 	}
@@ -646,7 +649,7 @@ public class ApuProgram
 		if (Z == 1)
 			return this.L04F1();
 
-		return this.L05B0();
+		return this.L05B0_Done();
 	}
 
 	public void L04F1()
@@ -791,7 +794,7 @@ public class ApuProgram
 		A = [0x10];
 
 		if (Z == 1)
-			return this.L05B0();
+			return this.L05B0_Done();
 
 		[0x10 + X]--;
 		X++;
@@ -830,10 +833,10 @@ public class ApuProgram
 		A += [0x09] + C;
 		[0x10] = A;
 		Y = 0x00;
-		A = [0x0F + Y];
+		A = [[0x0F] + Y];
 		[0x61 + X] = A;
 		Y++;
-		A = [0x0F + Y];
+		A = [[0x0F] + Y];
 		[0x62 + X] = A;
 
 		// A = Table08BC_ChannelTable[X];
@@ -849,7 +852,7 @@ public class ApuProgram
 		[0x28] = A;
 	}
 
-	public void L05B0()
+	public void L05B0_Done()
 	{
 		return;
 	}
@@ -860,14 +863,14 @@ public class ApuProgram
 		A = [0x19 + X];
 
 		if (Z == 0)
-			return this.L05D4();
+			return this.L05D4_Done();
 
 		// A = Table08BC_ChannelTable[X];
 		A = [0x08BC + X];
 		A &= [0xE8];
 
 		if (Z == 1)
-			return this.L05D4();
+			return this.L05D4_Done();
 
 		A = [0x0281 + X];
 		Y = A;
@@ -880,10 +883,10 @@ public class ApuProgram
 		Cpu.ROR([0xD0 + X]);
 		[0x0280 + X] = A;
 
-		this.L0748();
+		this.L0748_HandleNote();
 	}
 
-	public void L05D4()
+	public void L05D4_Done()
 	{
 		return;
 	}
@@ -977,20 +980,20 @@ public class ApuProgram
 		C = 1; temp = A - [0xE7];
 
 		if (Z == 0)
-			return this.L062C();
+			return this.L062C_Done();
 
 		// ValueDF = 0;
 		[0xDF] = 0x00;
 	}
 
-	public void L062C()
+	public void L062C_Done()
 	{
 		return;
 	}
 
 	public void L0659()
 	{
-		[0x00] = [0xE0];
+		[0xE0] = [0x00];
 		[0x2B] = 0x01;
 		X = 0x00;
 	}
@@ -1002,7 +1005,7 @@ public class ApuProgram
 		if (Z == 0)
 			return this.L0668();
 
-		[0x2B] |= [0xE1];
+		[0xE1] |= [0x2B];
 	}
 
 	public void L0668()
@@ -1049,24 +1052,28 @@ public class ApuProgram
 		return this.L06A8();
 	}
 
-	public void L068D_Wait()
+	public void L068D_ReadData()
 	{
+		// while (I/O Port 0 != 0) Wait;
 		Y = [0xF4];
 
 		if (Z == 0)
-			return this.L068D_Wait();
+			return this.L068D_ReadData();
 	}
 
 	public void L0691_Loop()
 	{
+		// while (I/O Port 0 == Y) ReadByte;
 		C = 1; temp = Y - [0xF4];
 
 		if (Z == 0)
 			return this.L06A2();
 
+		// Word7A_WriteAddress[Y++] = I/O Port 1;
 		A = [0xF5];
 		[0xF4] = Y;
-		[[0x7A] +Y] = A;
+
+		[[0x7A] + Y] = A;
 		Y++;
 
 		if (Z == 0)
@@ -1079,6 +1086,7 @@ public class ApuProgram
 
 	public void L06A2()
 	{
+		// if (Y > I/O Port) Loop;
 		if (N == 0)
 			return this.L0691_Loop();
 
@@ -1090,19 +1098,22 @@ public class ApuProgram
 
 	public void L06A8()
 	{
+		// Word7A_WriteAddress = I/O Port 2
 		YA = [0xF6];
 		[0x7A] = YA;
+
 		YA = [0xF4];
 		[0xF4] = A;
 		A = Y;
 		X = A;
 
 		if (Z == 0)
-			return this.L068D_Wait();
+			return this.L068D_ReadData();
 	}
 
 	public void L06B4_Wait()
 	{
+		// while(I/O Port 0 != 0) Wait;
 		YA = [0xF4];
 
 		if (Z == 0)
@@ -1114,6 +1125,7 @@ public class ApuProgram
 
 	public void L06BC_Wait()
 	{
+		// while(I/O Port 2 != 0) Wait;
 		YA = [0xF6];
 
 		if (Z == 0)
@@ -1135,12 +1147,15 @@ public class ApuProgram
 		A = 0x3C;
 		[0xF2] = YA;
 
+		// Value06DF = Word7A_WriteAddress
 		YA = [0x7A];
 		[0x06DF] = A;
 		[0x06E0] = Y;
 
 		return this.L02B5_Reset();
 	}
+
+	public byte[] Value06DF = new byte[2];
 
 	public void L0718_HandleTimer2Events()
 	{
@@ -1177,7 +1192,7 @@ public class ApuProgram
 	{
 		Y = A;
 
-		this.L0748();
+		this.L0748_HandleNote();
 
 		// A = Table08BC_ChannelTable[X]
 		A = [0x08BC + X];
@@ -1192,7 +1207,7 @@ public class ApuProgram
 
 	public void L0741()
 	{
-		[0x13] = [0x46];
+		[0x46] = [0x13];
 		[0x13] = 0x00;
 	}
 
@@ -1201,7 +1216,7 @@ public class ApuProgram
 		return;
 	}
 
-	public void L0748()
+	public void L0748_HandleNote()
 	{
 		C = 1; temp = Y - 0xC8;
 
@@ -1212,17 +1227,17 @@ public class ApuProgram
 		[0x0281 + X] = A;
 		A &= 0x7F;
 
-		return this.L0767();
+		return this.L0767_Skip();
 	}
 
-	public void L0754()
+	public void L0754_HandleNote()
 	{
 		C = 1; temp = Y - 0xC8;
 
 		if (C == 1)
 			return this.L0747_Done();
 
-		[0x2B] |= [0xE9];
+		[0xE9] |= [0x2B];
 		A = [0x13];
 		A &= [0x2B];
 
@@ -1235,7 +1250,7 @@ public class ApuProgram
 		A += [0x38] + C;
 	}
 
-	public void L0767()
+	public void L0767_Skip()
 	{
 		C = 0;
 		A += [0x0280 + X] + C;
@@ -1254,19 +1269,19 @@ public class ApuProgram
 		A &= [0x57];
 
 		if (Z == 0)
-			return this.L078D();
+			return this.L078D_Skip();
 
-		[0x2B] |= [0x29];
+		[0x29] |= [0x2B];
 	}
 
-	public void L078D()
+	public void L078D_Skip()
 	{
-		[0x2B] |= [0x46];
+		[0x46] |= [0x2B];
 		A = [0x0221 + X];
 		[0xAF + X] = A;
 
 		if (Z == 1)
-			return this.L07FE();
+			return this.L07FE_Skip();
 
 		A = [0x0230 + X];
 		[0xB0 + X] = A;
@@ -1274,11 +1289,10 @@ public class ApuProgram
 		C = 1; temp = A - 0x01;
 
 		if (Z == 1)
-			return this.L07B8();
-
+			return this.L07B8_Skip();
 
 		if (C == 1)
-			return this.L07C1();
+			return this.L07C1_Skip();
 
 		A = [0x0201 + X];
 		C = 1;
@@ -1288,19 +1302,19 @@ public class ApuProgram
 		C = 0;
 		A += [0x0201 + X] + C;
 
-		return this.L07CF();
+		return this.L07CF_Skip();
 	}
 
-	public void L07B8()
+	public void L07B8_Skip()
 	{
 		A = [0x0201 + X];
 		C = 1;
 		A -= [0x0240 + X] + !C;
 
-		return this.L07CF();
+		return this.L07CF_Skip();
 	}
 
-	public void L07C1()
+	public void L07C1_Skip()
 	{
 		A = [0x0201 + X];
 		Y = A;
@@ -1310,7 +1324,7 @@ public class ApuProgram
 		[0x0240 + X] = A;
 	}
 
-	public void L07CF()
+	public void L07CF_Skip()
 	{
 		A &= 0x7F;
 		[0x0220 + X] = A;
@@ -1354,7 +1368,7 @@ public class ApuProgram
 		[0x0211 + X] = A;
 	}
 
-	public void L07FE()
+	public void L07FE_Skip()
 	{
 		A = [0x0201 + X];
 		[0x0C] = A;
@@ -1525,7 +1539,7 @@ public class ApuProgram
 		if (Z == 1)
 			return this.L0931();
 
-		[0xE6] = [0x2E];
+		[0x2E] = [0xE6];
 		A--;
 
 		if (Z == 1)
@@ -1633,12 +1647,11 @@ public class ApuProgram
 
 	public void L0931()
 	{
-		[0xE6] = [0x2E];
+		[0x2E] = [0xE6];
 		[0x2F + X]--;
 
 		if (Z == 0)
 			return this.L092E();
-
 	}
 
 	public void L0938()
@@ -1646,12 +1659,12 @@ public class ApuProgram
 		A = [0x7D];
 
 		if (Z == 1)
-			return this.L093F();
+			return this.L093F_Skip();
 
 		return this.L0675_LoadData();
 	}
 
-	public void L093F()
+	public void L093F_Skip()
 	{
 		A = [0x05];
 		[0x04] = A;
@@ -1763,7 +1776,7 @@ public class ApuProgram
 		[0x3B] = 0x30;
 	}
 
-	public void L09CE()
+	public void L09CE_Done()
 	{
 		return;
 	}
@@ -1787,7 +1800,7 @@ public class ApuProgram
 		A = [0x04];
 
 		if (Z == 1)
-			return this.L09CE();
+			return this.L09CE_Done();
 
 		A = [0x08];
 
@@ -1919,7 +1932,7 @@ public class ApuProgram
 
 	}
 
-	public void L0A4F()
+	public void L0A4F_Loop()
 	{
 		A = [0x18 + X];
 		[0x18 + X]++;
@@ -1947,14 +1960,14 @@ public class ApuProgram
 		[0x8F]--;
 
 		if (Z == 0)
-			return this.L0A4F();
+			return this.L0A4F_Loop();
 
 		A = [0x0160 + X];
 		[0x18 + X] = A;
 		A = [0x0161 + X];
 		[0x19 + X] = A;
 
-		return this.L0A4F();
+		return this.L0A4F_Loop();
 	}
 
 	public void L0A71()
@@ -1991,7 +2004,7 @@ public class ApuProgram
 		A = [0x043D + Y];
 		[0x0140 + X] = A;
 
-		return this.L0A4F();
+		return this.L0A4F_Loop();
 	}
 
 	public void L0A98()
@@ -1999,16 +2012,16 @@ public class ApuProgram
 		C = 1; temp = A - 0xCE;
 
 		if (C == 0)
-			return this.L0AA1();
+			return this.L0AA1_Skip();
 
-		this.L0B7B();
+		this.L0B7B_HandleEventCE();
 
-		return this.L0A4F();
+		return this.L0A4F_Loop();
 	}
 
-	public void L0AA1()
+	public void L0AA1_Skip()
 	{
-		this.L0754();
+		this.L0754_HandleNote();
 		A = [0x0130 + X];
 		[0x7F + X] = A;
 		Y = A;
@@ -2048,7 +2061,7 @@ public class ApuProgram
 		if (Z == 0)
 			return this.L0A45();
 
-		[0x56] = [0x57];
+		[0x57] = [0x56];
 		A = [0x3C];
 
 		if (Z == 1)
@@ -2099,52 +2112,52 @@ public class ApuProgram
 		A = [0x42];
 
 		if (Z == 1)
-			return this.L0AFF();
+			return this.L0AFF_Skip();
 
 		YA = [0x44];
 		YA += [0x40] + C;
 
 		[0x0042]--; if (Z == 0)
-			return this.L0AFA();
+			return this.L0AFA_Skip();
 
 		YA = [0x42];
 	}
 
-	public void L0AFA()
+	public void L0AFA_Skip()
 	{
 		[0x40] = YA;
 		[0x46] = 0xFF;
 	}
 
-	public void L0AFF()
+	public void L0AFF_Skip()
 	{
 		X = 0x00;
 		[0x2B] = 0x01;
 	}
 
-	public void L0B04()
+	public void L0B04_Loop()
 	{
 		A = [0x19 + X];
 
 		if (Z == 1)
-			return this.L0B0B();
+			return this.L0B0B_Skip();
 
 		this.L114C();
 	}
 
-	public void L0B0B()
+	public void L0B0B_Skip()
 	{
 		X++;
 		X++;
 		[0x2B] <<= 1;
 
 		if (Z == 0)
-			return this.L0B04();
+			return this.L0B04_Loop();
 
 		return;
 	}
 
-	public void L0B7B()
+	public void L0B7B_HandleEventCE()
 	{
 		A <<= 1;
 		Y = A;
@@ -2158,7 +2171,7 @@ public class ApuProgram
 		A = [0x0B0A + Y];
 
 		if (Z == 1)
-			return this.L0B96();
+			return this.L0B96_Done();
 
 		A = [0x18 + X];
 		[0x18 + X]++;
@@ -2174,7 +2187,76 @@ public class ApuProgram
 		Y = A;
 	}
 
-	public void L0B96()
+	public void L0B96_Done()
+	{
+		return;
+	}
+
+	public void L0BAF()
+	{
+		Y = 0x06;
+		YA = Y * A;
+		[0x0F] = YA;
+		C = 0;
+		[0x0F] += 0x7B;
+		[0x10] += 0x14;
+		A = [0x13];
+		A &= [0x2B];
+
+		if (Z == 0)
+			return this.L0BFE();
+
+		Stack.Push(X);
+		A = [0x08AC + X];
+		A |= 0x04;
+		X = A;
+		Y = 0x00;
+		A = [[0x0F] + Y];
+
+		if (N == 0)
+			return this.L0BE1();
+
+		A &= 0x1F;
+		[0x31] &= 0x20;
+		temp = A - [0x0031];[0x0031] |= A;
+		[0x32] |= [0x2B];
+		Y = 0x04;
+		A = [[0x0F] + Y];
+		Y = 0x00;
+		return this.L0BE8();
+	}
+
+	public void L0BE1()
+	{
+		A = [0x2B];
+		temp = A - [0x0032];[0x0032] &= ~A;
+	}
+
+	public void L0BE6()
+	{
+		A = [[0x0F] + Y];
+	}
+
+	public void L0BE8()
+	{
+		[0xF2] = X;
+		[0xF3] = A;
+		X++;
+		Y++;
+		C = 1; temp = Y - 0x04;
+
+		if (Z == 0)
+			return this.L0BE6();
+
+		X = Stack.Pop();
+		A = [[0x0F] + Y];
+		[0x0151 + X] = A;
+		Y++;
+		A = [[0x0F] + Y];
+		[0x0150 + X] = A;
+	}
+
+	public void L0BFE()
 	{
 		return;
 	}
@@ -2265,7 +2347,7 @@ public class ApuProgram
 		A = [0x0171 + X];
 		[0x62 + X] = A;
 
-		return this.L0E98();
+		return this.L0E98_Done();
 	}
 
 	public void L0E8E()
@@ -2276,7 +2358,7 @@ public class ApuProgram
 		[0x19 + X] = A;
 	}
 
-	public void L0E98()
+	public void L0E98_Done()
 	{
 		return;
 	}
@@ -2355,13 +2437,13 @@ public class ApuProgram
 		A = [0xAF + X];
 
 		if (Z == 0)
-			return this.L1056();
+			return this.L1056_Done();
 
 		A = [0x61 + X];
 		C = 1; temp = A - 0xE7;
 
 		if (Z == 0)
-			return this.L1056();
+			return this.L1056_Done();
 
 		[0x61 + X]++;
 
@@ -2416,7 +2498,7 @@ public class ApuProgram
 		return this.L1080();
 	}
 
-	public void L1056()
+	public void L1056_Done()
 	{
 		return;
 	}
@@ -2426,13 +2508,13 @@ public class ApuProgram
 		A = [0xAF + X];
 
 		if (Z == 0)
-			return this.L1056();
+			return this.L1056_Done();
 
 		A = [0x18 + X];
 		C = 1; temp = A - 0xE7;
 
 		if (Z == 0)
-			return this.L1056();
+			return this.L1056_Done();
 
 		[0x18 + X]++;
 
@@ -2620,7 +2702,7 @@ public class ApuProgram
 
 		A = 0xA0;
 		Y = 0x01;
-		[0x2B] |= [0x46];
+		[0x46] |= [0x2B];
 		[0x9F]--;
 
 		if (Z == 0)
@@ -2661,7 +2743,7 @@ public class ApuProgram
 		if (Z == 1)
 			return this.L114A();
 
-		[0x2B] |= [0x46];
+		[0x46] |= [0x2B];
 		[0xA0]--;
 
 		if (Z == 0)
@@ -2691,7 +2773,7 @@ public class ApuProgram
 
 	public void L114A()
 	{
-		return this.L11C3();
+		return this.L11C3_Skip();
 	}
 
 	public void L114C()
@@ -2699,36 +2781,36 @@ public class ApuProgram
 		A = [0xCF + X];
 
 		if (Z == 1)
-			return this.L1154();
+			return this.L1154_Skip();
 
 		[0xCF]--;
 
-		return this.L1181();
+		return this.L1181_Skip();
 	}
 
-	public void L1154()
+	public void L1154_Skip()
 	{
 		A = [0x9F + X];
 
 		if (Z == 1)
-			return this.L1181();
+			return this.L1181_Skip();
 
 		A = [0x0190 + X];
 		[0xCF + X] = A;
-		[0x2B] |= [0x46];
+		[0x46] |= [0x2B];
 		[0x9F]--;
 
 		if (Z == 0)
-			return this.L116E();
+			return this.L116E_Skip();
 
 		A = 0x00;
 		[0x01A0 + X] = A;
 		A = [0x01C0 + X];
 
-		return this.L117E();
+		return this.L117E_Skip();
 	}
 
-	public void L116E()
+	public void L116E_Skip()
 	{
 		C = 0;
 		A = [0x01A0 + X];
@@ -2738,12 +2820,12 @@ public class ApuProgram
 		A += [0x01B1 + X] + C;
 	}
 
-	public void L117E()
+	public void L117E_Skip()
 	{
 		[0x01A1 + X] = A;
 	}
 
-	public void L1181()
+	public void L1181_Skip()
 	{
 		Y = [0x41];
 		A = [0x0140 + X];
@@ -2757,13 +2839,13 @@ public class ApuProgram
 		A = [0xA0 + X];
 
 		if (Z == 1)
-			return this.L11C3();
+			return this.L11C3_Skip();
 
 		A = 0xD0;
 		Y = 0x01;
 		[0xA0]--;
 		Stack.Push(P);
-		[0x2B] |= [0x46];
+		[0x46] |= [0x2B];
 		P = Stack.Pop();
 		[0x0F] = YA;
 		[0x11] = YA;
@@ -2772,39 +2854,39 @@ public class ApuProgram
 		C = 0;
 
 		if (Z == 0)
-			return this.L11B3();
+			return this.L11B3_Skip();
 
 		[0x111F] += 0x00;
 		A = 0x00;
 		[[0x0F] +Y] = A;
 		Y++;
 
-		return this.L11BF();
+		return this.L11BF_Skip();
 	}
 
-	public void L11B3()
+	public void L11B3_Skip()
 	{
 		[0x1110] += 0x00;
-		A = [0x0F + Y];
+		A = [[0x0F] + Y];
 		A += [[0x11] + Y] +C;
 		[[0x0F] +Y] = A;
 		Y++;
-		A = [0x0F + Y];
+		A = [[0x0F] + Y];
 	}
 
-	public void L11BF()
+	public void L11BF_Skip()
 	{
 		A += [[0x11] + Y] +C;
 		[[0x0F] +Y] = A;
 	}
 
-	public void L11C3()
+	public void L11C3_Skip()
 	{
 		A = [0x2B];
 		A &= [0x46];
 
 		if (Z == 1)
-			return this.L1228();
+			return this.L1228_Done();
 
 		A = [0x01D1 + X];
 		Y = A;
@@ -2812,13 +2894,13 @@ public class ApuProgram
 		[0x0B] = YA;
 	}
 
-	public void L11D2()
+	public void L11D2_Loop()
 	{
 		A = [0x08AC + X];
 		[0x0D] = A;
 	}
 
-	public void L11D7()
+	public void L11D7_Loop()
 	{
 		Y = 0x51;
 		A = [0x1439 + X];
@@ -2895,12 +2977,12 @@ public class ApuProgram
 		[0x0D]++;
 
 		if (([0x0D] & 0x02) == 0)
-			return this.L11D7();
+			return this.L11D7_Loop();
 
-		[0x2B] ^= [0x46];
+		[0x46] ^= [0x2B];
 	}
 
-	public void L1228()
+	public void L1228_Done()
 	{
 		return;
 	}
@@ -2928,8 +3010,11 @@ public class ApuProgram
 
 	public void L124D()
 	{
+		// Value12 = Table8F_Channel[X]
 		A = [0x8F + X];
 		[0x12] = A;
+
+		// YA = Table61_Channel[X]
 		Y = [0x62 + X];
 
 		if (Z == 1)
@@ -2937,69 +3022,111 @@ public class ApuProgram
 
 		A = [0x61 + X];
 
-		return this.L125D();
+		return this.L125D_JumpToAddress();
 	}
 
 	public void L1259()
 	{
+		// YA = Table18_Channel[X]
 		A = [0x18 + X];
 		Y = [0x19 + X];
 	}
 
-	public void L125D()
+	public void L125D_JumpToAddress()
 	{
 		[0x0F] = YA;
 		Y = 0x00;
 	}
 
-	public void L1261()
+	public void L1261_Loop()
 	{
-		A = [0x0F + Y];
+		A = [[0x0F] + Y];
 
 		if (Z == 1)
-			return this.L1281();
-
+			return this.L1281_HandleEndEvent();
 
 		if (N == 1)
-			return this.L126C();
+			return this.L126C_HandleNoteEvent();
 	}
 
-	public void L1267()
+	public void L1267_FindNoteEvent()
 	{
 		Y++;
-		A = [0x0F + Y];
+		A = [[0x0F] + Y];
 
 		if (N == 0)
-			return this.L1267();
+			return this.L1267_FindNoteEvent();
 	}
 
-	public void L126C()
+	public void L126C_HandleNoteEvent()
 	{
 		C = 1; temp = A - 0xC8;
 
 		if (Z == 1)
-			return this.L12BE();
+			return this.L12BE_HandleEventC8();
 
 		C = 1; temp = A - 0xDD;
 
 		if (Z == 1)
-			return this.L129D();
+			return this.L129D_HandleCallEvent();
 
+		// if(A < 0xCE) return L12A8()
 		C = 1; temp = A - 0xCE;
 
 		if (C == 0)
 			return this.L12A8();
 
+		// Y += Table0A8A_EventLengths[A]
 		Stack.Push(Y);
 		Y = A;
 		A = Stack.Pop();
 		A += [0x0A8A + Y] + C;
 		Y = A;
 
-		return this.L1261();
+		return this.L1261_Loop();
 	}
 
-	public void L1281()
+	// Event Lengths Table (actually starts at 0x0B58)
+	public byte[] Table0A8A_EventLengths = new byte[]
+	{
+		01		// CE
+		01		// CF
+		02		// D0
+		03		// D1
+		00		// D2
+		01		// D3
+		02		// D4
+		01		// D5
+		02		// D6
+		01		// D7
+		01		// D8
+		01		// D9
+		01		// DA
+		01		// DB
+		02		// DC
+		03		// DD
+		01		// DE
+		03		// DF
+		03		// E0
+		00		// E1
+		01		// E2
+		03		// E3
+		00		// E4
+		03		// E5
+		03		// E6
+		03		// E7
+		01		// E8
+		01		// E9
+		00		// EA
+		00		// EB
+		00		// EC
+		01		// ED
+		01		// EE
+		01		// EF
+		00		// F0
+	}
+
+	public void L1281_HandleEndEvent()
 	{
 		A = [0x12];
 
@@ -3009,37 +3136,39 @@ public class ApuProgram
 		[0x12 + X]--;
 
 		if (Z == 0)
-			return this.L1293();
-
+			return this.L1293_HandleRepeatEvent();
+		
+		// YA = Table0160_ChannelReturnAddress[X]
 		A = [0x0161 + X];
 		Stack.Push(A);
 		A = [0x0160 + X];
 		Y = Stack.Pop();
 
-		return this.L125D();
+		return this.L125D_JumpToAddress();
 	}
 
-	public void L1293()
+	public void L1293_HandleRepeatEvent()
 	{
+		// YA = Table0170_ChannelRepeatAddress[X]
 		A = [0x0171 + X];
 		Stack.Push(A);
 		A = [0x0170 + X];
 		Y = Stack.Pop();
 
-		return this.L125D();
+		return this.L125D_JumpToAddress();
 	}
 
-	public void L129D()
+	public void L129D_HandleCallEvent()
 	{
 		Y++;
-		A = [0x0F + Y];
+		A = [[0x0F] + Y];
 		Stack.Push(A);
 		Y++;
-		A = [0x0F + Y];
+		A = [[0x0F] + Y];
 		Y = A;
 		A = Stack.Pop();
 
-		return this.L125D();
+		return this.L125D_JumpToAddress();
 	}
 
 	public void L12A8()
@@ -3072,19 +3201,19 @@ public class ApuProgram
 		A = [0xAF + X];
 
 		if (Z == 1)
-			return this.L12F7();
+			return this.L12F7_Skip();
 
 		A = [0xB0 + X];
 
 		if (Z == 1)
-			return this.L12CC();
+			return this.L12CC_Skip();
 
 		[0xB0]--;
 
-		return this.L12F7();
+		return this.L12F7_Skip();
 	}
 
-	public void L12CC()
+	public void L12CC_Skip()
 	{
 		[0x0E] |= 0x80;
 		A = 0x00;
@@ -3097,33 +3226,33 @@ public class ApuProgram
 		C = 0;
 
 		if (Z == 0)
-			return this.L12E7();
+			return this.L12E7_Skip();
 
 		[0x111F] += 0x00;
 		A = 0x00;
 		[[0x0F] +Y] = A;
 		Y++;
 
-		return this.L12F3();
+		return this.L12F3_Skip();
 	}
 
-	public void L12E7()
+	public void L12E7_Skip()
 	{
 		[0x1110] += 0x00;
-		A = [0x0F + Y];
+		A = [[0x0F] + Y];
 		A += [[0x11] + Y] +C;
 		[[0x0F] +Y] = A;
 		Y++;
-		A = [0x0F + Y];
+		A = [[0x0F] + Y];
 	}
 
-	public void L12F3()
+	public void L12F3_Skip()
 	{
 		A += [[0x11] + Y] +C;
 		[[0x0F] +Y] = A;
 	}
 
-	public void L12F7()
+	public void L12F7_Skip()
 	{
 		A = [0x0201 + X];
 		[0x0C] = A;
@@ -3143,31 +3272,31 @@ public class ApuProgram
 		C = 1; temp = A - [0x0260 + X];
 
 		if (Z == 0)
-			return this.L1318();
+			return this.L1318_Skip();
 
 		A = [0x0270 + X];
 
-		return this.L1323();
+		return this.L1323_Skip();
 	}
 
-	public void L1318()
+	public void L1318_Skip()
 	{
 		[0x90 + X]++;
 		Y = A;
 
 		if (Z == 1)
-			return this.L131F();
+			return this.L131F_Skip();
 
 		A = [0xC0 + X];
 	}
 
-	public void L131F()
+	public void L131F_Skip()
 	{
 		C = 0;
 		A += [0x0261 + X] + C;
 	}
 
-	public void L1323()
+	public void L1323_Skip()
 	{
 		[0xC0 + X] = A;
 		A = [0x0241 + X];
@@ -3176,41 +3305,41 @@ public class ApuProgram
 		[0x0241 + X] = A;
 	}
 
-	public void L132F()
+	public void L132F_Loop()
 	{
 		[0x0D] = A;
 		A <<= 1;
 		A <<= 1;
 
 		if (C == 0)
-			return this.L1337();
+			return this.L1337_Skip();
 
 		A ^= 0xFF;
 	}
 
-	public void L1337()
+	public void L1337_Skip()
 	{
 		Y = A;
 		A = [0xC0 + X];
 		C = 1; temp = A - 0xF1;
 
 		if (C == 0)
-			return this.L1343();
+			return this.L1343_Skip();
 
 		A &= 0x0F;
 		YA = Y * A;
 
-		return this.L1347();
+		return this.L1347_Skip();
 	}
 
-	public void L1343()
+	public void L1343_Skip()
 	{
 		YA = Y * A;
 		A = Y;
 		Y = 0x00;
 	}
 
-	public void L1347()
+	public void L1347_Skip()
 	{
 		if (([0x0D] & 0x80) == 0)
 			return this.L1350_Skip();
@@ -3268,7 +3397,7 @@ public class ApuProgram
 		if (([0x0E] & 0x80) == 0)
 			return this.L137C_Skip();
 
-		this.L11D2();
+		this.L11D2_Loop();
 	}
 
 	public void L137C_Skip()
@@ -3314,7 +3443,7 @@ public class ApuProgram
 		C = 0;
 		A += [0x0241 + X] + C;
 
-		return this.L132F();
+		return this.L132F_Loop();
 	}
 
 	public void L13B2()
@@ -3367,7 +3496,7 @@ public class ApuProgram
 		A &= [0x28];
 
 		if (Z == 1)
-			return this.L1428();
+			return this.L1428_Done();
 
 		A = [0x08AC + X];
 		A |= 0x08;
@@ -3377,7 +3506,7 @@ public class ApuProgram
 		A = [0xF3];
 
 		if (Z == 0)
-			return this.L1428();
+			return this.L1428_Done();
 
 		A = [0x2B];
 		temp = A - [0x0056]; [0x0056] &= ~A;
@@ -3405,10 +3534,10 @@ public class ApuProgram
 		A = 0x0A;
 		[0x01F1 + X] = A;
 		[0x01D1 + X] = A;
-		[0x2B] ^= [0x28];
+		[0x28] ^= [0x2B];
 	}
 
-	public void L1428()
+	public void L1428_Done()
 	{
 		return;
 	}
